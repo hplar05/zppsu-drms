@@ -1,19 +1,15 @@
-// React and Next.js imports
 import Link from "next/link";
 import Image from "next/image";
-
-// Third-party library imports
 import Balancer from "react-wrap-balancer";
 import { Camera } from "lucide-react";
-
-// Local component imports
 import { Section, Container } from "@/components/craft";
 import { Button } from "@/components/ui/button";
-
-// Asset imports
 import Logo from "@/public/logo.jpg";
+import { authOptions } from "@/lib/auth";
+import { getServerSession } from "next-auth";
 
-const Hero = () => {
+const Hero = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <Section className="border-b">
       <Container className="flex flex-col items-center text-center">
@@ -37,7 +33,9 @@ const Hero = () => {
         </h3>
         <div className="not-prose mt-6 flex gap-2 md:mt-12">
           <Button asChild>
-            <Link href="/posts">Get Started -{">"}</Link>
+            <Link href={session?.user ? "/user" : "/login"}>
+              Get Started -{">"}
+            </Link>
           </Button>
         </div>
       </Container>

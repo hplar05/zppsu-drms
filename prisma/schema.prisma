@@ -13,21 +13,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  STUDENT
-  ADMIN
-}
-
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  username     String   @unique
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  username     String        @unique
   password     String
   firstname    String
   middlename   String?
   lastname     String
   mobileNumber String?
-  role         Role     @default(STUDENT)
-  createdAt    DateTime @default(now())
-  updateUt     DateTime @updatedAt
+  requestForm  RequestForm[]
+  role         Role          @default(STUDENT)
+  createdAt    DateTime      @default(now())
+  updateUt     DateTime      @updatedAt
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+model RequestForm {
+  id          Int      @id @default(autoincrement())
+  course      String
+  subjectname String
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+  action      Action   @default(PENDING)
+  createdAt   DateTime @default(now())
+  updateUt    DateTime @updatedAt
+}
+
+enum Action {
+  APPROVE
+  DISAPPROVE
+  PENDING
 }

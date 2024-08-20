@@ -29,16 +29,6 @@ export default function Form() {
       <form action={createRequest}>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="nameOfStudent">Student Id</Label>
-            <Input
-              id="userId"
-              name="userId"
-              placeholder="Enter your name"
-              defaultValue={session?.user.id}
-              disabled
-            />
-          </div>
-          <div className="space-y-2">
             <Label htmlFor="nameOfStudent">Name of the Student</Label>
             <Input
               id="nameOfStudent"
@@ -47,15 +37,48 @@ export default function Form() {
             />
           </div>
           <div className="space-y-2">
+            <Label htmlFor="studentId">Student Id</Label>
+            <Input
+              id="studentId"
+              name="studentId"
+              placeholder="Enter your Student ID"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="course">Mobile Number</Label>
+            <Input
+              id="mobileNumber"
+              name="mobileNumber"
+              placeholder="Enter the Number"
+            />
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="course">Course</Label>
             <Input id="course" name="course" placeholder="Enter the course" />
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="subjectname">Subject Names</Label>
-            <Textarea
+            <Label htmlFor="course">Year & Section</Label>
+            <Input
+              id="yearAndsection"
+              name="yearAndsection"
+              placeholder="Enter the your Year and Section"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="subjectname">Request Subject Names</Label>
+            <Input
               id="subjectname"
               name="subjectname"
-              placeholder="Enter the subject names"
+              placeholder="Enter the your Request Subject Names"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="subjectname">Purpose of Request</Label>
+            <Textarea
+              id="purposeOfrequest"
+              name="purposeOfrequest"
+              placeholder="Enter the Purpose of Request"
               className="min-h-[100px]"
             />
           </div>

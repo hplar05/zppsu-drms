@@ -27,10 +27,8 @@ const FormSchema = z
       .min(1, "Password is required")
       .min(8, "Password must have than 8 characters"),
     confirmPassword: z.string().min(1, "Password confirmation is required"),
-    firstname: z.string().min(1, "First name is required"),
-    middlename: z.string().optional(),
-    lastname: z.string().min(1, "Last name is required"),
-    mobileNumber: z.string().optional(),
+    name: z.string().min(3, "name is required"),
+    mobileNumber: z.string().min(5, "mobile number is required").max(11),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ["confirmPassword"],
@@ -42,9 +40,7 @@ const RegisterForm = () => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
-      middlename: "",
+      name: "",
       mobileNumber: "",
       username: "",
       email: "",
@@ -60,9 +56,7 @@ const RegisterForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        firstname: values.firstname,
-        lastname: values.lastname,
-        middlename: values.middlename,
+        name: values.name,
         mobileNumber: values.mobileNumber,
         username: values.username,
         email: values.email,
@@ -86,12 +80,12 @@ const RegisterForm = () => {
             <div className="space-y-2">
               <FormField
                 control={form.control}
-                name="firstname"
+                name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Firstname</FormLabel>
+                    <FormLabel>name</FormLabel>
                     <FormControl>
-                      <Input placeholder="your first name" {...field} />
+                      <Input placeholder="Enter your name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -99,44 +93,12 @@ const RegisterForm = () => {
               />
               <FormField
                 control={form.control}
-                name="middlename"
+                name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Middlename</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="your middle name (optional)"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Lastname</FormLabel>
-                    <FormControl>
-                      <Input placeholder="your last name" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="mobileNumber"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Mobile Number</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="your mobile number (optional)"
-                        {...field}
-                      />
+                      <Input placeholder="mail@example.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -157,17 +119,21 @@ const RegisterForm = () => {
               />
               <FormField
                 control={form.control}
-                name="email"
+                name="mobileNumber"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Mobile Number</FormLabel>
                     <FormControl>
-                      <Input placeholder="mail@example.com" {...field} />
+                      <Input
+                        placeholder="Enter your mobile number"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <FormField
                 control={form.control}
                 name="password"

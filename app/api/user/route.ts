@@ -11,17 +11,15 @@ const userSchema = z
       .string()
       .min(1, "Password is required")
       .min(8, "Password must have than 8 characters"),
-    firstname: z.string().min(1, "First name is required"),
-    middlename: z.string().optional(),
-    lastname: z.string().min(1, "Last name is required"),
-    mobileNumber: z.string().optional(),
+    name: z.string().min(3, "name is required"),
+    mobileNumber: z.string().min(5, "mobile number is required").max(11),
   })
  
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const {email, username, password, firstname, middlename, lastname, mobileNumber} = userSchema.parse(body);
+        const {email, username, name, password, mobileNumber} = userSchema.parse(body);
 
         // check if email already exist
         const existingUserByEmail = await db.user.findUnique({
@@ -46,9 +44,7 @@ export async function POST(req: Request) {
                 username,
                 email,
                 password: hashedPassword,
-                firstname,
-                middlename,
-                lastname,
+                name,
                 mobileNumber
             }
         })

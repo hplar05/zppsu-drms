@@ -42,9 +42,7 @@ export const authOptions: NextAuthOptions = {
                 id: `${existingUser.id}`,
                 username: existingUser.username,
                 email: existingUser.email,
-                firstname: existingUser.firstname,
-                middlename: existingUser.middlename,
-                lastname: existingUser.lastname,
+                name: existingUser.name,
                 mobileNumber: existingUser.mobileNumber,
                 role: existingUser.role
             }
@@ -59,9 +57,7 @@ export const authOptions: NextAuthOptions = {
                     ...token,
                     id: user.id,
                     username: user.username,
-                    firstname: user.firstname,
-                    middlename: user.middlename,
-                    lastname: user.lastname,
+                    name: user.name,
                     mobileNumber: user.mobileNumber,
                     role: user.role
                 }
@@ -75,9 +71,7 @@ export const authOptions: NextAuthOptions = {
                     ...session.user,
                     id: token.id,
                     username: token.username,
-                    firstname: token.firstname,
-                    middlename: token.middlename,
-                    lastname: token.lastname,
+                    name: token.name,
                     mobileNumber: token.mobileNumber,
                     role: token.role
                 }

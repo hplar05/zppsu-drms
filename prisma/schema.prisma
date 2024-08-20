@@ -18,10 +18,8 @@ model User {
   email        String        @unique
   username     String        @unique
   password     String
-  firstname    String
-  middlename   String?
-  lastname     String
-  mobileNumber String?
+  name         String
+  mobileNumber String
   requestForm  RequestForm[]
   role         Role          @default(STUDENT)
   createdAt    DateTime      @default(now())
@@ -34,15 +32,19 @@ enum Role {
 }
 
 model RequestForm {
-  id            String   @id @default(cuid())
-  nameOfStudent String
-  course        String
-  subjectname   String
-  userId        String
-  user          User     @relation(fields: [userId], references: [id])
-  action        Action   @default(PENDING)
-  createdAt     DateTime @default(now())
-  updateUt      DateTime @updatedAt
+  id               Int      @id @default(autoincrement())
+  studentId        String
+  nameOfStudent    String
+  course           String
+  mobileNumber     String
+  yearAndsection   String
+  subjectname      String
+  purposeOfrequest String
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  action           Action   @default(PENDING)
+  createdAt        DateTime @default(now())
+  updateUt         DateTime @updatedAt
 }
 
 enum Action {

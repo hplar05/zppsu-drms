@@ -8,11 +8,11 @@ import { JSX, SVGProps } from "react";
 
 export default function Sidebar() {
   return (
-    <div className="flex h-[100vh]">
+    <div className="flex h-[95vh]">
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4">
         <Link
           href="/admin/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center mt-6 gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />

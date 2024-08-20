@@ -18,16 +18,18 @@ import GoogleSignInButton from "@/components/GoogleButton";
 import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z
     .string()
     .min(1, "Password is required")
-    .min(8, "Password must have than 8 characters"),
+    .min(8, "Password must have at least 8 characters"),
 });
 
 const LoginForm = () => {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -38,18 +40,26 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    const updatedSession = session?.user.role;
     const signInData = await signIn("credentials", {
       email: values.email,
       password: values.password,
       redirect: false,
     });
+
     if (signInData?.error) {
-      toast.error("Incorect Email or Password!");
+      toast.error("Incorrect Email or Password!");
       console.log(signInData.error);
     } else {
-      toast.success("Successfully login!");
-      router.push("/user");
-      router.refresh();
+      if (updatedSession === "ADMIN") {
+        toast.success("Successfully logged in!");
+        router.push("/admin/dashboard");
+        router.refresh();
+      } else if (updatedSession === "STUDENT") {
+        toast.success("Successfully logged in!");
+        router.push("/user/dashboard");
+        router.refresh();
+      }
     }
   };
 

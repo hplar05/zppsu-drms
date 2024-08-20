@@ -1,28 +1,35 @@
+import { Role } from "@prisma/client"
 import NextAuth from "next-auth"
 
 declare module "next-auth" {
     interface User {
+        id: string,
         username: string,
         firstname: string,
         middlename: string | null,
         lastname: string,
         mobileNumber: string | null,
+        role: Role
     }
 
   interface Session {
     user: User & {
-        username: string,
-        firstname: string,
-        middlename: string | null,
-        lastname: string,
-        mobileNumber: string | null,
+      id: string,
+      username: string,
+      firstname: string,
+      middlename: string | null,
+      lastname: string,
+      mobileNumber: string | null,
+      role: Role
     }
     token: {
-        username: string,
-        firstname: string,
-        middlename: string | null,
-        lastname: string,
-        mobileNumber: string | null,
+      id: string,
+      username: string,
+      firstname: string,
+      middlename: string | null,
+      lastname: string,
+      mobileNumber: string | null,
+      role: Role
     }
   }
 }

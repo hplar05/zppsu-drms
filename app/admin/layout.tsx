@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
-import UserNavbar from "./dashboard/_components/userNavbar";
-import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
+import UserNavbar from "../user/dashboard/_components/userNavbar";
 import Provider from "@/components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,18 +20,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Provider>
             <UserNavbar />
             {children}
-          </ThemeProvider>
-        </Provider>
+          </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );

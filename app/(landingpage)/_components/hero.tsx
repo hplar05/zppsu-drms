@@ -26,14 +26,14 @@ const Hero = async () => {
         <h3 className="text-muted-foreground">
           <Balancer>
             Unlock your academic potential by requesting your personalized
-            subject form today. Whether you're looking to explore new subjects
-            or need guidance on your current studies, we're here to help you
-            make the best choices for your educational journey.
+            subject form today. Whether youre looking to explore new subjects or
+            need guidance on your current studies, were here to help you make
+            the best choices for your educational journey.
           </Balancer>
         </h3>
         <div className="not-prose mt-6 flex gap-2 md:mt-12">
           <Button asChild>
-            <Link href={session?.user ? "/user" : "/login"}>
+            <Link href={session?.user ? "/user/dashboard" : "/login"}>
               Get Started -{">"}
             </Link>
           </Button>

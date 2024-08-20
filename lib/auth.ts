@@ -45,7 +45,8 @@ export const authOptions: NextAuthOptions = {
                 firstname: existingUser.firstname,
                 middlename: existingUser.middlename,
                 lastname: existingUser.lastname,
-                mobileNumber: existingUser.mobileNumber
+                mobileNumber: existingUser.mobileNumber,
+                role: existingUser.role
             }
           }
         })
@@ -56,11 +57,13 @@ export const authOptions: NextAuthOptions = {
             if(user) {
                 return {
                     ...token,
+                    id: user.id,
                     username: user.username,
                     firstname: user.firstname,
                     middlename: user.middlename,
                     lastname: user.lastname,
-                    mobileNumber: user.mobileNumber
+                    mobileNumber: user.mobileNumber,
+                    role: user.role
                 }
             }
             return token
@@ -70,11 +73,13 @@ export const authOptions: NextAuthOptions = {
                 ...session,
                 user: {
                     ...session.user,
+                    id: token.id,
                     username: token.username,
                     firstname: token.firstname,
                     middlename: token.middlename,
                     lastname: token.lastname,
-                    mobileNumber: token.mobileNumber
+                    mobileNumber: token.mobileNumber,
+                    role: token.role
                 }
             }
             return session

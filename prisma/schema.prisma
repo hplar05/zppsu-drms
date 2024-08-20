@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id           Int           @id @default(autoincrement())
+  id           String        @id @default(cuid())
   email        String        @unique
   username     String        @unique
   password     String
@@ -34,18 +34,27 @@ enum Role {
 }
 
 model RequestForm {
-  id          Int      @id @default(autoincrement())
-  course      String
-  subjectname String
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id])
-  action      Action   @default(PENDING)
-  createdAt   DateTime @default(now())
-  updateUt    DateTime @updatedAt
+  id            String   @id @default(cuid())
+  nameOfStudent String
+  course        String
+  subjectname   String
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  action        Action   @default(PENDING)
+  createdAt     DateTime @default(now())
+  updateUt      DateTime @updatedAt
 }
 
 enum Action {
   APPROVE
   DISAPPROVE
   PENDING
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  createdAt DateTime @default(now())
+  updateUt  DateTime @updatedAt
 }

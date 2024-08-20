@@ -51,15 +51,18 @@ const LoginForm = () => {
       toast.error("Incorrect Email or Password!");
       console.log(signInData.error);
     } else {
-      if (updatedSession === "ADMIN") {
-        toast.success("Successfully logged in!");
-        router.push("/admin/dashboard");
-        router.refresh();
-      } else if (updatedSession === "STUDENT") {
-        toast.success("Successfully logged in!");
-        router.push("/user/dashboard");
-        router.refresh();
-      }
+      toast.success("Successfully logged in!");
+      router.push("/user/dashboard");
+      router.refresh();
+      // if (updatedSession === "ADMIN") {
+      //   toast.success("Successfully logged in!");
+      //   router.push("/admin/dashboard");
+      //   router.refresh();
+      // } else if (updatedSession === "STUDENT") {
+      //   toast.success("Successfully logged in!");
+      //   router.push("/user/dashboard");
+      //   router.refresh();
+      // }
     }
   };
 

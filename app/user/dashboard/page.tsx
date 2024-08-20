@@ -10,7 +10,7 @@ const page = async () => {
   if (session?.user) {
     return (
       <div>
-        <h2>welcome to userpage {session?.user?.firstname}</h2>
+        <h2>welcome to userpage {session?.user?.name}</h2>
         <h2>
           <User />
         </h2>

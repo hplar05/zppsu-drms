@@ -6,7 +6,7 @@ import Logo from "@/public/logo.jpg";
 
 const AdminNavbar = async () => {
   return (
-    <header className="w-full non-prose flex item-center justify-between shadow-sm shadow-gray-200 dark:shadow-none sticky top-0 dark:bg-[#020817] bg-white">
+    <header className="w-full non-prose flex item-center justify-between border-b  sticky top-0 dark:bg-[#020817] bg-white">
       <Link
         className="space-x-2 md:ml-5 ml-0 flex items-center not-prose p-2"
         href="/"

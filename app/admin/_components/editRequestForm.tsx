@@ -63,7 +63,7 @@ const EditRequestForm = ({ request }: { request: RequestForm }) => {
               id="mobileNumber"
               name="mobileNumber"
               placeholder="Enter the Number"
-              defaultValue={session?.user.email}
+              defaultValue={request.email}
               disabled
             />
             <p className="mt-2 text-sm text-red-500">{state?.Error?.email}</p>

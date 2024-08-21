@@ -10,7 +10,7 @@ export default function NoRequestAvailable() {
           No Request available
         </h1>
         <p className="mt-4 text-muted-foreground">
-          It looks like there's no request to display at the moment.
+          It looks like theres no request to display at the moment.
         </p>
         <div className="mt-6">
           <Link

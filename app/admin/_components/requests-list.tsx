@@ -12,11 +12,53 @@ import {
 import { db } from "@/lib/db";
 import Link from "next/link";
 import { DeleteRequestDialog } from "./deleteRequestDialog";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
-export default async function RequestLists() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  const requests = await db.requestForm.findMany();
-  const requestscounts = await db.requestForm.count();
+export default async function RequestLists({
+  query,
+  currentPage,
+}: {
+  query: string;
+  currentPage: number;
+}) {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const itemsPerPage = 7;
+
+  const requests = await db.requestForm.findMany({
+    where: {
+      OR: [
+        { nameOfStudent: { contains: query } },
+        { studentId: { contains: query } },
+        { email: { contains: query } },
+        { course: { contains: query } },
+        { subjectname: { contains: query } },
+      ],
+    },
+    skip: (currentPage - 1) * itemsPerPage,
+    take: itemsPerPage,
+  });
+
+  const requestscounts = await db.requestForm.count({
+    where: {
+      OR: [
+        { nameOfStudent: { contains: query } },
+        { studentId: { contains: query } },
+        { email: { contains: query } },
+        { course: { contains: query } },
+        { subjectname: { contains: query } },
+      ],
+    },
+  });
+
+  const totalPages = Math.ceil(requestscounts / itemsPerPage);
 
   return (
     <Table>
@@ -50,12 +92,12 @@ export default async function RequestLists() {
             <TableCell>{request.purposeOfrequest}</TableCell>
             <TableCell>{request.action}</TableCell>
             <TableCell className="text-right flex justify-center items-center gap-1">
-              <Button variant="outline">
-                <Link href={`/admin/requests/${request.id}`}>View</Link>
-              </Button>
-              <Button>
-                <Link href={`/admin/editRequest/${request.id}`}>Edit</Link>
-              </Button>
+              <Link href={`/admin/requests/${request.id}`}>
+                <Button variant="outline">View</Button>
+              </Link>
+              <Link href={`/admin/editRequest/${request.id}`}>
+                <Button>Edit</Button>
+              </Link>
               <DeleteRequestDialog id={request.id} />
             </TableCell>
           </TableRow>
@@ -63,8 +105,45 @@ export default async function RequestLists() {
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={12}>Total</TableCell>
-          <TableCell className="text-right">{requestscounts}</TableCell>
+          <TableCell colSpan={10} className="text-center">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href={`?query=${query}&page=${Math.max(
+                      1,
+                      currentPage - 1
+                    )}`}
+                    aria-disabled={currentPage === 1}
+                  />
+                </PaginationItem>
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <PaginationItem key={index}>
+                    <PaginationLink
+                      href={`?query=${query}&page=${index + 1}`}
+                      isActive={index + 1 === currentPage}
+                    >
+                      {index + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                {totalPages > 5 && currentPage < totalPages && (
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                )}
+                <PaginationItem>
+                  <PaginationNext
+                    href={`?query=${query}&page=${Math.min(
+                      totalPages,
+                      currentPage + 1
+                    )}`}
+                    aria-disabled={currentPage === totalPages}
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </TableCell>
         </TableRow>
       </TableFooter>
     </Table>

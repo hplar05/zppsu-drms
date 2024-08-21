@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Link from "next/link";
 import Providers from "@/providers/Providers";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Next.js",
@@ -17,6 +18,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
+
+  if (session) redirect("/alreadyLoggedIn");
 
   return (
     <html lang="en">

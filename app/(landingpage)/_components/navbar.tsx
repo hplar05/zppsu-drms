@@ -21,9 +21,7 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center space-x-8 md:mr-5 mr-0">
-        <div className="p-2">
-          <ThemeToggler />
-        </div>
+        <div className="p-2">{/* <ThemeToggler /> */}</div>
       </div>
     </header>
   );

@@ -26,7 +26,13 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession(authOptions);
 
-  if (session?.user.role !== "ADMIN") redirect("/");
+  if (!session) {
+    redirect("/");
+  }
+  if (session?.user.role === "STUDENT" || session?.user.role !== "ADMIN") {
+    redirect("/denied");
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>

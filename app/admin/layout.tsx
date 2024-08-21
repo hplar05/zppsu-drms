@@ -5,6 +5,8 @@ import { ThemeProvider } from "next-themes";
 import UserNavbar from "../user/dashboard/_components/userNavbar";
 import Provider from "@/components/Provider";
 import Sidebar from "./_components/Sidebar";
+import AdminNavbar from "./_components/adminNavbar";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,11 +30,14 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Provider>
-            <div className="flex flex-col min-h-screen">
-              <UserNavbar />
+            <Toaster />
+            <div className="flex flex-col min-h-screen w-full">
+              <AdminNavbar />
               <div className="flex flex-1">
                 <Sidebar />
-                <main className="flex-1 p-5">{children}</main>
+                <main className="flex-1 max-md:flex-0 max-md:p-0 p-5">
+                  {children}
+                </main>
               </div>
             </div>
           </Provider>

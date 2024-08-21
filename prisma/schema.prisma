@@ -37,6 +37,7 @@ model RequestForm {
   nameOfStudent    String
   course           String
   mobileNumber     String
+  email            String
   yearAndsection   String
   subjectname      String
   purposeOfrequest String

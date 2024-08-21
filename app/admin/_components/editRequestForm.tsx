@@ -12,22 +12,22 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { createRequest } from "@/actions/actions";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+import type { RequestForm } from "@prisma/client";
+import { updateRequest } from "@/actions/actions";
+import { useFormState } from "react-dom";
 
-export default function Form() {
-  const { data: session } = useSession();
+const EditRequestForm = ({ request }: { request: RequestForm }) => {
+  const UpdateRequestWithId = updateRequest.bind(null, request.id);
+  const [state, formAction] = useFormState(UpdateRequestWithId, null);
 
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
-        <CardTitle className="text-center">Create Request</CardTitle>
-        <CardDescription className="text-center">
-          Fill out the form below to add request
-        </CardDescription>
+        <CardTitle>Edit Request</CardTitle>
+        <CardDescription>Update Request.</CardDescription>
       </CardHeader>
-      <form action={createRequest}>
+      <form action={formAction}>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="nameOfStudent">Name of the Student</Label>
@@ -35,7 +35,13 @@ export default function Form() {
               id="nameOfStudent"
               name="nameOfStudent"
               placeholder="Enter your name"
+              defaultValue={request.nameOfStudent}
             />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.nameOfStudent}
+              </p>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="studentId">Student Id</Label>
@@ -43,7 +49,13 @@ export default function Form() {
               id="studentId"
               name="studentId"
               placeholder="Enter your Student ID"
+              defaultValue={request.studentId}
             />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.studentId}
+              </p>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="course">Email</Label>
@@ -54,6 +66,7 @@ export default function Form() {
               defaultValue={session?.user.email}
               disabled
             />
+            <p className="mt-2 text-sm text-red-500">{state?.Error?.email}</p>
           </div>
           <div className="space-y-2">
             <Label htmlFor="course">Mobile Number</Label>
@@ -61,13 +74,27 @@ export default function Form() {
               id="mobileNumber"
               name="mobileNumber"
               placeholder="Enter the Number"
-              defaultValue={session?.user.mobileNumber}
-              disabled
+              defaultValue={request.mobileNumber}
             />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.mobileNumber}
+              </p>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="course">Course</Label>
-            <Input id="course" name="course" placeholder="Enter the course" />
+            <Input
+              id="course"
+              name="course"
+              placeholder="Enter the course"
+              defaultValue={request.course}
+            />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.course}
+              </p>
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -76,7 +103,13 @@ export default function Form() {
               id="yearAndsection"
               name="yearAndsection"
               placeholder="Enter the your Year and Section"
+              defaultValue={request.yearAndsection}
             />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.yearAndsection}
+              </p>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="subjectname">Request Subject Names</Label>
@@ -84,7 +117,13 @@ export default function Form() {
               id="subjectname"
               name="subjectname"
               placeholder="Enter the your Request Subject Names"
+              defaultValue={request.subjectname}
             />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.subjectname}
+              </p>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="subjectname">Purpose of Request</Label>
@@ -93,16 +132,29 @@ export default function Form() {
               name="purposeOfrequest"
               placeholder="Enter the Purpose of Request"
               className="min-h-[100px]"
+              defaultValue={request.purposeOfrequest}
             />
+            <div>
+              <p className="mt-2 text-sm text-red-500">
+                {state?.Error?.purposeOfrequest}
+              </p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p className="mt-2 text-sm text-red-500">{state?.message}</p>
+            </div>
           </div>
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
           <Button variant="outline">
             <Link href="/admin/request-table">Cancel</Link>
           </Button>
-          <Button type="submit">Submit</Button>
+          <Button type="submit">Save Changes</Button>
         </CardFooter>
       </form>
     </Card>
   );
-}
+};
+
+export default EditRequestForm;

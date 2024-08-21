@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import RequestLists from "../_components/requests-list";
+import RequestLists from "../../_components/requests-list";
 
 const page = () => {
   return (

@@ -1,12 +1,23 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/uFELsSkpka6
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+"use client";
+
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
+import toast from "react-hot-toast";
 
 export default function Sidebar() {
+  const SignOut = () => {
+    try {
+      toast.success("Logout Successfully!");
+      setTimeout(() => {
+        signOut();
+      }, 2000);
+    } catch (error) {
+      console.log(`Something went wrong! ${error}`);
+      toast.error("Something went wrong!");
+    }
+  };
+
   return (
     <div className="flex h-[95vh]">
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4">
@@ -52,14 +63,13 @@ export default function Sidebar() {
         </Link>
 
         <div className="mt-[50vh]">
-          <Link
-            href="#"
+          <button
+            onClick={SignOut}
             className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            prefetch={false}
           >
             <PowerIcon className="h-5 w-5" />
             <span>Sign Out</span>
-          </Link>
+          </button>
         </div>
       </nav>
       <main className="flex-1 p-6" />

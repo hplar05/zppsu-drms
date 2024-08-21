@@ -4,6 +4,7 @@ import NextAuth from "next-auth"
 declare module "next-auth" {
     interface User {
         id: string,
+        email: string,
         username: string,
         name: string,
         mobileNumber: string
@@ -13,15 +14,17 @@ declare module "next-auth" {
   interface Session {
     user: User & {
       id: string,
+      email: string,
       username: string,
       name: string,
-      mobileNumber: string 
+      mobileNumber: string
       role: Role
     }
     token: {
       id: string,
+      email: string,
       username: string,
-      firstname: string,
+      name: string,
       mobileNumber: string
       role: Role
     }

@@ -31,7 +31,7 @@ export default function Footer() {
               <Link href="/cookie-policy">Cookie Policy</Link>
             </div>
             <p className="text-muted-foreground">
-              © <a href="https://github.com/hplar05">Hplar05</a>. All rights
+              © <a href="https://github.com/hplar05">ZZPSU</a>. All rights
               reserved. 2024-present.
             </p>
           </div>

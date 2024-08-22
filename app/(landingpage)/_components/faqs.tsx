@@ -47,7 +47,7 @@ const content: FAQItem[] = [
 
 const FAQ = () => {
   return (
-    <Section>
+    <Section id="faq">
       <Container>
         <h3 className="!mt-0">Frequently Asked Questions</h3>
         <h4 className="text-muted-foreground">

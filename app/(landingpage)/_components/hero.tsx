@@ -11,7 +11,7 @@ import { getServerSession } from "next-auth";
 const Hero = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <Section className="border-b">
+    <Section id="home" className="border-b">
       <Container className="flex flex-col items-center text-center">
         <Image
           src={Logo}

@@ -17,6 +17,8 @@ import Link from "next/link";
 import GoogleSignInButton from "@/components/GoogleButton";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { UploadButton, UploadDropzone } from "@/utils/uploadthings";
+import { useState } from "react";
 
 const FormSchema = z
   .object({
@@ -28,6 +30,7 @@ const FormSchema = z
       .min(8, "Password must have than 8 characters"),
     confirmPassword: z.string().min(1, "Password confirmation is required"),
     name: z.string().min(3, "name is required"),
+    image: z.string(),
     mobileNumber: z.string().min(5, "mobile number is required").max(11),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -36,6 +39,8 @@ const FormSchema = z
   });
 
 const RegisterForm = () => {
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageKey, setImageKey] = useState("");
   const router = useRouter();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -45,6 +50,7 @@ const RegisterForm = () => {
       username: "",
       email: "",
       password: "",
+      image: "",
       confirmPassword: "",
     },
   });
@@ -60,6 +66,7 @@ const RegisterForm = () => {
         mobileNumber: values.mobileNumber,
         username: values.username,
         email: values.email,
+        image: values.image,
         password: values.password,
       }),
     });
@@ -169,6 +176,38 @@ const RegisterForm = () => {
                 )}
               />
             </div>
+            <div className="flex h-[5vh] flex-col items-center justify-between my-10 gap-2">
+              <FormField
+                control={form.control}
+                name="image"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="mb-2">
+                      Upload your Avatar Image (optional)
+                    </FormLabel>
+                    <FormControl>
+                      <div>
+                        <UploadButton
+                          endpoint="imageUploader"
+                          onClientUploadComplete={(res: any) => {
+                            const imageUrl = res[0]?.url;
+                            if (imageUrl) {
+                              field.onChange(imageUrl);
+                              toast.success("Image uploaded successfully");
+                            }
+                          }}
+                          onUploadError={(error: Error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
             <Button className="w-full mt-6" type="submit">
               Sign up
             </Button>
@@ -176,7 +215,7 @@ const RegisterForm = () => {
           <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
             or
           </div>
-          <GoogleSignInButton>Sign up with Google</GoogleSignInButton>
+          {/* <GoogleSignInButton>Sign up with Google</GoogleSignInButton> */}
           <p className="text-center text-sm text-gray-600 mt-2">
             If you don&apos;t have an account, please&nbsp;
             <Link className="text-blue-500 hover:underline" href="/login">

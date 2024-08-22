@@ -24,17 +24,17 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeProvider
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
-          <Providers>
-            {children}
-            <Toaster />
-          </Providers>
-        </ThemeProvider>
+        > */}
+        <Providers>
+          {children}
+          <Toaster />
+        </Providers>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

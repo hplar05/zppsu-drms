@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { db } from "@/lib/db";
 import Link from "next/link";
-import { DeleteRequestDialog } from "./deleteRequestDialog";
+import { DeleteRequestDialog } from "../../../components/deleteRequestDialog";
 import {
   Pagination,
   PaginationContent,

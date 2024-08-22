@@ -1,11 +1,13 @@
 "use client";
 
-import { signOut } from "next-auth/react";
+import UserAvatar from "@/components/avatar";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
 
 export default function Sidebar() {
+  const { data: session } = useSession();
   const SignOut = () => {
     try {
       toast.success("Logout Successfully!");
@@ -19,8 +21,9 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="flex h-[95vh]">
+    <div className="flex h-[100vh]">
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4">
+        <UserAvatar />
         <Link
           href="/admin/dashboard"
           className="flex items-center mt-6 gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"

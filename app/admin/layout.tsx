@@ -47,7 +47,7 @@ export default async function RootLayout({
               <Toaster />
 
               <div className="flex flex-col min-h-screen w-full">
-                <AdminNavbar />
+                {/* <AdminNavbar /> */}
                 <div className="flex flex-1">
                   <Sidebar />
                   <main className="flex-1 max-md:flex-0 max-md:p-0 p-5">

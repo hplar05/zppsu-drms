@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import RequestLists from "../../../../components/requests-list";
+import RequestLists from "../../_components/requests-list";
 import { db } from "@/lib/db";
 import NoRequestAvailable from "../../../../components/noRequestAvailable";
 import Search from "@/components/search";

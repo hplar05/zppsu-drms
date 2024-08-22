@@ -20,6 +20,7 @@ model User {
   password     String
   name         String
   mobileNumber String
+  image        String?
   requestForm  RequestForm[]
   role         Role          @default(STUDENT)
   createdAt    DateTime      @default(now())

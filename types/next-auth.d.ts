@@ -1,5 +1,6 @@
-import { Role } from "@prisma/client"
-import NextAuth from "next-auth"
+import { Role } from "@prisma/client";
+import NextAuth from "next-auth";
+import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
     interface User {
@@ -7,26 +8,32 @@ declare module "next-auth" {
         email: string,
         username: string,
         name: string,
-        mobileNumber: string
+        mobileNumber: string,
+        image: string | null,
         role: Role
     }
 
-  interface Session {
-    user: User & {
-      id: string,
-      email: string,
-      username: string,
-      name: string,
-      mobileNumber: string
-      role: Role
+    interface Session {
+        user: User & {
+            id: string,
+            email: string,
+            username: string,
+            name: string,
+            mobileNumber: string,
+            image: string | null,
+            role: Role
+        }
     }
-    token: {
-      id: string,
-      email: string,
-      username: string,
-      name: string,
-      mobileNumber: string
-      role: Role
+}
+
+declare module "next-auth/jwt" {
+    interface JWT {
+        id: string,
+        email: string,
+        username: string,
+        name: string,
+        mobileNumber: string,
+        image: string | null,
+        role: Role
     }
-  }
 }

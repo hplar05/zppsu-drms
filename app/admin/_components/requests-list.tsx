@@ -21,6 +21,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { ActionRequest } from "./actionRequest";
 
 export default async function RequestLists({
   query,
@@ -65,18 +66,19 @@ export default async function RequestLists({
       <TableCaption>List of Requests Form</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Student ID</TableHead>
-          <TableHead>Name of Student</TableHead>
+          <TableHead className="w-[200px]">Student ID</TableHead>
+          <TableHead className="w-[200px]">Name of Student</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Mobile Number</TableHead>
           <TableHead>Course</TableHead>
-          <TableHead>Year and Section</TableHead>
+          <TableHead className="w-[120px]">Year and Section</TableHead>
           <TableHead>Request Subjects Name</TableHead>
           <TableHead>Purpose of Request</TableHead>
+          <TableHead>Attachment</TableHead>
           <TableHead>Status</TableHead>
-          <TableHead className="text-right flex justify-center items-center">
-            Actions
-          </TableHead>
+          <TableHead className="text-center">Actions</TableHead>
+          <TableCell className=""></TableCell>
+          <TableHead className="text-right flex justify-center items-center"></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -90,11 +92,16 @@ export default async function RequestLists({
             <TableCell>{request.yearAndsection}</TableCell>
             <TableCell>{request.subjectname}</TableCell>
             <TableCell>{request.purposeOfrequest}</TableCell>
-            <TableCell>{request.action}</TableCell>
-            <TableCell className="text-right flex justify-center items-center gap-1">
+            <TableCell>
               <Link href={`/admin/requests/${request.id}`}>
                 <Button variant="outline">View</Button>
               </Link>
+            </TableCell>
+            <TableCell>{request.action}</TableCell>
+            <TableCell className="text-right">
+              <ActionRequest />
+            </TableCell>
+            <TableCell className="text-right flex justify-center items-center gap-1">
               <Link href={`/admin/editRequest/${request.id}`}>
                 <Button>Edit</Button>
               </Link>
@@ -105,7 +112,7 @@ export default async function RequestLists({
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={10} className="text-center">
+          <TableCell colSpan={12} className="text-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

@@ -21,7 +21,7 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="flex h-[100vh]">
+    <div className="flex h-auto">
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4">
         <UserAvatar />
         <Link
@@ -65,7 +65,7 @@ export default function Sidebar() {
           <span>Announcements</span>
         </Link>
 
-        <div className="mt-[50vh]">
+        <div className="mt-auto">
           <button
             onClick={SignOut}
             className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"

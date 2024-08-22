@@ -7,6 +7,14 @@ export const ourFileRouter = {
     async ({ metadata, file }) => {
       console.log("file url", file.url);
 
-     }
+     },
+     
+),
+  PdfDocsOrImageUploader: f(["image", "pdf"]).onUploadComplete(
+  async ({ metadata, file }) => {
+    console.log("file url", file.url);
+
+   },
+   
 ),
 } 

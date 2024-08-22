@@ -26,6 +26,7 @@ export async function createRequest(formData: FormData) {
     const course = formData.get('course') as string;
     const yearAndsection = formData.get('yearAndsection') as string;
     const subjectname = formData.get('subjectname') as string;
+    const attachment = formData.get('attachment') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
 
 
@@ -52,6 +53,7 @@ export async function createRequest(formData: FormData) {
         course,
         yearAndsection,
         subjectname,
+        attachment: attachment,
         purposeOfrequest,
         userId: studId,
        }

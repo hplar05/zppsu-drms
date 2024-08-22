@@ -43,6 +43,7 @@ model RequestForm {
   subjectname      String
   purposeOfrequest String
   userId           String
+  attachment       String?
   user             User     @relation(fields: [userId], references: [id])
   action           Action   @default(PENDING)
   createdAt        DateTime @default(now())

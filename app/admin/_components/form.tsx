@@ -15,8 +15,12 @@ import { Button } from "@/components/ui/button";
 import { createRequest } from "@/actions/actions";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { UploadButton, UploadDropzone } from "@/utils/uploadthings";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 export default function Form() {
+  const [imageUrl, setImageUrl] = useState();
   const { data: session } = useSession();
 
   return (
@@ -84,6 +88,28 @@ export default function Form() {
               id="subjectname"
               name="subjectname"
               placeholder="Enter the your Request Subject Names"
+            />
+          </div>
+          <div>
+            <Label htmlFor="attachment">Request Form</Label>
+            <UploadDropzone
+              endpoint="PdfDocsOrImageUploader"
+              onClientUploadComplete={(res: any) => {
+                setImageUrl(res[0]?.url);
+                if (imageUrl) {
+                  toast.success("Image uploaded successfully");
+                  console.log(imageUrl);
+                }
+              }}
+              onUploadError={(error: Error) => {
+                toast.error(`ERROR! ${error.message}`);
+              }}
+            />
+            <Input
+              className="hidden"
+              id="attachment"
+              name="attachment"
+              defaultValue={imageUrl}
             />
           </div>
           <div className="space-y-2">

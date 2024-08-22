@@ -66,13 +66,13 @@ export default async function RequestLists({
       <TableCaption>List of Requests Form</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[200px]">Student ID</TableHead>
-          <TableHead className="w-[200px]">Name of Student</TableHead>
+          <TableHead className="w-[110px]">Student ID</TableHead>
+          <TableHead className="w-[150px]">Name of Student</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Mobile Number</TableHead>
           <TableHead>Course</TableHead>
-          <TableHead className="w-[120px]">Year and Section</TableHead>
-          <TableHead>Request Subjects Name</TableHead>
+          <TableHead className="w-[150px]">Year and Section</TableHead>
+          {/* <TableHead>Request Subjects Name</TableHead> */}
           <TableHead>Purpose of Request</TableHead>
           <TableHead>Attachment</TableHead>
           <TableHead>Status</TableHead>
@@ -90,7 +90,7 @@ export default async function RequestLists({
             <TableCell>{request.mobileNumber}</TableCell>
             <TableCell>{request.course}</TableCell>
             <TableCell>{request.yearAndsection}</TableCell>
-            <TableCell>{request.subjectname}</TableCell>
+            {/* <TableCell>{request.subjectname}</TableCell> */}
             <TableCell>{request.purposeOfrequest}</TableCell>
             <TableCell>
               <Link href={`/admin/requests/${request.id}`}>
@@ -107,12 +107,13 @@ export default async function RequestLists({
               </Link>
               <DeleteRequestDialog id={request.id} />
             </TableCell>
+            <TableCell></TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={12} className="text-center">
+          <TableCell colSpan={13} className="text-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

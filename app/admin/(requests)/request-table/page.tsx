@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import RequestLists from "../../_components/requests-list";
+import RequestLists from "../../../../components/requests-list";
 import { db } from "@/lib/db";
-import NoRequestAvailable from "../../_components/noRequestAvailable";
+import NoRequestAvailable from "../../../../components/noRequestAvailable";
 import Search from "@/components/search";
-import RequestListsSkeleton from "../../_components/requestTableSkeleton";
+import RequestListsSkeleton from "../../../../components/requestTableSkeleton";
 
 export default async function RequestTable({
   searchParams,
@@ -23,7 +23,9 @@ export default async function RequestTable({
       ) : (
         <main className="pt-5 px-5">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-5">All Request</h1>
+            <h1 className="text-xl md:text-2xl font-bold text-left">
+              All Requests
+            </h1>
             <div className="mt-4 flex items-center justify-between gap-2 md:mt-8 mb-6">
               <Search placeholder="Search requests..." />
               <Button>

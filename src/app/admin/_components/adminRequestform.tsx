@@ -23,22 +23,21 @@ import { z } from "zod";
 
 // Define schema validation with zod
 const schema = z.object({
-  nameOfStudent: z.string().min(5, "Full name is required").max(100),
-  studentId: z.string().min(4, "Student ID is required").max(20),
+  nameOfStudent: z.string().min(1, "Name is required"),
+  studentId: z.string().min(1, "Student ID is required"),
   email: z
     .string()
     .email()
     .refine((email) => email.length <= 255, { message: "Email is too long" }),
-  mobileNumber: z.string().min(11, "Mobile Number is required"),
-  course: z.string().min(4, "Course is required").max(40),
-  yearAndsection: z.string().min(4, "Year & Section is required").max(40),
-  subjectname: z.string().min(4, "Subject name is required").max(100),
-  purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
+  mobileNumber: z.string().min(1, "Mobile Number is required"),
+  course: z.string().min(1, "Course is required"),
+  yearAndsection: z.string().min(1, "Year & Section is required"),
+  subjectname: z.string().min(1, "Subject name is required"),
+  purposeOfrequest: z.string().min(1, "Purpose is required"),
 });
 
 export default function Form() {
-  const [attachmentUrl, setAttachmentUrl] = useState("");
-  const [attachmentKey, setAttachmentKey] = useState("");
+  const [imageUrl, setImageUrl] = useState();
   const {
     register,
     handleSubmit,
@@ -55,8 +54,8 @@ export default function Form() {
       formData.append(key, data[key]);
     });
 
-    if (attachmentUrl) {
-      formData.append("attachment", attachmentUrl);
+    if (imageUrl) {
+      formData.append("attachment", imageUrl);
     }
 
     await createRequest(formData);
@@ -159,39 +158,18 @@ export default function Form() {
           </div>
           <div className="mx-auto">
             <Label htmlFor="attachment">Request Form of the student</Label>
-
-            {attachmentUrl.length ? (
-              <div className="flex flex-col justify-center items-center">
-                <p>Attachment Uploaded</p>
-                <Button
-                  onClick={() => {
-                    setAttachmentUrl("");
-                  }}
-                >
-                  Remove
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <UploadDropzone
-                  endpoint="PdfDocsOrImageUploader"
-                  onClientUploadComplete={(res: any) => {
-                    setAttachmentUrl(res[0]?.url);
-                    if (attachmentUrl) {
-                      toast.success("Image uploaded successfully");
-                    }
-                    if (res && res.length > 0 && res[0].url) {
-                      setAttachmentUrl(res[0].url);
-                    } else {
-                      console.error("Please input a valid avatar image.", res);
-                    }
-                  }}
-                  onUploadError={(error: Error) => {
-                    toast.error(`ERROR! ${error.message}`);
-                  }}
-                />
-              </div>
-            )}
+            <UploadDropzone
+              endpoint="PdfDocsOrImageUploader"
+              onClientUploadComplete={(res: any) => {
+                setImageUrl(res[0]?.url);
+                if (imageUrl) {
+                  toast.success("Image uploaded successfully");
+                }
+              }}
+              onUploadError={(error: Error) => {
+                toast.error(`ERROR! ${error.message}`);
+              }}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="purposeOfrequest">Purpose of Request</Label>

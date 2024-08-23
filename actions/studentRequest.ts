@@ -11,9 +11,7 @@ import { z } from "zod";
 // add student request
 
 export async function createRequest(formData: FormData) {
-    // const nameOfStudent = formData.get('nameOfStudent') as string;
-    // const email = formData.get('email') as string;
-    // const mobileNumber = formData.get('mobileNumber') as string;
+    const nameOfStudent = formData.get('nameOfStudent') as string;
     const studentId = formData.get('studentId') as string;
     const course = formData.get('course') as string;
     const yearAndsection = formData.get('yearAndsection') as string;
@@ -25,21 +23,20 @@ export async function createRequest(formData: FormData) {
 
     if (!session) return { error: "Unauthorized" };
     
-     const studId = session.user.id;
-     const mobileNumber = session.user.mobileNumber;
-     const email = session.user.email;
-     const name = session.user.name
+    const studId = session.user.id;
+    const mobileNumber = session.user.mobileNumber;
+    const email = session.user.email;
 
     // Log the data for debugging purposes
-    // console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}, ${email}, ${mobileNumber}`);
+    console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}, ${email}, ${mobileNumber}`);
 
     // Create the request in the database
     await db.requestForm.create({
         data: {
-            nameOfStudent: name,
+            nameOfStudent,
             studentId,
-            email: email,
-            mobileNumber: mobileNumber,
+            email,
+            mobileNumber,
             course,
             yearAndsection,
             subjectname,

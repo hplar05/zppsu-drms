@@ -1,4 +1,4 @@
-import EditRequestForm from "@/src/app/admin/_components/adminEditRequestForm";
+import EditRequestForm from "@/src/app/admin/_components/AdminEditRequestForm";
 import { db } from "@/src/lib/db";
 import { notFound } from "next/navigation";
 

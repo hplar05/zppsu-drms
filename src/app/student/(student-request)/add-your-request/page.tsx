@@ -1,6 +1,6 @@
 import { Button } from "@/src/components/ui/button";
 import React from "react";
-import StudentRequestForm from "../../_components/studentRequestForm";
+import StudentRequestForm from "../../_components/StudentRequestForm";
 
 const page = () => {
   return (

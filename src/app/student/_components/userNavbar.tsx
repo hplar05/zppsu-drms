@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { Button } from "@/src/components/ui/button";
 import { signOut } from "next-auth/react";
-import LogoutButton from "./logoutButton";
+import LogoutButton from "./LogoutButton";
 
 const UserNavbar = async () => {
   const session = await getServerSession(authOptions);

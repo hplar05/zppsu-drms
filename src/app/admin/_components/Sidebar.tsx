@@ -1,6 +1,6 @@
 "use client";
 
-import UserAvatar from "@/src/components/Avatar";
+import UserAvatar from "@/src/components/avatar";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";

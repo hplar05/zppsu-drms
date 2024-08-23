@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
-import { Section, Container } from "@/src/components/Craft";
+import { Section, Container } from "@/src/components/craft";
 import Logo from "@/public/logo.jpg";
 
 export default function Footer() {

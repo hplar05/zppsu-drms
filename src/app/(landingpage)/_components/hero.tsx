@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Balancer from "react-wrap-balancer";
 import { Camera } from "lucide-react";
-import { Section, Container } from "@/src/components/Craft";
+import { Section, Container } from "@/src/components/craft";
 import { Button } from "@/src/components/ui/button";
 import Logo from "@/public/logo.jpg";
 import { authOptions } from "@/src/lib/auth";

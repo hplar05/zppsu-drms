@@ -1,7 +1,7 @@
-import { Main } from "@/src/components/Craft";
-import Hero from "./_components/Hero";
-import Feature from "./_components/Features";
-import FAQ from "./_components/Faqs";
+import { Main } from "@/src/components/craft";
+import Hero from "./_components/hero";
+import Feature from "./_components/features";
+import FAQ from "./_components/faqs";
 import Footer from "./_components/Footer";
 import Navbar from "./_components/Navbar";
 

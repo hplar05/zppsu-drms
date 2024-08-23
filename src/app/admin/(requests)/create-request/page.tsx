@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "../../_components/adminRequestform";
+import Form from "../../_components/AdminRequestform";
 
 export default async function Page() {
   return (

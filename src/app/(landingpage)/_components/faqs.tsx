@@ -13,7 +13,7 @@ import {
 } from "@/src/components/ui/accordion";
 
 // Custom components
-import { Section, Container } from "@/src/components/craft";
+import { Section, Container } from "@/src/components/Craft";
 
 type FAQItem = {
   question: string;

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/src/app/globals.css";
-import UserNavbar from "./_components/UserNavbar";
+import UserNavbar from "./_components/userNavbar";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
 import Provider from "@/src/components/Provider";

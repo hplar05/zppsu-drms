@@ -11,7 +11,7 @@ import {
 } from "@/src/components/ui/table";
 import { db } from "@/src/lib/db";
 import Link from "next/link";
-import { DeleteRequestDialog } from "../../../components/DeleteRequestDialog";
+import { DeleteRequestDialog } from "../../../components/deleteRequestDialog";
 import {
   Pagination,
   PaginationContent,
@@ -21,7 +21,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/src/components/ui/pagination";
-import { ActionRequest } from "./ActionRequest";
+import { ActionRequest } from "./actionRequest";
 
 export default async function RequestLists({
   query,

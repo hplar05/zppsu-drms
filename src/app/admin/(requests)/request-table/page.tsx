@@ -1,11 +1,11 @@
 import { Button } from "@/src/components/ui/button";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import RequestLists from "../../_components/Requests-List";
+import RequestLists from "../../_components/requests-list";
 import { db } from "@/src/lib/db";
-import NoRequestAvailable from "../../../../components/NoRequestAvailable";
-import Search from "@/src/components/Search";
-import RequestListsSkeleton from "../../../../components/RequestTableSkeleton";
+import NoRequestAvailable from "../../../../components/noRequestAvailable";
+import Search from "@/src/components/search";
+import RequestListsSkeleton from "../../../../components/requestTableSkeleton";
 
 export default async function RequestTable({
   searchParams,

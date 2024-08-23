@@ -12,7 +12,8 @@ import { Label } from "@/src/components/ui/label";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
 import { Button } from "@/src/components/ui/button";
-import { createRequest } from "@/actions/adminRequest";
+import { createRequest } from "@/actions/studentRequest";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { UploadDropzone } from "@/src/lib/utils";
 import toast from "react-hot-toast";
@@ -25,19 +26,16 @@ import { z } from "zod";
 const schema = z.object({
   nameOfStudent: z.string().min(1, "Name is required"),
   studentId: z.string().min(1, "Student ID is required"),
-  email: z
-    .string()
-    .email()
-    .refine((email) => email.length <= 255, { message: "Email is too long" }),
-  mobileNumber: z.string().min(1, "Mobile Number is required"),
   course: z.string().min(1, "Course is required"),
   yearAndsection: z.string().min(1, "Year & Section is required"),
   subjectname: z.string().min(1, "Subject name is required"),
   purposeOfrequest: z.string().min(1, "Purpose is required"),
 });
 
-export default function Form() {
+export default function StudentRequestForm() {
   const [imageUrl, setImageUrl] = useState();
+  const { data: session } = useSession();
+
   const {
     register,
     handleSubmit,
@@ -47,7 +45,6 @@ export default function Form() {
   });
 
   const onSubmit = async (data: any) => {
-    // Convert the `data` object to `FormData`
     const formData = new FormData();
 
     Object.keys(data).forEach((key) => {
@@ -57,7 +54,7 @@ export default function Form() {
     if (imageUrl) {
       formData.append("attachment", imageUrl);
     }
-
+    toast.success("Successfully Submitted");
     await createRequest(formData);
   };
 
@@ -66,16 +63,16 @@ export default function Form() {
       <CardHeader>
         <CardTitle className="text-center">Create Request</CardTitle>
         <CardDescription className="text-center">
-          Fill out the request input below to add the request
+          Fill out the form below to submit your request
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="nameOfStudent">Name of the Student</Label>
+            <Label htmlFor="nameOfStudent">Full Name</Label>
             <Input
               id="nameOfStudent"
-              placeholder="Enter the student full name"
+              placeholder="Enter your full name"
               {...register("nameOfStudent")}
             />
             {errors.nameOfStudent?.message && (
@@ -85,10 +82,10 @@ export default function Form() {
             )}
           </div>
           <div className="space-y-2">
-            <Label htmlFor="studentId">Student Id</Label>
+            <Label htmlFor="studentId">Student ID</Label>
             <Input
               id="studentId"
-              placeholder="Enter the Student ID"
+              placeholder="Enter your Student ID"
               {...register("studentId")}
             />
             {errors.studentId?.message && (
@@ -99,31 +96,27 @@ export default function Form() {
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
-              placeholder="Enter the email address of the student"
-              {...register("email")}
+              name="email"
+              placeholder="Enter the email"
+              defaultValue={session?.user.email}
+              disabled
             />
-            {errors.email?.message && (
-              <p className="text-red-600">{String(errors.email.message)}</p>
-            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="mobileNumber">Mobile Number</Label>
             <Input
               id="mobileNumber"
-              placeholder="Enter the Number of the student"
-              {...register("mobileNumber")}
+              name="mobileNumber"
+              placeholder="Enter the Number"
+              defaultValue={session?.user.mobileNumber}
+              disabled
             />
-            {errors.mobileNumber?.message && (
-              <p className="text-red-600">
-                {String(errors.mobileNumber.message)}
-              </p>
-            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="course">Course</Label>
             <Input
               id="course"
-              placeholder="Enter the student course"
+              placeholder="Enter your course"
               {...register("course")}
             />
             {errors.course?.message && (
@@ -134,7 +127,7 @@ export default function Form() {
             <Label htmlFor="yearAndsection">Year & Section</Label>
             <Input
               id="yearAndsection"
-              placeholder="Enter the year and section of the student"
+              placeholder="Enter your year and section"
               {...register("yearAndsection")}
             />
             {errors.yearAndsection?.message && (
@@ -147,7 +140,7 @@ export default function Form() {
             <Label htmlFor="subjectname">Request Subject Names</Label>
             <Input
               id="subjectname"
-              placeholder="Enter the request subject names of the student"
+              placeholder="Enter your request subject names"
               {...register("subjectname")}
             />
             {errors.subjectname?.message && (
@@ -157,25 +150,32 @@ export default function Form() {
             )}
           </div>
           <div>
-            <Label htmlFor="attachment">Request Form of the student</Label>
+            <Label htmlFor="attachment">Request Form</Label>
             <UploadDropzone
               endpoint="PdfDocsOrImageUploader"
               onClientUploadComplete={(res: any) => {
                 setImageUrl(res[0]?.url);
                 if (imageUrl) {
                   toast.success("Image uploaded successfully");
+                  console.log(imageUrl);
                 }
               }}
               onUploadError={(error: Error) => {
                 toast.error(`ERROR! ${error.message}`);
               }}
             />
+            <Input
+              className="hidden"
+              id="attachment"
+              name="attachment"
+              defaultValue={imageUrl}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="purposeOfrequest">Purpose of Request</Label>
             <Textarea
               id="purposeOfrequest"
-              placeholder="Enter the Purpose of Request"
+              placeholder="Enter the purpose of request"
               className="min-h-[100px]"
               {...register("purposeOfrequest")}
             />
@@ -188,7 +188,7 @@ export default function Form() {
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
           <Button variant="outline">
-            <Link href="/admin/request-table">Cancel</Link>
+            <Link href="/student/dashboard">Cancel</Link>
           </Button>
           <Button type="submit">Submit</Button>
         </CardFooter>

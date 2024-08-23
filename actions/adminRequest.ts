@@ -21,7 +21,8 @@ const RequestSchema = z.object({
 export async function createRequest(formData: FormData) {
     const nameOfStudent = formData.get('nameOfStudent') as string;
     const studentId = formData.get('studentId') as string;
-    // const mobileNumber = formData.get('mobileNumber') as string;
+    const email = formData.get('email') as string;
+    const mobileNumber = formData.get('mobileNumber') as string;
     const course = formData.get('course') as string;
     const yearAndsection = formData.get('yearAndsection') as string;
     const subjectname = formData.get('subjectname') as string;
@@ -33,27 +34,26 @@ export async function createRequest(formData: FormData) {
 
     if (!session) return { error: "Unauthorized" }
     
-    const studId = session.user.id
+    const adminId = session.user.id
 
-    const mobilenumber = session.user.mobileNumber
+    //  const mobilenumber = session.user.mobileNumber
 
-   const email = session.user.email
+    //  const email = session.user.email
 
-  
-    console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}`);
+    // console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}`);
 
     await db.requestForm.create({
        data: {
         nameOfStudent,
         studentId,
-        email: email,
-        mobileNumber: mobilenumber,
+        email,
+        mobileNumber,
         course,
         yearAndsection,
         subjectname,
         attachment: attachment,
         purposeOfrequest,
-        userId: studId,
+        userId: adminId,
        }
     });
 

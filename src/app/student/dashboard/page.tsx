@@ -1,3 +1,4 @@
+import { Button } from "@/src/components/ui/button";
 import User from "@/src/components/User";
 import { authOptions } from "@/src/lib/auth";
 import { getServerSession } from "next-auth";
@@ -14,15 +15,14 @@ const page = async () => {
         <h2>
           <User />
         </h2>
+        <div className="h-screen flex justify-center items-center">
+          <Button>
+            <Link href="/student/add-your-request">Create Request</Link>
+          </Button>
+        </div>
       </div>
     );
   }
-
-  return (
-    <div>
-      Please Login First <Link href="/login">Login</Link>
-    </div>
-  );
 };
 
 export default page;

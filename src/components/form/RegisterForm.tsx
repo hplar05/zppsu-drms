@@ -17,7 +17,7 @@ import Link from "next/link";
 import GoogleSignInButton from "@/src/components/GoogleButton";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { UploadButton, UploadDropzone } from "@/src/utils/uploadthings";
+import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import { useState } from "react";
 
 const FormSchema = z

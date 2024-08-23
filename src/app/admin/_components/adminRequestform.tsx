@@ -15,7 +15,7 @@ import { Button } from "@/src/components/ui/button";
 import { createRequest } from "@/actions/adminRequest";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { UploadButton, UploadDropzone } from "@/src/utils/uploadthings";
+import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import toast from "react-hot-toast";
 import { useState } from "react";
 

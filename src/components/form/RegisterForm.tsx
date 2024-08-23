@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import { useState } from "react";
+import { Image } from "@nextui-org/react";
 
 const FormSchema = z
   .object({
@@ -90,9 +91,9 @@ const RegisterForm = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>name</FormLabel>
+                    <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your name" {...field} />
+                      <Input placeholder="Enter your full name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -176,38 +177,68 @@ const RegisterForm = () => {
                 )}
               />
             </div>
-            <div className="flex h-[5vh] flex-col items-center justify-between my-10 gap-2">
-              <FormField
-                control={form.control}
-                name="image"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="mb-2">
-                      Upload your Avatar Image (optional)
-                    </FormLabel>
-                    <FormControl>
-                      <div>
-                        <UploadButton
-                          endpoint="imageUploader"
-                          onClientUploadComplete={(res: any) => {
-                            const imageUrl = res[0]?.url;
-                            if (imageUrl) {
-                              field.onChange(imageUrl);
-                              toast.success("Image uploaded successfully");
-                            }
-                          }}
-                          onUploadError={(error: Error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className="mx-auto mt-2">
+              {imageUrl.length ? (
+                <div className="flex justify-center items-center flex-col">
+                  <FormLabel className="mb-2 text-right">
+                    Image Uploaded
+                  </FormLabel>
+                  <Image
+                    alt="Done Upload"
+                    src={imageUrl}
+                    width={250}
+                    height={250}
+                    className="mb-3"
+                  />
+                  <Button
+                    variant={"ghost"}
+                    onClick={() => {
+                      setImageUrl("");
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              ) : (
+                <FormField
+                  control={form.control}
+                  name="image"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="mb-2">
+                        Upload your Avatar Image (optional)
+                      </FormLabel>
+                      <FormControl>
+                        <div>
+                          <UploadDropzone
+                            endpoint="imageUploader"
+                            onClientUploadComplete={(res: any) => {
+                              const imageUrl = res[0]?.url;
+                              if (imageUrl) {
+                                field.onChange(imageUrl);
+                                toast.success("Image uploaded successfully");
+                              }
+                              if (res && res.length > 0 && res[0].url) {
+                                setImageUrl(res[0].url);
+                              } else {
+                                console.error(
+                                  "Please input a valid avatar image.",
+                                  res
+                                );
+                              }
+                            }}
+                            onUploadError={(error: Error) => {
+                              toast.error(`ERROR! ${error.message}`);
+                            }}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
             </div>
-
             <Button className="w-full mt-6" type="submit">
               Sign up
             </Button>

@@ -156,7 +156,7 @@ export default function Form() {
               </p>
             )}
           </div>
-          <div>
+          <div className="mx-auto">
             <Label htmlFor="attachment">Request Form of the student</Label>
             <UploadDropzone
               endpoint="PdfDocsOrImageUploader"

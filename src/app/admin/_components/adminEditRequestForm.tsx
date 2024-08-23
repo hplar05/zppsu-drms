@@ -60,8 +60,8 @@ const EditRequestForm = ({ request }: { request: RequestForm }) => {
           <div className="space-y-2">
             <Label htmlFor="course">Email</Label>
             <Input
-              id="mobileNumber"
-              name="mobileNumber"
+              id="email"
+              name="email"
               placeholder="Enter the Number"
               defaultValue={request.email}
             />

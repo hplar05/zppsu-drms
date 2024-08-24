@@ -6,9 +6,11 @@ import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import {Knock} from '@knocklabs/node'
 
 
 // add student request
+const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY)
 
 export async function createRequest(formData: FormData) {
     const nameOfStudent = formData.get('nameOfStudent') as string;
@@ -26,6 +28,7 @@ export async function createRequest(formData: FormData) {
     const studId = session.user.id;
     const mobileNumber = session.user.mobileNumber;
     const email = session.user.email;
+    const userRole = session.user.role;
 
     // Log the data for debugging purposes
     console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}, ${email}, ${mobileNumber}`);
@@ -45,14 +48,32 @@ export async function createRequest(formData: FormData) {
             userId: studId,
         },
     });
+    if (userRole === 'ADMIN') {
+        const otherAdmins = await db.user.findMany({
+            where: {
+                id: {
+                    not: session.user.id
+                }
+            },
+            select: {
+                id: true
+            }
+        });
 
-    // Revalidate the cache and redirect the user
-    revalidatePath("/admin/request-table");
-    redirect("/student/dashboard");
+        await knockClient.notify('student-create-request', {
+            actor: session.user.id,
+            recipients: otherAdmins.map(user => user.id),
+            data: {
+                student: {
+                    name: session.user.name,
+                    reason: purposeOfrequest,
+                    studentId: studentId
+                }
+            }
+        });
+    }
+    redirect('/student/dashboard')
 }
-
-
-
 
 // edit student request
 

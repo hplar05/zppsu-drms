@@ -11,6 +11,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";
 import Denied from "../(deniedpages)/denied/page";
+import { Knock } from "@knocklabs/node";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +27,20 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
+  if (!session || !session.user) {
     redirect("/");
   }
   if (session?.user.role === "STUDENT" || session?.user.role !== "ADMIN") {
     redirect("/denied");
   }
+
+  // knock notification
+  const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
+  const knockUser = await knockClient.users.identify(session.user.id, {
+    name: session.user.name,
+    email: session.user.email,
+  });
+  console.log(knockUser);
 
   return (
     <html lang="en">
@@ -47,7 +56,7 @@ export default async function RootLayout({
               <Toaster />
 
               <div className="flex flex-col min-h-screen w-full">
-                {/* <AdminNavbar /> */}
+                <AdminNavbar />
                 <div className="flex flex-1">
                   <Sidebar />
                   <main className="flex-1 max-md:flex-0 max-md:p-0 p-5">

@@ -8,6 +8,7 @@ import Provider from "@/src/components/Provider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";
+import { Knock } from "@knocklabs/node";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,15 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession(authOptions);
   if (session?.user.role === "ADMIN") redirect("/admin/dashboard");
-  if (!session) redirect("/login");
+  if (!session || !session.user) redirect("/login");
+
+  // knock notification
+  const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
+  const knockUser = await knockClient.users.identify(session.user.id, {
+    name: session.user.name,
+    email: session.user.email,
+  });
+  console.log(knockUser);
 
   return (
     <html lang="en">

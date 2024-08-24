@@ -8,6 +8,8 @@ import { authOptions } from "@/src/lib/auth";
 import { Button } from "@/src/components/ui/button";
 import { signOut } from "next-auth/react";
 import LogoutButton from "./logoutButton";
+import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import NotificationMenu from "@/src/components/NotificationMenu";
 
 const UserNavbar = async () => {
   const session = await getServerSession(authOptions);
@@ -33,7 +35,17 @@ const UserNavbar = async () => {
             <ThemeToggler />
 
             {session?.user ? (
-              <LogoutButton />
+              <div>
+                <button
+                  type="button"
+                  className="relative rounded-full bg-white p1 text-gray-400 hover:text-gray-500 font-bold"
+                >
+                  <span className="absolute -inset-1.5" />
+                  <span className="sr-only">View notification</span>
+                  <NotificationMenu />
+                </button>
+                <LogoutButton />
+              </div>
             ) : (
               <Button>
                 <Link href={"/login"}> Login</Link>

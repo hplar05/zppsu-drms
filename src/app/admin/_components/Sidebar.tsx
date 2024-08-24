@@ -1,16 +1,15 @@
 "use client";
 
 import UserAvatar from "@/src/components/avatar";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
 
 export default function Sidebar() {
-  const { data: session } = useSession();
   const SignOut = () => {
     try {
-      toast.success("Logout Successfully!");
+      toast.success("Logout Successfully");
       setTimeout(() => {
         signOut();
       }, 2000);

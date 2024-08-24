@@ -13,7 +13,7 @@ const UserAvatar = () => {
   const { data: session } = useSession();
   const avatarUrl = session?.user.image;
   const fallbackAvatarUrl =
-    "https://utfs.io/f/c2fa4d72-0a3e-41c7-8e8f-62137a4ec5c6-1zbfv.jpg";
+    "https://utfs.io/f/9c2c5025-ae0d-4f81-a5d9-650573f7d0a6-b3d8py.jpg";
   const adminName = session?.user.name;
 
   return (

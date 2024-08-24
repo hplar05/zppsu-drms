@@ -30,12 +30,10 @@ const UserNavbar = async () => {
       </Link>
 
       <div className="flex items-center space-x-8 md:mr-5 mr-0">
-        <div className="p-2 gap-3">
+        <div className="p-2 gap-5">
           <div className="flex justify-center items-center gap-2">
-            <ThemeToggler />
-
             {session?.user ? (
-              <div>
+              <div className="gap-2 flex items-center">
                 <button
                   type="button"
                   className="relative rounded-full bg-white p1 text-gray-400 hover:text-gray-500 font-bold"
@@ -44,6 +42,7 @@ const UserNavbar = async () => {
                   <span className="sr-only">View notification</span>
                   <NotificationMenu />
                 </button>
+                <ThemeToggler />
                 <LogoutButton />
               </div>
             ) : (

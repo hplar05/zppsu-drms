@@ -24,16 +24,17 @@ import { z } from "zod";
 
 // Define schema validation with zod
 const schema = z.object({
-  nameOfStudent: z.string().min(1, "Name is required"),
-  studentId: z.string().min(1, "Student ID is required"),
-  course: z.string().min(1, "Course is required"),
-  yearAndsection: z.string().min(1, "Year & Section is required"),
-  subjectname: z.string().min(1, "Subject name is required"),
-  purposeOfrequest: z.string().min(1, "Purpose is required"),
+  // nameOfStudent: z.string().min(5, "Full name is required").max(100),
+  studentId: z.string().min(4, "Student ID is required").max(20),
+  course: z.string().min(4, "Course is required").max(40),
+  yearAndsection: z.string().min(4, "Year & Section is required").max(40),
+  subjectname: z.string().min(4, "Subject name is required").max(100),
+  purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
 });
 
 export default function StudentRequestForm() {
-  const [imageUrl, setImageUrl] = useState();
+  const [attachmentUrl, setAttachmentUrl] = useState("");
+  const [attachmentKey, setAttachmentKey] = useState("");
   const { data: session } = useSession();
 
   const {
@@ -51,8 +52,8 @@ export default function StudentRequestForm() {
       formData.append(key, data[key]);
     });
 
-    if (imageUrl) {
-      formData.append("attachment", imageUrl);
+    if (attachmentUrl) {
+      formData.append("attachment", attachmentUrl);
     }
     toast.success("Successfully Submitted");
     await createRequest(formData);
@@ -73,13 +74,10 @@ export default function StudentRequestForm() {
             <Input
               id="nameOfStudent"
               placeholder="Enter your full name"
+              defaultValue={session?.user.name}
               {...register("nameOfStudent")}
+              disabled
             />
-            {errors.nameOfStudent?.message && (
-              <p className="text-red-600">
-                {String(errors.nameOfStudent.message)}
-              </p>
-            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="studentId">Student ID</Label>
@@ -151,25 +149,38 @@ export default function StudentRequestForm() {
           </div>
           <div>
             <Label htmlFor="attachment">Request Form</Label>
-            <UploadDropzone
-              endpoint="PdfDocsOrImageUploader"
-              onClientUploadComplete={(res: any) => {
-                setImageUrl(res[0]?.url);
-                if (imageUrl) {
-                  toast.success("Image uploaded successfully");
-                  console.log(imageUrl);
-                }
-              }}
-              onUploadError={(error: Error) => {
-                toast.error(`ERROR! ${error.message}`);
-              }}
-            />
-            <Input
-              className="hidden"
-              id="attachment"
-              name="attachment"
-              defaultValue={imageUrl}
-            />
+            {attachmentUrl.length ? (
+              <div className="flex flex-col justify-center items-center">
+                <p>Attachment Uploaded</p>
+                <Button
+                  onClick={() => {
+                    setAttachmentUrl("");
+                  }}
+                >
+                  Remove
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <UploadDropzone
+                  endpoint="PdfDocsOrImageUploader"
+                  onClientUploadComplete={(res: any) => {
+                    setAttachmentUrl(res[0]?.url);
+                    if (attachmentUrl) {
+                      toast.success("Image uploaded successfully");
+                    }
+                    if (res && res.length > 0 && res[0].url) {
+                      setAttachmentUrl(res[0].url);
+                    } else {
+                      console.error("Please input a valid avatar image.", res);
+                    }
+                  }}
+                  onUploadError={(error: Error) => {
+                    toast.error(`ERROR! ${error.message}`);
+                  }}
+                />
+              </div>
+            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="purposeOfrequest">Purpose of Request</Label>

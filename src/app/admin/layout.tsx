@@ -35,9 +35,7 @@ export default async function RootLayout({
   }
 
   // knock notification
-  const knockClient = new Knock(
-    "sk_test_-wgbvHEbFsLFP3b38J9eN3PZh5fYvOoQujq3XFAt2S8"
-  );
+  const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
   const knockUser = await knockClient.users.identify(session.user.id, {
     name: session.user.name,
     email: session.user.email,

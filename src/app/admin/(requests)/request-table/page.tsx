@@ -17,11 +17,11 @@ export default async function RequestTable({
   const requestAvailable = await db.requestForm.count();
 
   return (
-    <div>
+    <div className="-z-50">
       {requestAvailable === 0 ? (
         <NoRequestAvailable />
       ) : (
-        <main className="pt-5 px-5">
+        <main className="pt-5 px-5 -z-50">
           <div className="text-center">
             <h1 className="text-xl md:text-2xl font-bold text-left">
               All Requests

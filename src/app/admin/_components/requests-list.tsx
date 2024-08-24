@@ -62,7 +62,7 @@ export default async function RequestLists({
   const totalPages = Math.ceil(requestscounts / itemsPerPage);
 
   return (
-    <Table>
+    <Table className="-z-50">
       <TableCaption>List of Requests Form</TableCaption>
       <TableHeader>
         <TableRow>

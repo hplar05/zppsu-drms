@@ -18,6 +18,9 @@ const RequestSchema = z.object({
     purposeOfrequest: z.string().min(6, "purpose of request is required").max(200),
 })
 
+
+//create admin request
+
 export async function createRequest(formData: FormData) {
     const nameOfStudent = formData.get('nameOfStudent') as string;
     const studentId = formData.get('studentId') as string;
@@ -61,6 +64,9 @@ export async function createRequest(formData: FormData) {
     redirect("/admin/request-table");
 }
 
+
+//update admin request
+
 export const updateRequest = async (
     id: number,
     prevSate: any,
@@ -98,6 +104,10 @@ export const updateRequest = async (
     revalidatePath("/admin/request-table");
     redirect("/admin/request-table");
 }
+
+
+//delete admin request
+
 
 export const deleteRequest = async (id: number) => {
     const session = await getServerSession(authOptions);

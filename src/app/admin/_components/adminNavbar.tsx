@@ -8,7 +8,7 @@ import NotificationMenu from "@/src/components/NotificationMenu";
 
 const AdminNavbar = async () => {
   return (
-    <header className="w-full non-prose flex item-center justify-between border-b  sticky top-0 dark:bg-[#020817] bg-white">
+    <nav className="z-50 w-full non-prose flex item-center justify-between border-b  sticky top-0 dark:bg-[#020817] bg-white">
       <Link
         className="space-x-2 md:ml-5 ml-0 flex items-center not-prose p-2"
         href="/"
@@ -22,7 +22,7 @@ const AdminNavbar = async () => {
         ></Image>
       </Link>
 
-      <div className="flex items-center space-x-6 md:mr-5 mr-0">
+      <div className="flex items-center space-x-6 md:mr-5 mr-0 z-20">
         <div className="flex justify-center items-center gap-2">
           <button
             type="button"
@@ -37,7 +37,7 @@ const AdminNavbar = async () => {
           <ThemeToggler />
         </div>
       </div>
-    </header>
+    </nav>
   );
 };
 

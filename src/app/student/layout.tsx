@@ -27,7 +27,9 @@ export default async function RootLayout({
   if (!session || !session.user) redirect("/login");
 
   // knock notification
-  const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
+  const knockClient = new Knock(
+    "sk_test_-wgbvHEbFsLFP3b38J9eN3PZh5fYvOoQujq3XFAt2S8"
+  );
   const knockUser = await knockClient.users.identify(session.user.id, {
     name: session.user.name,
     email: session.user.email,

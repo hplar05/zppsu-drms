@@ -10,7 +10,7 @@ import {Knock} from '@knocklabs/node'
 
 
 // add student request
-const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY)
+const knockClient = new Knock("sk_test_-wgbvHEbFsLFP3b38J9eN3PZh5fYvOoQujq3XFAt2S8")
 
 export async function createRequest(formData: FormData) {
     const nameOfStudent = formData.get('nameOfStudent') as string;

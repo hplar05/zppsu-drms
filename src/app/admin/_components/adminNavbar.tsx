@@ -8,7 +8,7 @@ import NotificationMenu from "@/src/components/NotificationMenu";
 
 const AdminNavbar = async () => {
   return (
-    <nav className="z-50 w-full non-prose flex item-center justify-between border-b top-0 dark:bg-[#020817] bg-white">
+    <nav className="z-50 w-full non-prose flex item-center justify-between border-b top-0 dark:bg-[#18191A] dark:border-none bg-white">
       <Link className="space-x-2 flex items-center not-prose p-2 ml-1" href="/">
         <Image
           src={Logo}

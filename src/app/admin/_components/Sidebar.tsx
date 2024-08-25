@@ -21,7 +21,7 @@ export default function UserSidebar() {
 
   return (
     <div className="flex h-auto max-md:hidden">
-      <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4">
+      <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4 dark:bg-[#18191A] dark:border-none">
         <UserAvatar />
         <Link
           href="/admin/dashboard"

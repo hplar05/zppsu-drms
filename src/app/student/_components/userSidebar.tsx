@@ -6,7 +6,7 @@ import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
 
-export default function UserSidebar() {
+export default function Sidebar() {
   const SignOut = () => {
     try {
       toast.success("Logout Successfully");
@@ -24,41 +24,33 @@ export default function UserSidebar() {
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4">
         <UserAvatar />
         <Link
-          href="/admin/dashboard"
-          className="flex items-center mt-6 gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          href="/student/dashboard"
+          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted mt-10"
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />
-          <span>Admin Dashboard</span>
+          <span>Dashboard</span>
         </Link>
 
         <Link
-          href="/admin/students-table"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
-          <UserIcon className="w-5 h-5" />
-          <span>Student Lists</span>
-        </Link>
-        <Link
-          href="/admin/request-table"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          href="/student/request"
+          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
           prefetch={false}
         >
           <FileTextIcon className="h-5 w-5" />
-          <span>Request Form Lists</span>
+          <span>Request Form</span>
         </Link>
         <Link
-          href="/admin/approve-request"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          href="/student/approve-request"
+          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
           prefetch={false}
         >
           <CheckIcon className="h-5 w-5" />
           <span>Approve Request</span>
         </Link>
         <Link
-          href="/admin/disapprove-request"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          href="/student/disapprove-request"
+          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
           prefetch={false}
         >
           <ThumbsDownIcon className="h-5 w-5" />
@@ -66,7 +58,7 @@ export default function UserSidebar() {
         </Link>
         <Link
           href="#"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
           prefetch={false}
         >
           <MegaphoneIcon className="h-5 w-5" />
@@ -82,7 +74,7 @@ export default function UserSidebar() {
           Settings
         </Link>
 
-        <div className="mt-auto w-full">
+        {/* <div className="mt-auto w-full">
           <button
             onClick={SignOut}
             className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -90,7 +82,7 @@ export default function UserSidebar() {
             <PowerIcon className="h-5 w-5" />
             <span>Sign Out</span>
           </button>
-        </div>
+        </div> */}
       </nav>
       <main className="flex-1 p-6" />
     </div>

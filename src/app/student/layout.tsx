@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";
 import { Knock } from "@knocklabs/node";
+import UserSidebar from "./_components/userSidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,8 +46,15 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Toaster />
-            <UserNavbar />
-            {children}
+            <div className="flex flex-col min-h-screen w-full">
+              <UserNavbar />
+              <div className="flex flex-1">
+                <UserSidebar />
+                <main className="flex-1 max-md:flex-0 max-md:p-0 p-5">
+                  {children}
+                </main>
+              </div>
+            </div>
           </ThemeProvider>
         </Provider>
       </body>

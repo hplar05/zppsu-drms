@@ -8,14 +8,13 @@ import { authOptions } from "@/src/lib/auth";
 import { Button } from "@/src/components/ui/button";
 import { signOut } from "next-auth/react";
 import LogoutButton from "./logoutButton";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import NotificationMenu from "@/src/components/NotificationMenu";
 
 const UserNavbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <nav className="w-full z-50 non-prose flex item-center justify-between border-b  sticky top-0 dark:bg-[#020817] bg-white">
+    <nav className="w-full z-50 non-prose flex item-center justify-between border-b top-0 dark:bg-[#020817] bg-white">
       <Link className="space-x-2 flex items-center not-prose p-2 ml-1" href="/">
         <Image
           src={Logo}
@@ -25,7 +24,7 @@ const UserNavbar = async () => {
           className="transition-all hover:opacity-75 dark:invert"
         ></Image>
         <span className="text-lg font-bold text-[#7D0303]">
-          ZZPSU <span className="text-black">DRMS</span>
+          ZZPSU <span className="text-black dark:text-white">DRMS</span>
         </span>
       </Link>
 
@@ -36,7 +35,7 @@ const UserNavbar = async () => {
               <div className="gap-2 flex items-center">
                 <button
                   type="button"
-                  className="relative rounded-full bg-white p1 text-gray-400 hover:text-gray-500 font-bold"
+                  className="relative rounded-full bg-white dark:bg-transparent p1 text-gray-400 hover:text-gray-500 font-bold"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notification</span>

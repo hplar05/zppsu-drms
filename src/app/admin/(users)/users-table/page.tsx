@@ -19,7 +19,7 @@ export default async function RequestTable({
       <main className="pt-5 px-5 -z-50">
         <div className="text-center">
           <h1 className="text-xl md:text-2xl font-bold text-left">All Users</h1>
-          <div className="mt-4 flex items-center justify-between gap-2 md:mt-8 mb-6">
+          <div className=" flex items-center justify-between gap-2 md:mt-3 mb-6">
             <Search placeholder="Search users..." />
           </div>
         </div>

@@ -18,7 +18,7 @@ const AdminNavbar = async () => {
           className="transition-all hover:opacity-75 dark:invert"
         ></Image>
         <span className="text-lg font-bold text-[#7D0303]">
-          ZZPSU <span className="text-black">DRMS</span>
+          ZZPSU <span className="text-black dark:text-white">DRMS</span>
         </span>
       </Link>
 
@@ -26,7 +26,7 @@ const AdminNavbar = async () => {
         <div className="flex justify-center items-center gap-2">
           <button
             type="button"
-            className="relative rounded-full bg-white p1 text-gray-400 hover:text-gray-500 font-bold"
+            className="relative rounded-full bg-white dark:bg-transparent p1 text-gray-400 hover:text-gray-500 font-bold"
           >
             <span className="absolute -inset-1.5" />
             <span className="sr-only">View notification</span>

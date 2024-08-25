@@ -14,17 +14,20 @@ datasource db {
 }
 
 model User {
-  id           String        @id @default(cuid())
-  email        String        @unique
-  username     String        @unique
+  id           String         @id @default(cuid())
+  email        String         @unique
+  username     String         @unique
   password     String
   name         String
   mobileNumber String
   image        String?
+  course       String
+  studId       String
   requestForm  RequestForm[]
-  role         Role          @default(STUDENT)
-  createdAt    DateTime      @default(now())
-  updateUt     DateTime      @updatedAt
+  announcement Announcement[]
+  role         Role           @default(STUDENT)
+  createdAt    DateTime       @default(now())
+  updateUt     DateTime       @updatedAt
 }
 
 enum Role {
@@ -44,6 +47,7 @@ model RequestForm {
   purposeOfrequest String
   userId           String
   attachment       String?
+  adminMessage     String?
   user             User     @relation(fields: [userId], references: [id])
   action           Action   @default(PENDING)
   createdAt        DateTime @default(now())
@@ -60,6 +64,8 @@ model Announcement {
   id        String   @id @default(cuid())
   title     String
   body      String
+  adminId   String
+  user      User     @relation(fields: [adminId], references: [id])
   createdAt DateTime @default(now())
   updateUt  DateTime @updatedAt
 }

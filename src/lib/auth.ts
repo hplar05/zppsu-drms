@@ -45,7 +45,9 @@ export const authOptions: NextAuthOptions = {
                 name: existingUser.name,
                 mobileNumber: existingUser.mobileNumber,
                 image: existingUser.image,
-                role: existingUser.role
+                role: existingUser.role,
+                studId: existingUser.studId,
+                course: existingUser.course
             }
           }
         })
@@ -62,7 +64,9 @@ export const authOptions: NextAuthOptions = {
                     name: user.name,
                     mobileNumber: user.mobileNumber,
                     image: user.image,
-                    role: user.role
+                    role: user.role,
+                    studId: user.studId,
+                    course: user.course
                 }
             }
             return token
@@ -78,7 +82,9 @@ export const authOptions: NextAuthOptions = {
                     name: token.name,
                     mobileNumber: token.mobileNumber,
                     image: token.image,
-                    role: token.role
+                    role: token.role,
+                    studId: token.studId,
+                    course: token.course
                 }
             }
             return session

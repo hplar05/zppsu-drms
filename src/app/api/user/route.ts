@@ -14,13 +14,15 @@ const userSchema = z
     name: z.string().min(3, "name is required"),
     image: z.string(),
     mobileNumber: z.string().min(5, "mobile number is required").max(11),
+    studId: z.string().min(5, "student id is required").max(15),
+    course: z.string().min(4, "course is required").max(100),
   })
  
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const {email, username, name, image, password, mobileNumber} = userSchema.parse(body);
+        const {email, username, name, image, password, mobileNumber, course, studId} = userSchema.parse(body);
 
         // check if email already exist
         const existingUserByEmail = await db.user.findUnique({
@@ -47,7 +49,9 @@ export async function POST(req: Request) {
                 password: hashedPassword,
                 image,
                 name,
-                mobileNumber
+                mobileNumber,
+                studId,
+                course
             }
         })
         const { password: newUserPassword, ...rest } = newUser;

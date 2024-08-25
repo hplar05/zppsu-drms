@@ -25,8 +25,8 @@ import { z } from "zod";
 // Define schema validation with zod
 const schema = z.object({
   // nameOfStudent: z.string().min(5, "Full name is required").max(100),
-  studentId: z.string().min(4, "Student ID is required").max(20),
-  course: z.string().min(4, "Course is required").max(40),
+  // studentId: z.string().min(4, "Student ID is required").max(20),
+  // course: z.string().min(4, "Course is required").max(40),
   yearAndsection: z.string().min(4, "Year & Section is required").max(40),
   subjectname: z.string().min(4, "Subject name is required").max(100),
   purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
@@ -84,11 +84,9 @@ export default function StudentRequestForm() {
             <Input
               id="studentId"
               placeholder="Enter your Student ID"
-              {...register("studentId")}
+              defaultValue={session?.user.studId}
+              disabled
             />
-            {errors.studentId?.message && (
-              <p className="text-red-600">{String(errors.studentId.message)}</p>
-            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -115,11 +113,9 @@ export default function StudentRequestForm() {
             <Input
               id="course"
               placeholder="Enter your course"
-              {...register("course")}
+              defaultValue={session?.user.course}
+              disabled
             />
-            {errors.course?.message && (
-              <p className="text-red-600">{String(errors.course.message)}</p>
-            )}
           </div>
           <div className="space-y-2">
             <Label htmlFor="yearAndsection">Year & Section</Label>

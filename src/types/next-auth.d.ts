@@ -10,6 +10,8 @@ declare module "next-auth" {
         name: string,
         mobileNumber: string,
         image: string | null,
+        course: string,
+        studId: string,
         role: Role
     }
 
@@ -21,6 +23,8 @@ declare module "next-auth" {
             name: string,
             mobileNumber: string,
             image: string | null,
+            course: string,
+            studId: string,
             role: Role
         }
     }
@@ -34,6 +38,8 @@ declare module "next-auth/jwt" {
         name: string,
         mobileNumber: string,
         image: string | null,
+        course: string,
+        studId: string,
         role: Role
     }
 }

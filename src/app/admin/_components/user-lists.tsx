@@ -39,6 +39,8 @@ export default async function UserLists({
     where: {
       OR: [
         { name: { contains: query } },
+        { studId: { contains: query } },
+        { course: { contains: query } },
         { email: { contains: query } },
         { mobileNumber: { contains: query } },
       ],
@@ -51,6 +53,8 @@ export default async function UserLists({
     where: {
       OR: [
         { name: { contains: query } },
+        { studId: { contains: query } },
+        { course: { contains: query } },
         { email: { contains: query } },
         { mobileNumber: { contains: query } },
       ],
@@ -69,6 +73,8 @@ export default async function UserLists({
           <TableHead className="w-auto">Image</TableHead>
           <TableHead className="w-auto">Name</TableHead>
           <TableHead className="w-auto">Username</TableHead>
+          <TableHead className="w-auto">Student ID</TableHead>
+          <TableHead className="w-auto">Course</TableHead>
           <TableHead className="w-auto">Email</TableHead>
           <TableHead className="w-auto">Mobile Number</TableHead>
           <TableHead className="w-auto">Role</TableHead>
@@ -87,6 +93,8 @@ export default async function UserLists({
             </TableCell>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.username}</TableCell>
+            <TableCell>{user.studId}</TableCell>
+            <TableCell>{user.course}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.mobileNumber}</TableCell>
             <TableCell>
@@ -97,7 +105,7 @@ export default async function UserLists({
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={6} className="text-center">
+          <TableCell colSpan={8} className="text-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

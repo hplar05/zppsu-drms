@@ -8,14 +8,16 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import {Knock} from '@knocklabs/node'
 
-
-// add student request
 const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY)
 
+
+
+
+// add student request
 export async function createRequest(formData: FormData) {
     // const nameOfStudent = formData.get('nameOfStudent') as string;
-    const studentId = formData.get('studentId') as string;
-    const course = formData.get('course') as string;
+    // const studentId = formData.get('studentId') as string ;
+    // const course = formData.get('course') as string ;
     const yearAndsection = formData.get('yearAndsection') as string;
     const subjectname = formData.get('subjectname') as string;
     const attachment = formData.get('attachment') as string;
@@ -25,18 +27,17 @@ export async function createRequest(formData: FormData) {
 
     if (!session) return { error: "Unauthorized" };
     
-    const studId = session.user.id;
+    const userId = session.user.id;
     const mobileNumber = session.user.mobileNumber;
     const email = session.user.email;
-    const name = session.user.name;
-    const userRole = session.user.role;
-
-    // console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}, ${email}, ${mobileNumber}`);
+    const nameOfStudent = session.user.name;
+    const course = session.user.course;
+    const studentId = session.user.studId
 
     await db.requestForm.create({
         data: {
-            nameOfStudent: name,
-            studentId,
+            nameOfStudent,
+            studentId ,
             email,
             mobileNumber,
             course,
@@ -44,7 +45,7 @@ export async function createRequest(formData: FormData) {
             subjectname,
             attachment,
             purposeOfrequest,
-            userId: studId,
+            userId: userId,
         },
     });
     const studentRecipient = await db.user.findMany({
@@ -72,6 +73,8 @@ export async function createRequest(formData: FormData) {
     redirect("/student/dashboard");
 }    
 
+
+    
 
 
 

@@ -24,7 +24,9 @@ const UserNavbar = async () => {
           height={10}
           className="transition-all hover:opacity-75 dark:invert"
         ></Image>
-        <span className="text-lg font-bold">ZZPSU RDMS</span>
+        <span className="text-lg font-bold text-[#7D0303]">
+          ZZPSU <span className="text-black">DRMS</span>
+        </span>
       </Link>
 
       <div className="flex items-center space-x-8 md:mr-5 mr-0">

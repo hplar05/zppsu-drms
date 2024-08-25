@@ -28,7 +28,7 @@ const UserNavbar = async () => {
         </span>
       </Link>
 
-      <div className="flex items-center space-x-8 md:mr-5 mr-0">
+      <div className="flex items-center space-x-6 max-md:mr-4 mr-3 z-20">
         <div className="p-2 gap-5">
           <div className="flex justify-center items-center gap-2">
             {session?.user ? (

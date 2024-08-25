@@ -22,7 +22,7 @@ const AdminNavbar = async () => {
         </span>
       </Link>
 
-      <div className="flex items-center space-x-6 md:mr-5 mr-0 z-20">
+      <div className="flex items-center space-x-6 max-md:mr-4 mr-8 z-20">
         <div className="flex justify-center items-center gap-2">
           <button
             type="button"

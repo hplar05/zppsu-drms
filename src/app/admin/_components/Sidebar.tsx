@@ -75,7 +75,7 @@ export default function UserSidebar() {
 
         <Link
           href="#"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
+          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <SettingsIcon className="w-5 h-5" />

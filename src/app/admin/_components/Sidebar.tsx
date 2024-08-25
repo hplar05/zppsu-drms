@@ -33,12 +33,12 @@ export default function UserSidebar() {
         </Link>
 
         <Link
-          href="/admin/students-table"
+          href="/admin/users-table"
           className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <UserIcon className="w-5 h-5" />
-          <span>Student Lists</span>
+          <span>User Lists</span>
         </Link>
         <Link
           href="/admin/request-table"

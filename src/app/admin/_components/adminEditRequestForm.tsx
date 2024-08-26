@@ -43,73 +43,78 @@ const EditRequestForm = ({ request }: { request: RequestForm }) => {
               </p>
             </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="studentId">Student Id</Label>
-            <Input
-              id="studentId"
-              name="studentId"
-              placeholder="Enter your Student ID"
-              defaultValue={request.studentId}
-            />
-            <div>
-              <p className="mt-2 text-sm text-red-500">
-                {state?.Error?.studentId}
-              </p>
+          <div className="flex justify-between gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="course">Course</Label>
+              <Input
+                id="course"
+                name="course"
+                placeholder="Enter the course"
+                defaultValue={request.course}
+              />
+              <div>
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.course}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="course">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              placeholder="Enter the Number"
-              defaultValue={request.email}
-            />
-            <p className="mt-2 text-sm text-red-500">{state?.Error?.email}</p>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="course">Mobile Number</Label>
-            <Input
-              id="mobileNumber"
-              name="mobileNumber"
-              placeholder="Enter the Number"
-              defaultValue={request.mobileNumber}
-            />
-            <div>
-              <p className="mt-2 text-sm text-red-500">
-                {state?.Error?.mobileNumber}
-              </p>
+            <div className="space-y-2">
+              <Label htmlFor="course">Year & Section</Label>
+              <Input
+                id="yearAndsection"
+                name="yearAndsection"
+                placeholder="Enter the your Year and Section"
+                defaultValue={request.yearAndsection}
+              />
+              <div>
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.yearAndsection}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="course">Course</Label>
-            <Input
-              id="course"
-              name="course"
-              placeholder="Enter the course"
-              defaultValue={request.course}
-            />
-            <div>
-              <p className="mt-2 text-sm text-red-500">
-                {state?.Error?.course}
-              </p>
+            <div className="space-y-2">
+              <Label htmlFor="studentId">Student Id</Label>
+              <Input
+                id="studentId"
+                name="studentId"
+                placeholder="Enter your Student ID"
+                defaultValue={request.studentId}
+              />
+              <div>
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.studentId}
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="course">Year & Section</Label>
-            <Input
-              id="yearAndsection"
-              name="yearAndsection"
-              placeholder="Enter the your Year and Section"
-              defaultValue={request.yearAndsection}
-            />
-            <div>
-              <p className="mt-2 text-sm text-red-500">
-                {state?.Error?.yearAndsection}
-              </p>
+          <div>
+            <div className="space-y-2">
+              <Label htmlFor="course">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                placeholder="Enter the Number"
+                defaultValue={request.email}
+              />
+              <p className="mt-2 text-sm text-red-500">{state?.Error?.email}</p>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="course">Mobile Number</Label>
+              <Input
+                id="mobileNumber"
+                name="mobileNumber"
+                placeholder="Enter the Number"
+                defaultValue={request.mobileNumber}
+              />
+              <div>
+                <p className="mt-2 text-sm text-red-500">
+                  {state?.Error?.mobileNumber}
+                </p>
+              </div>
             </div>
           </div>
+
           <div className="space-y-2">
             <Label htmlFor="subjectname">Request Subject Names</Label>
             <Input

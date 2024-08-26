@@ -33,6 +33,7 @@ model User {
 enum Role {
   STUDENT
   ADMIN
+  SUPERADMIN
 }
 
 model RequestForm {
@@ -58,6 +59,7 @@ enum Action {
   APPROVE
   DISAPPROVE
   PENDING
+  ARCHIVE
 }
 
 model Announcement {

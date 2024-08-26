@@ -73,68 +73,72 @@ export default function StudentRequestForm() {
             <Label htmlFor="nameOfStudent">Full Name</Label>
             <Input
               id="nameOfStudent"
-              placeholder="Enter your full name"
+              placeholder="your full name"
               defaultValue={session?.user.name}
               {...register("nameOfStudent")}
               disabled
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="studentId">Student ID</Label>
-            <Input
-              id="studentId"
-              placeholder="Enter your Student ID"
-              defaultValue={session?.user.studId}
-              disabled
-            />
+          <div className="flex justify-between gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="studentId">Student ID</Label>
+              <Input
+                id="studentId"
+                placeholder="your Student ID"
+                defaultValue={session?.user.studId}
+                disabled
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="course">Course</Label>
+              <Input
+                id="course"
+                placeholder="your course"
+                defaultValue={session?.user.course}
+                disabled
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="yearAndsection">Year & Section</Label>
+              <Input
+                id="yearAndsection"
+                placeholder="your year&section"
+                {...register("yearAndsection")}
+              />
+              {errors.yearAndsection?.message && (
+                <p className="text-red-600">
+                  {String(errors.yearAndsection.message)}
+                </p>
+              )}
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              placeholder="Enter the email"
-              defaultValue={session?.user.email}
-              disabled
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="mobileNumber">Mobile Number</Label>
-            <Input
-              id="mobileNumber"
-              name="mobileNumber"
-              placeholder="Enter the Number"
-              defaultValue={session?.user.mobileNumber}
-              disabled
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="course">Course</Label>
-            <Input
-              id="course"
-              placeholder="Enter your course"
-              defaultValue={session?.user.course}
-              disabled
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="yearAndsection">Year & Section</Label>
-            <Input
-              id="yearAndsection"
-              placeholder="Enter your year and section"
-              {...register("yearAndsection")}
-            />
-            {errors.yearAndsection?.message && (
-              <p className="text-red-600">
-                {String(errors.yearAndsection.message)}
-              </p>
-            )}
+          <div className="flex justify-between gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                placeholder="your email"
+                defaultValue={session?.user.email}
+                disabled
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mobileNumber">Mobile Number</Label>
+              <Input
+                id="mobileNumber"
+                name="mobileNumber"
+                placeholder="your Number"
+                defaultValue={session?.user.mobileNumber}
+                disabled
+              />
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="subjectname">Request Subject Names</Label>
             <Input
               id="subjectname"
-              placeholder="Enter your request subject names"
+              placeholder="request subject names"
               {...register("subjectname")}
             />
             {errors.subjectname?.message && (
@@ -182,7 +186,7 @@ export default function StudentRequestForm() {
             <Label htmlFor="purposeOfrequest">Purpose of Request</Label>
             <Textarea
               id="purposeOfrequest"
-              placeholder="Enter the purpose of request"
+              placeholder="purpose of request"
               className="min-h-[100px]"
               {...register("purposeOfrequest")}
             />

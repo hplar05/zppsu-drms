@@ -76,7 +76,7 @@ export default function Form() {
             <Label htmlFor="nameOfStudent">Name of the Student</Label>
             <Input
               id="nameOfStudent"
-              placeholder="Enter the student full name"
+              placeholder="full name..."
               {...register("nameOfStudent")}
             />
             {errors.nameOfStudent?.message && (
@@ -85,70 +85,76 @@ export default function Form() {
               </p>
             )}
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="studentId">Student Id</Label>
-            <Input
-              id="studentId"
-              placeholder="Enter the Student ID"
-              {...register("studentId")}
-            />
-            {errors.studentId?.message && (
-              <p className="text-red-600">{String(errors.studentId.message)}</p>
-            )}
+          <div className="flex justify-between gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="studentId">Student Id</Label>
+              <Input
+                id="studentId"
+                placeholder="student ID..."
+                {...register("studentId")}
+              />
+              {errors.studentId?.message && (
+                <p className="text-red-600">
+                  {String(errors.studentId.message)}
+                </p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="course">Course</Label>
+              <Input
+                id="course"
+                placeholder="student course..."
+                {...register("course")}
+              />
+              {errors.course?.message && (
+                <p className="text-red-600">{String(errors.course.message)}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="yearAndsection">Year & Section</Label>
+              <Input
+                id="yearAndsection"
+                placeholder="year&section..."
+                {...register("yearAndsection")}
+              />
+              {errors.yearAndsection?.message && (
+                <p className="text-red-600">
+                  {String(errors.yearAndsection.message)}
+                </p>
+              )}
+            </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              placeholder="Enter the email address of the student"
-              {...register("email")}
-            />
-            {errors.email?.message && (
-              <p className="text-red-600">{String(errors.email.message)}</p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="mobileNumber">Mobile Number</Label>
-            <Input
-              id="mobileNumber"
-              placeholder="Enter the Number of the student"
-              {...register("mobileNumber")}
-            />
-            {errors.mobileNumber?.message && (
-              <p className="text-red-600">
-                {String(errors.mobileNumber.message)}
-              </p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="course">Course</Label>
-            <Input
-              id="course"
-              placeholder="Enter the student course"
-              {...register("course")}
-            />
-            {errors.course?.message && (
-              <p className="text-red-600">{String(errors.course.message)}</p>
-            )}
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="yearAndsection">Year & Section</Label>
-            <Input
-              id="yearAndsection"
-              placeholder="Enter the year and section of the student"
-              {...register("yearAndsection")}
-            />
-            {errors.yearAndsection?.message && (
-              <p className="text-red-600">
-                {String(errors.yearAndsection.message)}
-              </p>
-            )}
+          <div className="flex justify-between gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                placeholder="email address..."
+                {...register("email")}
+              />
+              {errors.email?.message && (
+                <p className="text-red-600">{String(errors.email.message)}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="mobileNumber">Mobile Number</Label>
+              <Input
+                id="mobileNumber"
+                placeholder="mobile number..."
+                {...register("mobileNumber")}
+              />
+              {errors.mobileNumber?.message && (
+                <p className="text-red-600">
+                  {String(errors.mobileNumber.message)}
+                </p>
+              )}
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="subjectname">Request Subject Names</Label>
             <Input
               id="subjectname"
-              placeholder="Enter the request subject names of the student"
+              placeholder="request subject names..."
               {...register("subjectname")}
             />
             {errors.subjectname?.message && (
@@ -196,7 +202,7 @@ export default function Form() {
             <Label htmlFor="purposeOfrequest">Purpose of Request</Label>
             <Textarea
               id="purposeOfrequest"
-              placeholder="Enter the Purpose of Request"
+              placeholder="purpose of request..."
               className="min-h-[100px]"
               {...register("purposeOfrequest")}
             />

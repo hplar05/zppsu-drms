@@ -51,7 +51,7 @@ export default function SetStatusForm({
           >
             <option value="PENDING">Pending</option>
             <option value="APPROVE">Approve</option>
-            <option value="DISAPPROVE">Disapprove</option>
+            <option value="DECLINE">DECLINE</option>
           </select>
 
           <Label htmlFor="adminMessage">Admin Message:</Label>
@@ -67,7 +67,7 @@ export default function SetStatusForm({
             <Link href="">Cancel</Link>
           </Button> */}
           <Button type="submit" disabled={isPending}>
-            {isPending ? "Updating..." : "Update"}
+            {isPending ? "Submitting..." : "Submit"}
           </Button>
         </div>
       </form>

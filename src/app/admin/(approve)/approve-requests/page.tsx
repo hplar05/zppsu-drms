@@ -1,13 +1,16 @@
 import { db } from "@/src/lib/db";
 import React from "react";
-import { columns, Request } from "./columns";
+import {
+  columns,
+  Request,
+} from "@/src/app/admin/(requests)/request-table/columns";
 import { DataTable } from "../../_components/data-table";
 import NoRequestAvailable from "@/src/components/noRequestAvailable";
 
 async function getRequests(): Promise<Request[]> {
   const res = await db.requestForm.findMany({
     where: {
-      action: "PENDING",
+      action: "APPROVE",
     },
   });
   return res;
@@ -25,7 +28,7 @@ export default async function Page() {
       ) : (
         <div>
           <h1 className="text-xl md:text-2xl font-bold text-left">
-            All Pending Requests
+            All Approve Requests
           </h1>
           <DataTable columns={columns} data={requestData} />
         </div>

@@ -49,7 +49,7 @@ export default function UserSidebar() {
           <span>Request Form Lists</span>
         </Link>
         <Link
-          href="/admin/approve-request"
+          href="/admin/approve-requests"
           className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
@@ -57,7 +57,7 @@ export default function UserSidebar() {
           <span>Approve Request</span>
         </Link>
         <Link
-          href="/admin/disapprove-request"
+          href="/admin/disapprove-requests"
           className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >

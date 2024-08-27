@@ -31,7 +31,7 @@ export default function DashboardData({
   declined,
 }: DashboardDataProps) {
   return (
-    <div className="grid min-h-screen w-full grid-cols-1 pb-[6rem] gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid h-auto w-full grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
       <Card className="flex flex-col text-center">
         <CardHeader>
           <CardDescription>Total Requests</CardDescription>
@@ -57,7 +57,7 @@ export default function DashboardData({
         </CardHeader>
       </Card>
 
-      <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center justify-center">
+      <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center justify-center mt-20">
         <ChartContainer
           config={{
             requests: { label: "Requests", color: "hsl(var(--chart-1))" },
@@ -65,7 +65,7 @@ export default function DashboardData({
             decline: { label: "Decline", color: "hsl(var(--chart-3))" },
             pending: { label: "Pending", color: "hsl(var(--chart-4))" },
           }}
-          className="min-h-[200px]"
+          className="min-h-[500px]"
         >
           <BarChart
             accessibilityLayer

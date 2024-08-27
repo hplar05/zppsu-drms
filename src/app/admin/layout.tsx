@@ -16,8 +16,8 @@ import { Knock } from "@knocklabs/node";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZZPSU Document Request",
-  description: "ZZPSU Document Request",
+  title: "ZZPSU DRMS",
+  description: "ZZPSU DRMS",
 };
 
 export default async function RootLayout({

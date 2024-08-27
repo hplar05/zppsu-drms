@@ -46,7 +46,7 @@ export default function UserSidebar() {
           prefetch={false}
         >
           <FileTextIcon className="h-5 w-5" />
-          <span>Request Form Lists</span>
+          <span>Pending Requests</span>
         </Link>
         <Link
           href="/admin/approve-requests"
@@ -54,15 +54,15 @@ export default function UserSidebar() {
           prefetch={false}
         >
           <CheckIcon className="h-5 w-5" />
-          <span>Approve Request</span>
+          <span>Approve Requests</span>
         </Link>
         <Link
-          href="/admin/disapprove-requests"
+          href="/admin/decline-requests"
           className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <ThumbsDownIcon className="h-5 w-5" />
-          <span>Disapprove Request</span>
+          <span>Decline Requests</span>
         </Link>
         <Link
           href="#"

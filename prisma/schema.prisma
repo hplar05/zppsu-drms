@@ -57,7 +57,7 @@ model RequestForm {
 
 enum Action {
   APPROVE
-  DISAPPROVE
+  DECLINE
   PENDING
   ARCHIVE
 }

@@ -134,7 +134,9 @@ export const columns: ColumnDef<Request>[] = [
             <DropdownMenuItem>
               <Link href={`/admin/editRequest/${request.id}`}>Edit</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>Set Status</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/admin/set-status/${request.id}`}>Set Status</Link>
+            </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
                 navigator.clipboard.writeText(request.id.toString())

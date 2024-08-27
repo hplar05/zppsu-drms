@@ -49,8 +49,8 @@ export default function SetStatusForm({
             className="text-center rounded-md border-black dark:border-white border w-[40%] flex mx-auto"
             required
           >
-            <option value="PENDING">Pending</option>
-            <option value="APPROVE">Approve</option>
+            <option value="PENDING">PENDING</option>
+            <option value="APPROVE">APPROVE</option>
             <option value="DECLINE">DECLINE</option>
           </select>
 

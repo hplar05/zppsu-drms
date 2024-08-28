@@ -26,7 +26,7 @@ const UserAvatar = () => {
         <h2 className="text-xl font-bold">{adminName}</h2>
       </div>
       <Badge className="flex justify-center items-center">
-        {session?.user.role === "ADMIN" ? "ZZPSU ADMIN" : "ZZPSU STUDENT"}
+        {session?.user.role === "ADMIN" ? "ZPPSU ADMIN" : "ZPPSU STUDENT"}
       </Badge>
     </div>
   );

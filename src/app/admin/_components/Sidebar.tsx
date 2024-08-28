@@ -33,7 +33,7 @@ export default function UserSidebar() {
             className="transition-all hover:opacity-75 dark:invert"
           ></Image>
           <span className="text-lg font-bold text-[#7D0303]">
-            ZZPSU <span className="text-black dark:text-white">DRMS</span>
+            ZPPSU <span className="text-black dark:text-white">DRMS</span>
           </span>
         </Link>
         <Link

@@ -98,7 +98,7 @@ export default async function UserLists({
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.mobileNumber}</TableCell>
             <TableCell>
-              <Badge>ZZPSU {user.role}</Badge>
+              <Badge>ZPPSU {user.role}</Badge>
             </TableCell>
           </TableRow>
         ))}

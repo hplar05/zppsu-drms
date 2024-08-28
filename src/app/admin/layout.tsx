@@ -39,6 +39,8 @@ export default async function RootLayout({
   const knockUser = await knockClient.users.identify(session.user.id, {
     name: session.user.name,
     email: session.user.email,
+    phone_number: session.user.mobileNumber,
+    avatar: session.user.image,
   });
   console.log(knockUser);
 

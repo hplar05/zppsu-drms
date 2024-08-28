@@ -33,7 +33,7 @@ export default async function UserLists({
   currentPage: number;
 }) {
   await new Promise((resolve) => setTimeout(resolve, 500));
-  const itemsPerPage = 7;
+  const itemsPerPage = 10;
 
   const users = await db.user.findMany({
     where: {

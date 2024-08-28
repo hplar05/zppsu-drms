@@ -8,19 +8,11 @@ import NotificationMenu from "@/src/components/NotificationMenu";
 
 const AdminNavbar = async () => {
   return (
-    <nav className="z-50 w-full non-prose flex item-center justify-between border-b top-0 dark:bg-[#18191A] dark:border-none bg-white">
-      <Link className="space-x-2 flex items-center not-prose p-2 ml-1" href="/">
-        <Image
-          src={Logo}
-          alt="Logo"
-          width={45}
-          height={10}
-          className="transition-all hover:opacity-75 dark:invert"
-        ></Image>
-        <span className="text-lg font-bold text-[#7D0303]">
-          ZZPSU <span className="text-black dark:text-white">DRMS</span>
-        </span>
-      </Link>
+    <nav className="z-50 w-full non-prose flex item-center justify-between top-0 dark:bg-transparent dark:border-none bg-white">
+      <Link
+        className="space-x-2 flex items-center not-prose p-2 ml-1"
+        href="/"
+      ></Link>
 
       <div className="flex items-center space-x-6 max-md:mr-4 mr-8 z-20">
         <div className="flex justify-center items-center gap-2">

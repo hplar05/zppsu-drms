@@ -54,15 +54,9 @@ export default async function RootLayout({
           >
             <Provider>
               <Toaster />
-
-              <div className="flex flex-col min-h-screen w-full">
-                <AdminNavbar />
-                <div className="flex flex-1">
-                  <Sidebar />
-                  <main className="flex-1 max-md:flex-0 max-md:p-0 p-5">
-                    {children}
-                  </main>
-                </div>
+              <div className="flex flex-row h-auto">
+                <Sidebar />
+                <main className="flex-1 h-screen mt-4">{children}</main>
               </div>
             </Provider>
           </ThemeProvider>

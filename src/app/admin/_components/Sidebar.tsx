@@ -5,6 +5,8 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
+import Logo from "@/public/logo.jpg";
 
 export default function UserSidebar() {
   const SignOut = () => {
@@ -20,9 +22,20 @@ export default function UserSidebar() {
   };
 
   return (
-    <div className="flex h-auto max-md:hidden">
+    <div className="flex h-auto w-auto dark:bg-[#18191A]">
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4 dark:border-none">
-        <UserAvatar />
+        <Link className="space-x-2 flex items-center not-prose" href="/">
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={45}
+            height={10}
+            className="transition-all hover:opacity-75 dark:invert"
+          ></Image>
+          <span className="text-lg font-bold text-[#7D0303]">
+            ZZPSU <span className="text-black dark:text-white">DRMS</span>
+          </span>
+        </Link>
         <Link
           href="/admin/dashboard"
           className="flex items-center mt-6 gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
@@ -83,6 +96,9 @@ export default function UserSidebar() {
         </Link>
 
         <div className="mt-auto w-full">
+          <div className="mb-12">
+            <UserAvatar />
+          </div>
           <button
             onClick={SignOut}
             className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -92,7 +108,7 @@ export default function UserSidebar() {
           </button>
         </div>
       </nav>
-      <main className="flex-1 p-6" />
+      <main className="flex" />
     </div>
   );
 }

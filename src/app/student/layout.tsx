@@ -14,8 +14,8 @@ import UserSidebar from "./_components/userSidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZZPSU DRMS",
-  description: "ZZPSU DRMS",
+  title: "ZZPSU Document Request",
+  description: "ZZPSU Document Request",
 };
 
 export default async function RootLayout({

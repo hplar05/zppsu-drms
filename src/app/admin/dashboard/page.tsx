@@ -1,6 +1,7 @@
 import { db } from "@/src/lib/db";
 import { Suspense } from "react";
 import DashboardData from "./dashboard-data";
+import AdminNavbar from "../_components/adminNavbar";
 
 export default async function Dashboard() {
   await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -21,7 +22,8 @@ export default async function Dashboard() {
   const approvedCount = approved.length;
 
   return (
-    <main className="">
+    <main className="mt-2">
+      <AdminNavbar />
       <DashboardData
         approved={approvedCount}
         declined={declineCount}

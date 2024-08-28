@@ -32,7 +32,7 @@ const schema = z.object({
   mobileNumber: z.string().min(11, "Mobile Number is required"),
   course: z.string().min(4, "Course is required").max(40),
   yearAndsection: z.string().min(4, "Year & Section is required").max(40),
-  subjectname: z.string().min(4, "Subject name is required").max(100),
+  // subjectname: z.string().min(4, "Subject name is required").max(100),
   purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
 });
 
@@ -150,7 +150,7 @@ export default function Form() {
               )}
             </div>
           </div>
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <Label htmlFor="subjectname">Request Subject Names</Label>
             <Input
               id="subjectname"
@@ -162,7 +162,7 @@ export default function Form() {
                 {String(errors.subjectname.message)}
               </p>
             )}
-          </div>
+          </div> */}
           <div className="mx-auto">
             <Label htmlFor="attachment">Request Form of the student</Label>
             {attachmentUrl.length ? (

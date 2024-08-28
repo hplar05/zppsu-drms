@@ -19,7 +19,6 @@ export async function createRequest(formData: FormData) {
     // const studentId = formData.get('studentId') as string ;
     // const course = formData.get('course') as string ;
     const yearAndsection = formData.get('yearAndsection') as string;
-    const subjectname = formData.get('subjectname') as string;
     const attachment = formData.get('attachment') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
 
@@ -42,7 +41,6 @@ export async function createRequest(formData: FormData) {
             mobileNumber,
             course,
             yearAndsection,
-            subjectname,
             attachment,
             purposeOfrequest,
             userId: userId,

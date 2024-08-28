@@ -37,22 +37,29 @@ enum Role {
 }
 
 model RequestForm {
-  id               Int      @id @default(autoincrement())
+  id               Int            @id @default(autoincrement())
   studentId        String
   nameOfStudent    String
   course           String
   mobileNumber     String
   email            String
   yearAndsection   String
-  subjectname      String
   purposeOfrequest String
   userId           String
   attachment       String?
   adminMessage     String?
-  user             User     @relation(fields: [userId], references: [id])
-  action           Action   @default(PENDING)
-  createdAt        DateTime @default(now())
-  updateUt         DateTime @updatedAt
+  user             User           @relation(fields: [userId], references: [id])
+  action           Action         @default(PENDING)
+  requestChoices   RequestChoices
+  createdAt        DateTime       @default(now())
+  updateUt         DateTime       @updatedAt
+}
+
+enum RequestChoices {
+  TOR
+  Diploma
+  Form_137
+  Grade_Slip
 }
 
 enum Action {
@@ -60,6 +67,7 @@ enum Action {
   DECLINE
   PENDING
   ARCHIVE
+  PAID
 }
 
 model Announcement {

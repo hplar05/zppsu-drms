@@ -40,7 +40,7 @@ export default async function RequestLists({
         { studentId: { contains: query } },
         { email: { contains: query } },
         { course: { contains: query } },
-        { subjectname: { contains: query } },
+        // { subjectname: { contains: query } },
       ],
     },
     skip: (currentPage - 1) * itemsPerPage,
@@ -54,7 +54,7 @@ export default async function RequestLists({
         { studentId: { contains: query } },
         { email: { contains: query } },
         { course: { contains: query } },
-        { subjectname: { contains: query } },
+        // { subjectname: { contains: query } },
       ],
     },
   });

@@ -14,7 +14,6 @@ const RequestSchema = z.object({
     mobileNumber: z.string().min(11, "mobile number is required").max(11),
     course: z.string().min(4, "course is required").max(11),
     yearAndsection: z.string().min(4, "year and section is required").max(20),
-    subjectname: z.string().min(4, "subject names is required").max(100),
     purposeOfrequest: z.string().min(6, "purpose of request is required").max(200),
 })
 
@@ -28,7 +27,6 @@ export async function createRequest(formData: FormData) {
     const mobileNumber = formData.get('mobileNumber') as string;
     const course = formData.get('course') as string;
     const yearAndsection = formData.get('yearAndsection') as string;
-    const subjectname = formData.get('subjectname') as string;
     const attachment = formData.get('attachment') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
 
@@ -53,7 +51,6 @@ export async function createRequest(formData: FormData) {
         mobileNumber,
         course,
         yearAndsection,
-        subjectname,
         attachment: attachment,
         purposeOfrequest,
         userId: adminId,

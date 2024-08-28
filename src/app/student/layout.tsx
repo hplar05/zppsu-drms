@@ -10,6 +10,7 @@ import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";
 import { Knock } from "@knocklabs/node";
 import UserSidebar from "./_components/userSidebar";
+import UserFooter from "./_components/userFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -57,6 +58,7 @@ export default async function RootLayout({
                 </main>
               </div>
             </div>
+            {/* <UserFooter /> */}
           </ThemeProvider>
         </Provider>
       </body>

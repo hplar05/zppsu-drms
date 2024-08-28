@@ -4,7 +4,7 @@ import StudentRequestForm from "../../_components/studentRequestForm";
 
 const page = () => {
   return (
-    <div className="h-auto flex justify-center items-center p-5">
+    <div className="h-auto flex justify-center items-center">
       <StudentRequestForm />
     </div>
   );

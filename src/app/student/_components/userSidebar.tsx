@@ -22,14 +22,19 @@ export default function Sidebar() {
   return (
     <div className="flex h-auto max-md:hidden">
       <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4 dark:border-none">
-        <UserAvatar />
+        <div className="text-center">
+          <span className="text-2xl font-bold text-[#7D0303]">
+            ZPPSU <span className="text-black dark:text-white">DRMS</span>
+          </span>
+        </div>
+
         <Link
           href="/student/dashboard"
           className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted mt-10"
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />
-          <span>Dashboard</span>
+          <span>Home</span>
         </Link>
 
         <Link
@@ -40,7 +45,7 @@ export default function Sidebar() {
           <FileTextIcon className="h-5 w-5" />
           <span>Request Form</span>
         </Link>
-        <Link
+        {/* <Link
           href="/student/approve-request"
           className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
           prefetch={false}
@@ -72,9 +77,9 @@ export default function Sidebar() {
         >
           <SettingsIcon className="w-5 h-5" />
           Settings
-        </Link>
+        </Link> */}
 
-        {/* <div className="mt-auto w-full">
+        <div className="mt-auto w-full">
           <button
             onClick={SignOut}
             className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -82,7 +87,7 @@ export default function Sidebar() {
             <PowerIcon className="h-5 w-5" />
             <span>Sign Out</span>
           </button>
-        </div> */}
+        </div>
       </nav>
       <main className="flex-1 p-6" />
     </div>

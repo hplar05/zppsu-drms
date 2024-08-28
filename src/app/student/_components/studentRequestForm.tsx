@@ -21,6 +21,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/src/components/ui/select";
 
 // Define schema validation with zod
 const schema = z.object({
@@ -60,7 +67,7 @@ export default function StudentRequestForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto my-5">
       <CardHeader>
         <CardTitle className="text-center">Create Request</CardTitle>
         <CardDescription className="text-center">
@@ -147,8 +154,23 @@ export default function StudentRequestForm() {
               </p>
             )}
           </div> */}
+          <div className="space-y-2">
+            <Label htmlFor="document">Document Type</Label>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Select document" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="grade-slip">Grade Slip</SelectItem>
+                <SelectItem value="transcript">Transcript</SelectItem>
+                <SelectItem value="enrollment-verification">
+                  Enrollment Verification
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           <div>
-            <Label htmlFor="attachment">Request Form</Label>
+            <Label htmlFor="attachment">Request Form Optional</Label>
             {attachmentUrl.length ? (
               <div className="flex flex-col justify-center items-center">
                 <p>Attachment Uploaded</p>

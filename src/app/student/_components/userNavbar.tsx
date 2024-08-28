@@ -9,13 +9,21 @@ import { Button } from "@/src/components/ui/button";
 import { signOut } from "next-auth/react";
 import LogoutButton from "./logoutButton";
 import NotificationMenu from "@/src/components/NotificationMenu";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/src/components/ui/avatar";
 
 const UserNavbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
     <nav className="w-full z-50 non-prose flex item-center justify-between border-b top-0 dark:bg-[#18191A] dark:border-none bg-white">
-      <Link className="space-x-2 flex items-center not-prose p-2 ml-1" href="/">
+      <Link
+        className="space-x-2 flex items-center not-prose p-2 mx-5 mr-1"
+        href="/"
+      >
         <Image
           src={Logo}
           alt="Logo"
@@ -23,9 +31,6 @@ const UserNavbar = async () => {
           height={10}
           className="transition-all hover:opacity-75 dark:invert"
         ></Image>
-        <span className="text-lg font-bold text-[#7D0303]">
-          ZPPSU <span className="text-black dark:text-white">DRMS</span>
-        </span>
       </Link>
 
       <div className="flex items-center space-x-6 max-md:mr-4 mr-3 z-20">

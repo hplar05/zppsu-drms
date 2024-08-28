@@ -23,7 +23,7 @@ export default function UserSidebar() {
 
   return (
     <div className="flex h-auto w-auto dark:bg-[#18191A]">
-      <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4 dark:border-none">
+      <nav className="bg-background border-r px-4 pb-6 pt-3 flex flex-col gap-4 dark:border-none">
         <Link className="space-x-2 flex items-center not-prose" href="/">
           <Image
             src={Logo}

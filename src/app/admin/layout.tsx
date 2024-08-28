@@ -56,7 +56,7 @@ export default async function RootLayout({
               <Toaster />
               <div className="flex flex-row h-auto">
                 <Sidebar />
-                <main className="flex-1 h-screen mt-4">{children}</main>
+                <main className="flex-1 h-screen pt-1">{children}</main>
               </div>
             </Provider>
           </ThemeProvider>

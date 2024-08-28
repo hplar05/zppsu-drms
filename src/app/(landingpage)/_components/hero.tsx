@@ -18,12 +18,12 @@ const Hero = async () => {
           width={172}
           height={72}
           alt="Company Logo"
-          className="not-prose mb-6 dark:invert md:mb-8"
+          className="not-prose mb-6 dark:invert md:mb-8 max-md:hidden"
         />
-        <h1 className="!mb-0">
+        <h1 className="!mb-0 max-md:text-[2rem]">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>
         </h1>
-        <h3 className="text-muted-foreground">
+        <h3 className="text-muted-foreground max-md:text-[1rem] max-md:text-justify">
           <Balancer>
             Unlock your academic potential by requesting your personalized
             subject form today. Whether youre looking to explore new subjects or

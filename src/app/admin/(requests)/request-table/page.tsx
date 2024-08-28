@@ -19,7 +19,7 @@ export default async function Page() {
   const requestData = await getRequests();
 
   return (
-    <main className="pt-5 px-5">
+    <main className="px-[2rem] py-[3rem]">
       {requestCount === 0 ? (
         <NoRequestAvailable />
       ) : (

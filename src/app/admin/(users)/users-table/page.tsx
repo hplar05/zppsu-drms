@@ -16,7 +16,7 @@ export default async function RequestTable({
 
   return (
     <div className="-z-50">
-      <main className="pt-5 px-5 -z-50">
+      <main className="px-[2rem] py-[3rem] -z-50">
         <div className="text-center">
           <h1 className="text-xl md:text-2xl font-bold text-left">All Users</h1>
           <div className=" flex items-center justify-between gap-2 md:mt-3 mb-6">

@@ -57,7 +57,7 @@ export default function DashboardData({
         </CardHeader>
       </Card>
 
-      <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center justify-center mt-20">
+      <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center justify-center mt-20 overflow-auto">
         <ChartContainer
           config={{
             requests: { label: "Requests", color: "hsl(var(--chart-1))" },

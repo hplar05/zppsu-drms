@@ -57,11 +57,9 @@ export default async function Page({ params }: { params: { id: string } }) {
               </Card>
               <Card>
                 <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">
-                    Request Subjects Names
-                  </h3>
+                  <h3 className="text-lg font-semibold">Request Form</h3>
                   <p className="text-sm text-muted-foreground">
-                    {request.subjectname}
+                    {request.requestChoices}
                   </p>
                 </CardContent>
               </Card>

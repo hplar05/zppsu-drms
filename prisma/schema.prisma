@@ -50,16 +50,18 @@ model RequestForm {
   adminMessage     String?
   user             User           @relation(fields: [userId], references: [id])
   action           Action         @default(PENDING)
-  requestChoices   RequestChoices
+  requestChoices   RequestChoices @default(None)
   createdAt        DateTime       @default(now())
   updateUt         DateTime       @updatedAt
 }
 
 enum RequestChoices {
+  None
   TOR
   Diploma
   Form_137
   Grade_Slip
+  Request_Subject
 }
 
 enum Action {

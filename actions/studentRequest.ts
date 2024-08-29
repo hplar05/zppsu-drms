@@ -7,21 +7,17 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import {Knock} from '@knocklabs/node'
+import { $Enums } from "@prisma/client";
+
 
 const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY)
 
-
-
-
 // add student request
 export async function createRequest(formData: FormData) {
-    // const nameOfStudent = formData.get('nameOfStudent') as string;
-    // const studentId = formData.get('studentId') as string ;
-    // const course = formData.get('course') as string ;
     const yearAndsection = formData.get('yearAndsection') as string;
     const attachment = formData.get('attachment') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
-
+    const requestChoices =  formData.get('requestChoices') as $Enums.RequestChoices ;
     const session = await getServerSession(authOptions);
 
     if (!session) return { error: "Unauthorized" };
@@ -34,18 +30,24 @@ export async function createRequest(formData: FormData) {
     const studentId = session.user.studId
 
     await db.requestForm.create({
-        data: {
-            nameOfStudent,
-            studentId ,
-            email,
-            mobileNumber,
-            course,
-            yearAndsection,
-            attachment,
-            purposeOfrequest,
-            userId: userId,
-        },
-    });
+    data: {
+    nameOfStudent,
+    studentId,
+    email,
+    mobileNumber,
+    course,
+    yearAndsection,
+    attachment,
+    purposeOfrequest,
+    requestChoices: "Diploma",
+    user: {
+      connect: {
+        id: userId, 
+      },
+    },
+  },
+});
+
     const studentRecipient = await db.user.findMany({
         where: {
             role: "ADMIN"

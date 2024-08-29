@@ -43,6 +43,7 @@ export default function StudentRequestForm() {
   const [attachmentUrl, setAttachmentUrl] = useState("");
   const [attachmentKey, setAttachmentKey] = useState("");
   const { data: session } = useSession();
+  const [selectedDocument, setSelectedDocument] = useState("");
 
   const {
     register,
@@ -156,18 +157,28 @@ export default function StudentRequestForm() {
           </div> */}
           <div className="space-y-2">
             <Label htmlFor="document">Document Type</Label>
-            <Select>
+            <Select onValueChange={setSelectedDocument}>
               <SelectTrigger>
                 <SelectValue placeholder="Select document" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="grade-slip">Grade Slip</SelectItem>
-                <SelectItem value="transcript">Transcript</SelectItem>
-                <SelectItem value="enrollment-verification">
-                  Enrollment Verification
-                </SelectItem>
+                {/* <SelectItem value="TOR">TOR</SelectItem> */}
+                <SelectItem value="Diploma">DIPLOMA</SelectItem>
+                {/* <SelectItem value="Form_137">FORM 137</SelectItem>
+                <SelectItem value="Grade_Slip">GRADE SLIP</SelectItem>
+                <SelectItem value="Request_Subject">
+                  REQUEST SUBJECTS
+                </SelectItem> */}
               </SelectContent>
             </Select>
+            <input
+              type="hidden"
+              value={selectedDocument}
+              {...register("requestChoices", { required: true })}
+            />
+            {errors.requestChoices && (
+              <p className="text-red-600">Document Type is required.</p>
+            )}
           </div>
           <div>
             <Label htmlFor="attachment">Request Form Optional</Label>

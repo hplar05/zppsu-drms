@@ -49,9 +49,11 @@ export default function SetStatusForm({
             className="text-center rounded-md border-black dark:border-white border w-[40%] flex mx-auto"
             required
           >
+            <option value="PENDING">PENDING</option>
             <option value="APPROVE">APPROVE</option>
             <option value="DECLINE">DECLINE</option>
             <option value="PENDING_PAYMENT">PENDING</option>
+            <option value="PAID">PAID</option>
             <option value="COMPLETED">COMPLETED</option>
           </select>
 

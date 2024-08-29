@@ -10,28 +10,28 @@ export const Tracking = () => {
           </div>
           <span className="text-sm font-medium">Pending</span>
         </div>
-        <div className="flex-1 h-[2px] bg-muted" />
+        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
             2
           </div>
           <span className="text-sm font-medium">Approve or Decline</span>
         </div>
-        <div className="flex-1 h-[2px] bg-muted" />
+        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
             3
           </div>
           <span className="text-sm font-medium">Pending Payment</span>
         </div>
-        <div className="flex-1 h-[2px] bg-muted" />
+        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
             4
           </div>
           <span className="text-sm font-medium">Paid</span>
         </div>
-        <div className="flex-1 h-[2px] bg-muted" />
+        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
             5

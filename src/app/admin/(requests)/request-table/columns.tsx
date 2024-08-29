@@ -27,7 +27,14 @@ export type Request = {
   course: string;
   purposeOfrequest: string;
   attachment: string | null;
-  action: "APPROVE" | "DECLINE" | "PENDING" | "ARCHIVE" | "PAID";
+  action:
+    | "APPROVE"
+    | "DECLINE"
+    | "PENDING"
+    | "ARCHIVE"
+    | "PAID"
+    | "PENDING_PAYMENT"
+    | "COMPLETED";
   // createdAt: Date;
   // updateUt: Date;
 };

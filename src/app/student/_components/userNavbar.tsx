@@ -19,7 +19,7 @@ const UserNavbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <nav className="w-full z-50 non-prose flex item-center justify-between border-b dark:border-none top-0 dark:bg-transparent bg-white">
+    <nav className="w-full z-50 non-prose flex item-center justify-between top-0 dark:bg-transparent bg-white">
       <Link
         className="space-x-2 flex items-center not-prose p-2 mx-5 mr-1"
         href="/"

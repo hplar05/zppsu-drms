@@ -66,11 +66,13 @@ enum RequestChoices {
 }
 
 enum Action {
+  PENDING
   APPROVE
   DECLINE
-  PENDING
-  ARCHIVE
+  PENDING_PAYMENT
   PAID
+  COMPLETED
+  ARCHIVE
 }
 
 model Announcement {

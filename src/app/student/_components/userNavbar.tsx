@@ -21,9 +21,22 @@ const UserNavbar = async () => {
   return (
     <nav className="w-full z-50 non-prose flex item-center justify-between top-0 dark:bg-transparent bg-white">
       <Link
-        className="space-x-2 flex items-center not-prose p-2 mx-5 mr-1"
+        className="space-x-2 flex items-center justify-center not-prose"
         href="/"
-      ></Link>
+      >
+        <div className="md:hidden flex justify-center items-center ml-3 gap-2 ">
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={45}
+            height={10}
+            className="transition-all hover:opacity-75 dark:invert"
+          />
+          <span className="text-lg font-bold text-[#7D0303]">
+            ZPPSU <span className="text-black dark:text-white">DRMS</span>
+          </span>
+        </div>
+      </Link>
 
       <div className="flex items-center space-x-6 max-md:mr-4 mr-3 z-20">
         <div className="p-2 gap-5">

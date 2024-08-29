@@ -64,7 +64,6 @@ enum Action {
   PENDING_PAYMENT
   PAID
   COMPLETED
-  ARCHIVE
 }
 
 model ArchiveRequest {

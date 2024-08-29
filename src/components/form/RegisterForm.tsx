@@ -27,6 +27,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { PhoneInput } from "../phone-input";
 
 const FormSchema = z
   .object({
@@ -34,12 +35,24 @@ const FormSchema = z
     email: z.string().min(1, "Email is required").email("Invalid email"),
     password: z
       .string()
-      .min(1, "Password is required")
-      .min(8, "Password must have than 8 characters"),
+      .min(8, { message: "Minimum password length is 8 characters" })
+      .max(20, { message: "Maximum password length is 20 characters" })
+      .refine(
+        (password) => {
+          // reg-ex code, chat gpt generated: at least one lowercase letter, one uppercase letter, and one special character
+          const passwordPattern =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[\w!@#$%^&*]+$/;
+          return passwordPattern.test(password);
+        },
+        {
+          message:
+            "Password must contain at least one lowercase letter, one uppercase letter, and one special character.",
+        }
+      ),
     confirmPassword: z.string().min(1, "Password confirmation is required"),
     name: z.string().min(3, "name is required"),
     image: z.string(),
-    mobileNumber: z.string().min(5, "mobile number is required").max(11),
+    mobileNumber: z.string().min(13, "mobile number is required").max(13),
     studId: z.string().min(5, "student id is required").max(15),
     course: z.string().min(4, "course is required").max(100),
   })
@@ -52,6 +65,7 @@ const RegisterForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [imageKey, setImageKey] = useState("");
   const router = useRouter();
+  const phdefaultcode = "+63";
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -181,7 +195,7 @@ const RegisterForm = () => {
                       <FormLabel>Mobile Number</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Enter your mobile number"
+                          placeholder="add +63 at your phone number"
                           {...field}
                         />
                       </FormControl>
@@ -189,43 +203,43 @@ const RegisterForm = () => {
                     </FormItem>
                   )}
                 />
+
+                {/* <PhoneInput /> */}
               </div>
-              <div className="flex justify-between gap-2">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="Enter your password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Re-Enter your password</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Re-Enter your password"
-                          type="password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Re-Enter your password</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Re-Enter your password"
+                        type="password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
             <div className="mx-auto mt-2">
               {imageUrl.length ? (
@@ -236,8 +250,8 @@ const RegisterForm = () => {
                   <Image
                     alt="Done Upload"
                     src={imageUrl}
-                    width={250}
-                    height={250}
+                    width={100}
+                    height={100}
                     className="mb-3"
                   />
                   <Button

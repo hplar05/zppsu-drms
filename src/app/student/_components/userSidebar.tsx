@@ -47,7 +47,7 @@ export default function Sidebar() {
           <LayoutDashboardIcon className="h-5 w-5" />
           <span>Dashboard</span>
         </Link>
-        <div className="text-muted-foreground font-medium text-base">
+        {/* <div className="text-muted-foreground font-medium text-base">
           Your Requests
         </div>
         <Link
@@ -73,7 +73,7 @@ export default function Sidebar() {
         >
           <ThumbsDownIcon className="h-5 w-5" />
           <span>Decline Requests</span>
-        </Link>
+        </Link> */}
 
         <div className="text-muted-foreground font-medium text-base">
           Others

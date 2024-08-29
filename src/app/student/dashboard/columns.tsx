@@ -89,11 +89,16 @@ export const columns: ColumnDef<Request>[] = [
             <DropdownMenuItem>
               <Link href={`${request.attachment}`}>View Request Form</Link>
             </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`${request.attachment}`}>View Payslip Image</Link>
+            </DropdownMenuItem>
 
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Action</DropdownMenuLabel>
             <DropdownMenuItem>
-              <Link href={`/admin/editRequest/${request.id}`}>Edit</Link>
+              <Link href={`/admin/upload-payslip/${request.id}`}>
+                Upload Payslip
+              </Link>
             </DropdownMenuItem>
             {/* <DropdownMenuItem>
               <Link href={`/admin/set-status/${request.id}`}>Set Status</Link>

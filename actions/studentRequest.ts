@@ -17,7 +17,7 @@ export async function createRequest(formData: FormData) {
     const yearAndsection = formData.get('yearAndsection') as string;
     const attachment = formData.get('attachment') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
-    const requestChoices =  formData.get('requestChoices') as string || null ;
+    const requestChoices =  formData.get('requestChoices') as string;
     const session = await getServerSession(authOptions);
 
     if (!session) return { error: "Unauthorized" };

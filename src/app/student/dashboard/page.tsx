@@ -31,7 +31,7 @@ const Page = async () => {
         </div>
         <Tracking />
         <div className="flex flex-col gap-20 justify-center items-center my-20">
-          {isActionCompletedOrDeclined ? (
+          {res.length === 1 ? (
             <Button disabled>Create Request</Button>
           ) : (
             <Button>

@@ -34,9 +34,10 @@ const schema = z.object({
   // nameOfStudent: z.string().min(5, "Full name is required").max(100),
   // studentId: z.string().min(4, "Student ID is required").max(20),
   // course: z.string().min(4, "Course is required").max(40),
-  yearAndsection: z.string().min(4, "Year & Section is required").max(40),
+  yearAndsection: z.string().min(4, "required").max(40),
   // subjectname: z.string().min(4, "Subject name is required").max(100),
   purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
+  requestChoices: z.string().min(2).max(50),
 });
 
 export default function StudentRequestForm() {
@@ -161,7 +162,17 @@ export default function StudentRequestForm() {
           </div> */}
           <div className="space-y-2">
             <Label htmlFor="document">Document Type</Label>
-            <Select onValueChange={setSelectedDocument}>
+            <Input
+              id="requestChoices"
+              placeholder="document type you request...example Diploma"
+              {...register("requestChoices")}
+            />
+            {errors.requestChoices?.message && (
+              <p className="text-red-600">
+                {String(errors.requestChoices.message)}
+              </p>
+            )}
+            {/* <Select>
               <SelectTrigger>
                 <SelectValue placeholder="Select document" />
               </SelectTrigger>
@@ -174,7 +185,7 @@ export default function StudentRequestForm() {
                   REQUEST SUBJECTS
                 </SelectItem>
               </SelectContent>
-            </Select>
+            </Select> */}
             {/* <Input id="requestChoices" value={selectedDocument} /> */}
             {/* {errors.requestChoices && (
               <p className="text-red-600">Document Type is required.</p>

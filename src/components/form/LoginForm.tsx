@@ -19,6 +19,13 @@ import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -58,9 +65,14 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="border rounded-md">
-      <h1 className="text-center mt-6 text-2xl font-bold">LOGIN</h1>
-      <div className="px-14 py-10">
+    <Card className="w-full max-w-md">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl font-bold">Login</CardTitle>
+        <CardDescription>
+          Enter your email and password to access your account.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-2">
@@ -110,8 +122,8 @@ const LoginForm = () => {
             </Link>
           </p>
         </Form>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

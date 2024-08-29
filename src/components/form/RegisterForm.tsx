@@ -20,6 +20,13 @@ import toast from "react-hot-toast";
 import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import { useState } from "react";
 import { Image } from "@nextui-org/react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card";
 
 const FormSchema = z
   .object({
@@ -86,9 +93,14 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="border rounded-md">
-      <h1 className="text-center mt-6 text-2xl font-bold">REGISTER</h1>
-      <div className="px-14 py-10">
+    <Card className="w-full max-w-md text-base">
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl font-bold">Register</CardTitle>
+        <CardDescription>
+          Fill out all input forms to create a account.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <div className="space-y-2">
@@ -248,7 +260,7 @@ const RegisterForm = () => {
                       </FormLabel>
                       <FormControl>
                         <div>
-                          <UploadDropzone
+                          <UploadButton
                             endpoint="imageUploader"
                             onClientUploadComplete={(res: any) => {
                               const imageUrl = res[0]?.url;
@@ -292,8 +304,8 @@ const RegisterForm = () => {
             </Link>
           </p>
         </Form>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -17,7 +17,7 @@ export async function createRequest(formData: FormData) {
     const yearAndsection = formData.get('yearAndsection') as string;
     const attachment = formData.get('attachment') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
-    const requestChoices =  formData.get('requestChoices') as $Enums.RequestChoices ;
+    const requestChoices =  formData.get('requestChoices') as string || null ;
     const session = await getServerSession(authOptions);
 
     if (!session) return { error: "Unauthorized" };
@@ -39,7 +39,7 @@ export async function createRequest(formData: FormData) {
     yearAndsection,
     attachment,
     purposeOfrequest,
-    requestChoices: "Diploma",
+    requestChoices,
     user: {
       connect: {
         id: userId, 

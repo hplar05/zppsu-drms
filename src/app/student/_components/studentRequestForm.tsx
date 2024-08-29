@@ -60,6 +60,10 @@ export default function StudentRequestForm() {
       formData.append(key, data[key]);
     });
 
+    if (selectedDocument) {
+      formData.append("requestChoice", selectedDocument);
+    }
+
     if (attachmentUrl) {
       formData.append("attachment", attachmentUrl);
     }
@@ -162,23 +166,19 @@ export default function StudentRequestForm() {
                 <SelectValue placeholder="Select document" />
               </SelectTrigger>
               <SelectContent>
-                {/* <SelectItem value="TOR">TOR</SelectItem> */}
+                <SelectItem value="TOR">TOR</SelectItem>
                 <SelectItem value="Diploma">DIPLOMA</SelectItem>
-                {/* <SelectItem value="Form_137">FORM 137</SelectItem>
-                <SelectItem value="Grade_Slip">GRADE SLIP</SelectItem>
-                <SelectItem value="Request_Subject">
+                <SelectItem value="Form 137">FORM 137</SelectItem>
+                <SelectItem value="Grade Slip">GRADE SLIP</SelectItem>
+                <SelectItem value="Request Subject">
                   REQUEST SUBJECTS
-                </SelectItem> */}
+                </SelectItem>
               </SelectContent>
             </Select>
-            <input
-              type="hidden"
-              value={selectedDocument}
-              {...register("requestChoices", { required: true })}
-            />
-            {errors.requestChoices && (
+            {/* <Input id="requestChoices" value={selectedDocument} /> */}
+            {/* {errors.requestChoices && (
               <p className="text-red-600">Document Type is required.</p>
-            )}
+            )} */}
           </div>
           <div>
             <Label htmlFor="attachment">Request Form Optional</Label>

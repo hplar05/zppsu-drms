@@ -31,13 +31,7 @@ export type Request = {
     | "PENDING_PAYMENT"
     | "COMPLETED";
   adminMessage: string | null;
-  requestChoices:
-    | "None"
-    | "TOR"
-    | "Diploma"
-    | "Form_137"
-    | "Grade_Slip"
-    | "Request_Subject";
+  requestChoices: string | null;
   // createdAt: Date;
   // updateUt: Date;
 };

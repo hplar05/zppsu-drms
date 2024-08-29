@@ -14,20 +14,21 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(cuid())
-  email        String         @unique
-  username     String         @unique
-  password     String
-  name         String
-  mobileNumber String
-  image        String?
-  course       String
-  studId       String
-  requestForm  RequestForm[]
-  announcement Announcement[]
-  role         Role           @default(STUDENT)
-  createdAt    DateTime       @default(now())
-  updateUt     DateTime       @updatedAt
+  id             String           @id @default(cuid())
+  email          String           @unique
+  username       String           @unique
+  password       String
+  name           String
+  mobileNumber   String
+  image          String?
+  course         String
+  studId         String
+  requestForm    RequestForm[]
+  announcement   Announcement[]
+  archiveRequest ArchiveRequest[]
+  role           Role             @default(STUDENT)
+  createdAt      DateTime         @default(now())
+  updateUt       DateTime         @updatedAt
 }
 
 enum Role {
@@ -38,7 +39,7 @@ enum Role {
 }
 
 model RequestForm {
-  id               Int            @id @default(autoincrement())
+  id               Int      @id @default(autoincrement())
   studentId        String
   nameOfStudent    String
   course           String
@@ -49,20 +50,11 @@ model RequestForm {
   userId           String
   attachment       String?
   adminMessage     String?
-  user             User           @relation(fields: [userId], references: [id])
-  action           Action         @default(PENDING)
-  requestChoices   RequestChoices @default(None)
-  createdAt        DateTime       @default(now())
-  updateUt         DateTime       @updatedAt
-}
-
-enum RequestChoices {
-  None
-  TOR
-  Diploma
-  Form_137
-  Grade_Slip
-  Request_Subject
+  user             User     @relation(fields: [userId], references: [id])
+  action           Action   @default(PENDING)
+  requestChoices   String?
+  createdAt        DateTime @default(now())
+  updateUt         DateTime @updatedAt
 }
 
 enum Action {
@@ -73,6 +65,25 @@ enum Action {
   PAID
   COMPLETED
   ARCHIVE
+}
+
+model ArchiveRequest {
+  id               Int      @id @default(autoincrement())
+  studentId        String
+  nameOfStudent    String
+  course           String
+  mobileNumber     String
+  email            String
+  yearAndsection   String
+  purposeOfrequest String
+  userId           String
+  attachment       String?
+  adminMessage     String?
+  action           Action   @default(PENDING)
+  requestChoices   String?
+  user             User     @relation(fields: [userId], references: [id])
+  createdAt        DateTime @default(now())
+  updateUt         DateTime @updatedAt
 }
 
 model Announcement {

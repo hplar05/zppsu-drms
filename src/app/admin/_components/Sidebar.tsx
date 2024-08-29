@@ -85,7 +85,7 @@ export default function UserSidebar() {
         </Link>
 
         <Link
-          href="/admin/pending-payment-requests"
+          href="/admin/pending-payment"
           className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >

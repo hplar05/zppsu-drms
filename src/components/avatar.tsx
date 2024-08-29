@@ -30,7 +30,11 @@ const UserAvatar = () => {
         </div>
       </div>
       <Badge className="flex justify-center items-center">
-        {session?.user.role === "ADMIN" ? "ZPPSU ADMIN" : "ZPPSU STUDENT"}
+        {session?.user.role === "ADMIN"
+          ? "ZPPSU ADMIN"
+          : session?.user.role === "GRADUATE_STUDENT"
+          ? "GRADUATE STUDENT"
+          : "ZZPSU STUDENT"}
       </Badge>
     </div>
   );

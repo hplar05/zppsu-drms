@@ -36,9 +36,12 @@ export default function UserSidebar() {
             ZPPSU <span className="text-black dark:text-white">DRMS</span>
           </span>
         </Link>
+        <div className="text-muted-foreground font-medium text-base mt-[2rem]">
+          Main
+        </div>
         <Link
           href="/admin/dashboard"
-          className="flex items-center mt-6 gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />
@@ -47,15 +50,18 @@ export default function UserSidebar() {
 
         <Link
           href="/admin/users-table"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <UserIcon className="w-5 h-5" />
           <span>User Lists</span>
         </Link>
+        <div className="text-muted-foreground font-medium text-base">
+          Requests
+        </div>
         <Link
           href="/admin/request-table"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <FileTextIcon className="h-5 w-5" />
@@ -63,7 +69,7 @@ export default function UserSidebar() {
         </Link>
         <Link
           href="/admin/approve-requests"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <CheckIcon className="h-5 w-5" />
@@ -71,15 +77,19 @@ export default function UserSidebar() {
         </Link>
         <Link
           href="/admin/decline-requests"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <ThumbsDownIcon className="h-5 w-5" />
           <span>Decline Requests</span>
         </Link>
+
+        <div className="text-muted-foreground font-medium text-base">
+          Others
+        </div>
         <Link
           href="#"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <MegaphoneIcon className="h-5 w-5" />
@@ -88,7 +98,7 @@ export default function UserSidebar() {
 
         <Link
           href="#"
-          className="flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <SettingsIcon className="w-5 h-5" />
@@ -101,7 +111,7 @@ export default function UserSidebar() {
           </div>
           <button
             onClick={SignOut}
-            className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="w-full flex items-center gap-3 rounded-md px-3 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <PowerIcon className="h-5 w-5" />
             <span>Sign Out</span>

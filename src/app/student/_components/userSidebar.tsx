@@ -5,6 +5,8 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
+import Logo from "@/public/logo.jpg";
 
 export default function Sidebar() {
   const SignOut = () => {
@@ -20,50 +22,65 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="flex h-auto max-md:hidden">
-      <nav className="bg-background border-r px-4 py-6 flex flex-col gap-4 dark:border-none">
-        <div className="text-center">
-          <span className="text-2xl font-bold text-[#7D0303]">
+    <div className="flex h-auto w-auto dark:bg-[#18191A]">
+      <nav className="bg-background border-r px-4 pb-6 pt-3 flex flex-col gap-4 dark:border-none">
+        <Link className="space-x-2 flex items-center not-prose" href="/">
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={45}
+            height={10}
+            className="transition-all hover:opacity-75 dark:invert"
+          ></Image>
+          <span className="text-lg font-bold text-[#7D0303]">
             ZPPSU <span className="text-black dark:text-white">DRMS</span>
           </span>
+        </Link>
+        <div className="text-muted-foreground font-medium text-base mt-[2rem]">
+          Home
         </div>
-
         <Link
           href="/student/dashboard"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted mt-10"
+          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />
-          <span>Home</span>
+          <span>Dashboard</span>
         </Link>
-
+        <div className="text-muted-foreground font-medium text-base">
+          Your Requests
+        </div>
         <Link
-          href="/student/request"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
+          href="/student/dashboard"
+          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <FileTextIcon className="h-5 w-5" />
-          <span>Request Form</span>
+          <span>Pending Requests</span>
         </Link>
-        {/* <Link
-          href="/student/approve-request"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
+        <Link
+          href="/student/dashboard"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <CheckIcon className="h-5 w-5" />
-          <span>Approve Request</span>
+          <span>Approve Requests</span>
         </Link>
         <Link
-          href="/student/disapprove-request"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
+          href="/student/dashboard"
+          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <ThumbsDownIcon className="h-5 w-5" />
-          <span>Disapprove Request</span>
+          <span>Decline Requests</span>
         </Link>
+
+        <div className="text-muted-foreground font-medium text-base">
+          Others
+        </div>
         <Link
           href="#"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <MegaphoneIcon className="h-5 w-5" />
@@ -71,25 +88,29 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="#"
-          className="flex items-center gap-3 px-3 py-2 text-lg font-medium text-muted-foreground transition-colors rounded-md hover:bg-muted"
+          href="/student/dashboard"
+          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
           prefetch={false}
         >
           <SettingsIcon className="w-5 h-5" />
           Settings
-        </Link> */}
+        </Link>
 
         <div className="mt-auto w-full">
-          <button
+          <div className="mb-5">
+            <UserAvatar />
+          </div>
+          {/* <button
             onClick={SignOut}
-            className="w-full flex items-center gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            className="w-full flex items-center gap-3 rounded-md px-3 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <PowerIcon className="h-5 w-5" />
-            <span>Sign Out</span>
-          </button>
+            <span>Logout</span>
+          </button> */}
         </div>
       </nav>
-      <main className="flex-1 p-6" />
+
+      <main className="flex" />
     </div>
   );
 }

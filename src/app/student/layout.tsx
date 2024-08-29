@@ -49,16 +49,10 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Toaster />
-            <div className="flex flex-col min-h-screen w-full">
-              <UserNavbar />
-              <div className="flex flex-1">
-                <UserSidebar />
-                <main className="flex-1 max-md:flex-0 max-md:p-0 p-5">
-                  {children}
-                </main>
-              </div>
+            <div className="flex flex-row h-auto">
+              <UserSidebar />
+              <main className="flex-1 h-screen pt-1">{children}</main>
             </div>
-            {/* <UserFooter /> */}
           </ThemeProvider>
         </Provider>
       </body>

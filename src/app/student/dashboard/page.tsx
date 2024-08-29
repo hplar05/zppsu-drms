@@ -5,13 +5,15 @@ import { Button } from "@/src/components/ui/button";
 import { authOptions } from "@/src/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import UserNavbar from "../_components/userNavbar";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="h-[90vh] p-2">
-      <div className="flex flex-col justify-center gap-2 w-[15%]">
+    <div className="h-screen">
+      <UserNavbar />
+      <div className="flex flex-col justify-center gap-2 w-[15%] pl-10">
         <h2 className="text-xl font-bold">Hello👋 {session?.user.name}</h2>
         {/* <Badge className="flex justify-center items-center">
           {session?.user.role === "ADMIN" ? "ZPPSU ADMIN" : "ZPPSU STUDENT"}

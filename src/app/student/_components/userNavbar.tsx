@@ -19,19 +19,11 @@ const UserNavbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <nav className="w-full z-50 non-prose flex item-center justify-between border-b top-0 dark:bg-[#18191A] dark:border-none bg-white">
+    <nav className="w-full z-50 non-prose flex item-center justify-between border-b dark:border-none top-0 dark:bg-transparent bg-white">
       <Link
         className="space-x-2 flex items-center not-prose p-2 mx-5 mr-1"
         href="/"
-      >
-        <Image
-          src={Logo}
-          alt="Logo"
-          width={45}
-          height={10}
-          className="transition-all hover:opacity-75 dark:invert"
-        ></Image>
-      </Link>
+      ></Link>
 
       <div className="flex items-center space-x-6 max-md:mr-4 mr-3 z-20">
         <div className="p-2 gap-5">

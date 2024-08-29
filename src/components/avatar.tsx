@@ -26,7 +26,7 @@ const UserAvatar = () => {
         </Avatar>
         <div>
           <h2 className="text-base font-bold">{adminName}</h2>
-          <h2 className="text-base">{userEmail}</h2>
+          <h2 className="text-xs">{userEmail}</h2>
         </div>
       </div>
       <Badge className="flex justify-center items-center">

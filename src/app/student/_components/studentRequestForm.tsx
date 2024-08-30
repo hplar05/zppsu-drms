@@ -28,17 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/components/ui/select";
-
-// Define schema validation with zod
-const schema = z.object({
-  // nameOfStudent: z.string().min(5, "Full name is required").max(100),
-  // studentId: z.string().min(4, "Student ID is required").max(20),
-  // course: z.string().min(4, "Course is required").max(40),
-  yearAndsection: z.string().min(4, "required").max(40),
-  // subjectname: z.string().min(4, "Subject name is required").max(100),
-  purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
-  requestChoices: z.string().min(2).max(50),
-});
+import { StudentRequestSchema } from "@/src/lib/validation/studentRequestSchema";
 
 export default function StudentRequestForm() {
   const [attachmentUrl, setAttachmentUrl] = useState("");
@@ -51,7 +41,7 @@ export default function StudentRequestForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(StudentRequestSchema),
   });
 
   const onSubmit = async (data: any) => {

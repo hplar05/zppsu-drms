@@ -15,7 +15,7 @@ import { Button } from "@/src/components/ui/button";
 import { createRequest } from "@/actions/studentRequest";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { UploadDropzone } from "@/src/lib/utils";
+import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -44,7 +44,7 @@ export default function StudentRequestForm() {
   const [attachmentUrl, setAttachmentUrl] = useState("");
   const [attachmentKey, setAttachmentKey] = useState("");
   const { data: session } = useSession();
-  const [selectedDocument, setSelectedDocument] = useState("");
+  // const [selectedDocument, setSelectedDocument] = useState("");
 
   const {
     register,
@@ -61,9 +61,9 @@ export default function StudentRequestForm() {
       formData.append(key, data[key]);
     });
 
-    if (selectedDocument) {
-      formData.append("requestChoice", selectedDocument);
-    }
+    // if (selectedDocument) {
+    //   formData.append("requestChoice", selectedDocument);
+    // }
 
     if (attachmentUrl) {
       formData.append("attachment", attachmentUrl);
@@ -206,7 +206,7 @@ export default function StudentRequestForm() {
               </div>
             ) : (
               <div>
-                <UploadDropzone
+                <UploadButton
                   endpoint="PdfDocsOrImageUploader"
                   onClientUploadComplete={(res: any) => {
                     setAttachmentUrl(res[0]?.url);

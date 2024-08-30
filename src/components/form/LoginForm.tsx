@@ -26,27 +26,20 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-
-const FormSchema = z.object({
-  email: z.string().min(1, "Email is required").email("Invalid email"),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .min(8, "Password must have at least 8 characters"),
-});
+import { LoginSchema } from "@/src/lib/validation/loginSchema";
 
 const LoginForm = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     const updatedSession = session?.user.role;
     const signInData = await signIn("credentials", {
       email: values.email,

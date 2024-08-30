@@ -7,8 +7,11 @@ import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import Logo from "@/public/logo.jpg";
+import { usePathname } from "next/navigation";
 
 export default function UserSidebar() {
+  const pathname = usePathname();
+
   const SignOut = () => {
     try {
       toast.success("Logout Successfully");
@@ -21,6 +24,11 @@ export default function UserSidebar() {
     }
   };
 
+  const linkClasses = (path: string) =>
+    pathname === path
+      ? "flex items-center gap-3 rounded-md px-3 py-1 bg-gray-100 text-active-foreground transition-colors"
+      : "flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground";
+
   return (
     <div className="flex h-auto w-auto dark:bg-[#18191A]">
       <nav className="bg-background border-r px-4 pb-6 pt-3 flex flex-col gap-4 dark:border-none">
@@ -31,7 +39,7 @@ export default function UserSidebar() {
             width={45}
             height={10}
             className="transition-all hover:opacity-75 dark:invert"
-          ></Image>
+          />
           <span className="text-lg font-bold text-[#7D0303]">
             ZPPSU <span className="text-black dark:text-white">DRMS</span>
           </span>
@@ -41,16 +49,15 @@ export default function UserSidebar() {
         </div>
         <Link
           href="/admin/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/dashboard")}
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />
           <span>Admin Dashboard</span>
         </Link>
-
         <Link
           href="/admin/users-table"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/users-table")}
           prefetch={false}
         >
           <UserIcon className="w-5 h-5" />
@@ -61,7 +68,7 @@ export default function UserSidebar() {
         </div>
         <Link
           href="/admin/request-table"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/request-table")}
           prefetch={false}
         >
           <FileTextIcon className="h-5 w-5" />
@@ -69,7 +76,7 @@ export default function UserSidebar() {
         </Link>
         <Link
           href="/admin/approve-requests"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/approve-requests")}
           prefetch={false}
         >
           <CheckIcon className="h-5 w-5" />
@@ -77,61 +84,47 @@ export default function UserSidebar() {
         </Link>
         <Link
           href="/admin/decline-requests"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/decline-requests")}
           prefetch={false}
         >
           <ThumbsDownIcon className="h-5 w-5" />
           <span>Decline Requests</span>
         </Link>
-
         <Link
           href="/admin/pending-payment"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/pending-payment")}
           prefetch={false}
         >
           <ClockIcon className="w-5 h-5 text-accent-foreground" />
           <span>Pending Payment</span>
         </Link>
-
         <Link
           href="/admin/paid-requests"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/paid-requests")}
           prefetch={false}
         >
           <WalletIcon className="w-5 h-5 text-secondary-foreground" />
           <span>Paid Requests</span>
         </Link>
-
         <Link
           href="/admin/completed-requests"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/admin/completed-requests")}
           prefetch={false}
         >
           <CheckIconHighlight className="w-5 h-5 bg-black text-white rounded-lg" />
           <span>Completed Requests</span>
         </Link>
-
         <div className="text-muted-foreground font-medium text-base">
           Others
         </div>
-        <Link
-          href="#"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
+        <Link href="#" className={linkClasses("#")} prefetch={false}>
           <MegaphoneIcon className="h-5 w-5" />
           <span>Announcements</span>
         </Link>
-
-        <Link
-          href="#"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
+        <Link href="#" className={linkClasses("#")} prefetch={false}>
           <SettingsIcon className="w-5 h-5" />
           Settings
         </Link>
-
         <div className="mt-auto w-full">
           <div className="mb-12">
             <UserAvatar />

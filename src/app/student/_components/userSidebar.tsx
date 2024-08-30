@@ -7,8 +7,10 @@ import { JSX, SVGProps } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import Logo from "@/public/logo.jpg";
+import { usePathname } from "next/navigation";
 
 export default function Sidebar() {
+  const pathname = usePathname();
   const SignOut = () => {
     try {
       toast.success("Logout Successfully");
@@ -20,6 +22,11 @@ export default function Sidebar() {
       toast.error("Something went wrong!");
     }
   };
+
+  const linkClasses = (path: string) =>
+    pathname === path
+      ? "flex items-center gap-3 rounded-md px-3 py-1 bg-gray-100 text-active-foreground transition-colors"
+      : "flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground";
 
   return (
     <div className="flex h-auto w-auto dark:bg-[#18191A] max-md:hidden">
@@ -41,7 +48,7 @@ export default function Sidebar() {
         </div>
         <Link
           href="/student/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          className={linkClasses("/student/dashboard")}
           prefetch={false}
         >
           <LayoutDashboardIcon className="h-5 w-5" />
@@ -78,20 +85,12 @@ export default function Sidebar() {
         <div className="text-muted-foreground font-medium text-base">
           Others
         </div>
-        <Link
-          href="#"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
+        <Link href="#" className={linkClasses("#")} prefetch={false}>
           <MegaphoneIcon className="h-5 w-5" />
           <span>Announcements</span>
         </Link>
 
-        <Link
-          href="/student/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
+        <Link href="#" className={linkClasses("#")} prefetch={false}>
           <SettingsIcon className="w-5 h-5" />
           Settings
         </Link>

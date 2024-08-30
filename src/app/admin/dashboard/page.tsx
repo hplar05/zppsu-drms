@@ -8,9 +8,9 @@ export default async function Dashboard() {
   const requests = await db.requestForm.count();
   const users = await db.user.count();
   const announcement = await db.announcement.count();
-  const approved = await db.requestForm.findMany({
+  const completed = await db.requestForm.findMany({
     where: {
-      action: "APPROVE",
+      action: "COMPLETED",
     },
   });
   const declined = await db.requestForm.findMany({
@@ -19,13 +19,13 @@ export default async function Dashboard() {
     },
   });
   const declineCount = declined.length;
-  const approvedCount = approved.length;
+  const completedCount = completed.length;
 
   return (
     <main className="mt-2">
       <AdminNavbar />
       <DashboardData
-        approved={approvedCount}
+        completed={completedCount}
         declined={declineCount}
         totalRequest={requests}
         totalUsers={users}

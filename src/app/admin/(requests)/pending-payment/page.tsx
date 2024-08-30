@@ -10,7 +10,7 @@ import NoRequestAvailable from "@/src/components/noRequestAvailable";
 async function getRequests(): Promise<Request[]> {
   const res = await db.requestForm.findMany({
     where: {
-      action: "PENDING_PAYMENT",
+      action: "APPROVE_PENDING_PAYMENT",
     },
   });
   return res;
@@ -28,7 +28,7 @@ export default async function Page() {
       ) : (
         <div>
           <h1 className="text-xl md:text-2xl font-bold text-left">
-            All Pending Payment Requests
+            All Approve and Pending for Payment Requests
           </h1>
           <DataTable columns={columns} data={requestData} />
         </div>

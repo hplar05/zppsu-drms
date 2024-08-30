@@ -50,9 +50,10 @@ export default function SetStatusForm({
             required
           >
             <option value="PENDING">PENDING</option>
-            <option value="APPROVE">APPROVE</option>
             <option value="DECLINE">DECLINE</option>
-            <option value="PENDING_PAYMENT">PENDING</option>
+            <option value="APPROVE_PENDING_PAYMENT">
+              APPROVE PENDING FOR PAYMENT
+            </option>
             <option value="PAID">PAID</option>
             <option value="COMPLETED">COMPLETED</option>
           </select>

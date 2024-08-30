@@ -20,14 +20,14 @@ import { BarChart, CartesianGrid, XAxis, Bar } from "recharts";
 interface DashboardDataProps {
   totalRequest: number;
   totalUsers: number;
-  approved: number;
+  completed: number;
   declined: number;
 }
 
 export default function DashboardData({
   totalRequest,
   totalUsers,
-  approved,
+  completed,
   declined,
 }: DashboardDataProps) {
   return (
@@ -46,8 +46,8 @@ export default function DashboardData({
       </Card>
       <Card className="flex flex-col text-center">
         <CardHeader>
-          <CardDescription>Approved</CardDescription>
-          <CardTitle>{approved}</CardTitle>
+          <CardDescription>Completed</CardDescription>
+          <CardTitle>{completed}</CardTitle>
         </CardHeader>
       </Card>
       <Card className="flex flex-col text-center">
@@ -73,43 +73,43 @@ export default function DashboardData({
               {
                 name: "Jan",
                 requests: 1200,
-                approved: 800,
-                disapproved: 200,
+                completed: 800,
+                decline: 200,
                 pending: 200,
               },
               {
                 name: "Feb",
                 requests: 1500,
-                approved: 900,
+                completed: 900,
                 disapproved: 300,
                 pending: 300,
               },
               {
                 name: "Mar",
                 requests: 1800,
-                approved: 1000,
-                disapproved: 400,
+                completed: 1000,
+                decline: 400,
                 pending: 400,
               },
               {
                 name: "Apr",
                 requests: 2000,
-                approved: 1200,
-                disapproved: 400,
+                completed: 1200,
+                decline: 400,
                 pending: 400,
               },
               {
                 name: "May",
                 requests: 2300,
-                approved: 1400,
-                disapproved: 500,
+                completed: 1400,
+                decline: 500,
                 pending: 400,
               },
               {
                 name: "Jun",
                 requests: 2500,
-                approved: 1500,
-                disapproved: 600,
+                completed: 1500,
+                decline: 600,
                 pending: 400,
               },
             ]}
@@ -132,8 +132,8 @@ export default function DashboardData({
               radius={[4, 4, 0, 0]}
             />
             <Bar
-              dataKey="approved"
-              fill="var(--color-approved)"
+              dataKey="completed"
+              fill="var(--color-completed)"
               radius={[4, 4, 0, 0]}
             />
             <Bar

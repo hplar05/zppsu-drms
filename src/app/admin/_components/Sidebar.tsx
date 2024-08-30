@@ -83,20 +83,20 @@ export default function UserSidebar() {
           <span>Approve Requests</span>
         </Link> */}
         <Link
-          href="/admin/decline-requests"
-          className={linkClasses("/admin/decline-requests")}
-          prefetch={false}
-        >
-          <ThumbsDownIcon className="h-5 w-5" />
-          <span>Decline Requests</span>
-        </Link>
-        <Link
           href="/admin/pending-payment"
           className={linkClasses("/admin/pending-payment")}
           prefetch={false}
         >
           <ClockIcon className="w-5 h-5" />
           <span>Pending Payment</span>
+        </Link>
+        <Link
+          href="/admin/decline-requests"
+          className={linkClasses("/admin/decline-requests")}
+          prefetch={false}
+        >
+          <ThumbsDownIcon className="h-5 w-5" />
+          <span>Decline Requests</span>
         </Link>
         <Link
           href="/admin/paid-requests"

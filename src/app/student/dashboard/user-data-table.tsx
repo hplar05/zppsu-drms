@@ -32,6 +32,7 @@ import {
 import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
 import React, { useState } from "react";
+import { UploadPaySlipDrawer } from "../_components/uploadPaySlipDrawer";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -89,7 +90,7 @@ export function DataTable<TData, TValue>({
           <DropdownMenuTrigger asChild>
             <Button
               variant="outline"
-              className="ml-auto bg-[#800000] text-white"
+              className="mr-auto bg-[#800000] text-white"
             >
               Columns
             </Button>

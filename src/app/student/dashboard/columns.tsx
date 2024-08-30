@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/src/components/ui/dropdown-menu";
 import Link from "next/link";
+import { UploadPaySlipDrawer } from "../_components/uploadPaySlipDrawer";
 
 export type Request = {
   id: number;
@@ -84,17 +85,8 @@ export const columns: ColumnDef<Request>[] = [
             <DropdownMenuItem>
               <Link href={`${request.attachment}`}>View Payslip Image</Link>
             </DropdownMenuItem>
-
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Action</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Link href={`/admin/upload-payslip/${request.id}`}>
-                Upload Payslip
-              </Link>
-            </DropdownMenuItem>
-            {/* <DropdownMenuItem>
-              <Link href={`/admin/set-status/${request.id}`}>Set Status</Link>
-            </DropdownMenuItem> */}
             <DropdownMenuItem
               onClick={() =>
                 navigator.clipboard.writeText(request.id.toString())

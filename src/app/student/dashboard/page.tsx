@@ -6,6 +6,7 @@ import UserNavbar from "../_components/userNavbar";
 import { Tracking } from "./tracking";
 import TrackingTable from "./tracking-table";
 import { db } from "@/src/lib/db";
+import { UploadPaySlipDrawer } from "../_components/uploadPaySlipDrawer";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -16,11 +17,19 @@ const Page = async () => {
     },
     select: {
       action: true,
+      id: true,
     },
   });
   const isActionCompletedOrDeclined = res.some(
     (request) => request.action === "COMPLETED" || request.action === "DECLINE"
   );
+
+  // Get the ID of the request if it exists
+  const requestId = res.length === 1 ? res[0].id : null;
+
+  if (!requestId) {
+    return null;
+  }
 
   return (
     <div className="h-screen">
@@ -32,9 +41,12 @@ const Page = async () => {
         <Tracking />
         <div className="flex flex-col gap-20 justify-center items-center my-20">
           {res.length === 1 ? (
-            <Button className="bg-[#800000] text-white" disabled>
-              Create Request
-            </Button>
+            <div className="gap-2 flex justify-between">
+              <Button className="bg-[#800000] text-white" disabled>
+                Create Request
+              </Button>
+              <UploadPaySlipDrawer requestId={requestId} />
+            </div>
           ) : (
             <Button className="bg-[#800000] text-white">
               <Link href="/student/add-your-request">Create Request</Link>

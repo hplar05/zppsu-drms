@@ -29,7 +29,7 @@ const UserAvatar = () => {
           <h2 className="text-xs">{userEmail}</h2>
         </div>
       </div>
-      <Badge className="flex justify-center items-center">
+      <Badge className="flex justify-center items-center bg-[#800000] text-white">
         {session?.user.role === "ADMIN"
           ? "ZPPSU ADMIN"
           : session?.user.role === "GRADUATE_STUDENT"

@@ -84,15 +84,18 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.setGlobalFilter(event.target.value || undefined)
           }
-          className="max-w-sm"
+          className="max-w-sm border-[#800000]"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button
+              variant="default"
+              className="ml-auto bg-[#800000] text-white"
+            >
               Columns
             </Button>
           </DropdownMenuTrigger>
-          <Button>
+          <Button className="bg-[#800000] text-white">
             <Link href={"/admin/create-request"}>Create Request +</Link>
           </Button>
           <DropdownMenuContent align="end">
@@ -116,11 +119,14 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-[#800000]">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow
+                className="border-b border-[#800000]"
+                key={headerGroup.id}
+              >
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -168,18 +174,20 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
-          variant="outline"
+          variant="default"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className="ml-auto bg-[#800000] text-white"
         >
           Previous
         </Button>
         <Button
-          variant="outline"
+          variant="default"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className="ml-auto bg-[#800000] text-white"
         >
           Next
         </Button>

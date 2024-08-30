@@ -26,7 +26,7 @@ export default function UserSidebar() {
 
   const linkClasses = (path: string) =>
     pathname === path
-      ? "flex items-center gap-3 rounded-md px-3 py-1 bg-gray-100 text-active-foreground transition-colors"
+      ? "flex items-center gap-3 rounded-md px-3 py-1 bg-[#800000] text-white transition-colors"
       : "flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground";
 
   return (
@@ -74,14 +74,14 @@ export default function UserSidebar() {
           <FileTextIcon className="h-5 w-5" />
           <span>Pending Requests</span>
         </Link>
-        <Link
+        {/* <Link
           href="/admin/approve-requests"
           className={linkClasses("/admin/approve-requests")}
           prefetch={false}
         >
           <CheckIcon className="h-5 w-5" />
           <span>Approve Requests</span>
-        </Link>
+        </Link> */}
         <Link
           href="/admin/decline-requests"
           className={linkClasses("/admin/decline-requests")}
@@ -95,7 +95,7 @@ export default function UserSidebar() {
           className={linkClasses("/admin/pending-payment")}
           prefetch={false}
         >
-          <ClockIcon className="w-5 h-5 text-accent-foreground" />
+          <ClockIcon className="w-5 h-5" />
           <span>Pending Payment</span>
         </Link>
         <Link
@@ -103,7 +103,7 @@ export default function UserSidebar() {
           className={linkClasses("/admin/paid-requests")}
           prefetch={false}
         >
-          <WalletIcon className="w-5 h-5 text-secondary-foreground" />
+          <WalletIcon className="w-5 h-5" />
           <span>Paid Requests</span>
         </Link>
         <Link

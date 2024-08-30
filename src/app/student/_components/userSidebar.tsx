@@ -25,7 +25,7 @@ export default function Sidebar() {
 
   const linkClasses = (path: string) =>
     pathname === path
-      ? "flex items-center gap-3 rounded-md px-3 py-1 bg-gray-100 text-active-foreground transition-colors"
+      ? "flex items-center gap-3 rounded-md px-3 py-1 bg-[#800000] text-white transition-colors"
       : "flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground";
 
   return (
@@ -99,13 +99,13 @@ export default function Sidebar() {
           <div className="mb-5">
             <UserAvatar />
           </div>
-          {/* <button
+          <button
             onClick={SignOut}
             className="w-full flex items-center gap-3 rounded-md px-3 py-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <PowerIcon className="h-5 w-5" />
             <span>Logout</span>
-          </button> */}
+          </button>
         </div>
       </nav>
 

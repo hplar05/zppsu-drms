@@ -32,9 +32,11 @@ const Page = async () => {
         <Tracking />
         <div className="flex flex-col gap-20 justify-center items-center my-20">
           {res.length === 1 ? (
-            <Button disabled>Create Request</Button>
+            <Button className="bg-[#800000] text-white" disabled>
+              Create Request
+            </Button>
           ) : (
-            <Button>
+            <Button className="bg-[#800000] text-white">
               <Link href="/student/add-your-request">Create Request</Link>
             </Button>
           )}

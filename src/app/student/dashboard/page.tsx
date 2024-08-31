@@ -27,10 +27,6 @@ const Page = async () => {
   // Get the ID of the request if it exists
   const requestId = res.length === 1 ? res[0].id : null;
 
-  if (!requestId) {
-    return null;
-  }
-
   return (
     <div className="h-screen">
       <UserNavbar />
@@ -45,7 +41,7 @@ const Page = async () => {
               <Button className="bg-[#800000] text-white" disabled>
                 Create Request
               </Button>
-              <UploadPaySlipDrawer requestId={requestId} />
+              <UploadPaySlipDrawer requestId={requestId!} />
             </div>
           ) : (
             <Button className="bg-[#800000] text-white">

@@ -6,14 +6,14 @@ import {
   CardDescription,
   CardTitle,
   CardContent,
-} from "@/src/components/ui/card";
+} from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   ChartLegend,
   ChartLegendContent,
-} from "@/src/components/ui/chart";
+} from "@/components/ui/chart";
 import { JSX, SVGProps } from "react";
 import { BarChart, CartesianGrid, XAxis, Bar } from "recharts";
 

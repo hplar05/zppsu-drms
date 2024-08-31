@@ -2,7 +2,7 @@ import { db } from "@/src/lib/db";
 import React from "react";
 import { columns, Request } from "./columns";
 import { DataTable } from "../../_components/data-table";
-import NoRequestAvailable from "@/src/components/noRequestAvailable";
+import NoRequestAvailable from "@/components/noRequestAvailable";
 
 async function getRequests(): Promise<Request[]> {
   const res = await db.requestForm.findMany({

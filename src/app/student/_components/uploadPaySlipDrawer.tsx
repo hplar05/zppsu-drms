@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -10,7 +10,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/src/components/ui/drawer";
+} from "@/components/ui/drawer";
 import { UploadDropzone } from "@/src/lib/utils";
 import toast from "react-hot-toast";
 import { useState } from "react";

@@ -1,12 +1,8 @@
 import { db } from "@/src/lib/db";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  Avatar,
-  AvatarImage,
-  AvatarFallback,
-} from "@/src/components/ui/avatar";
-import { Card, CardContent } from "@/src/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
 import { JSX, SVGProps } from "react";
 
 export default async function Page({ params }: { params: { id: string } }) {

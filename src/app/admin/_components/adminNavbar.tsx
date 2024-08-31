@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { ThemeToggler } from "@/src/components/Themetoggler";
+import { ThemeToggler } from "@/components/Themetoggler";
 import Logo from "@/public/logo.jpg";
 import BellIcon from "@heroicons/react/24/outline/BellIcon";
-import NotificationMenu from "@/src/components/NotificationMenu";
+import NotificationMenu from "@/components/NotificationMenu";
 
 const AdminNavbar = async () => {
   return (

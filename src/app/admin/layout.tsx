@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "@/src/app/globals.css";
 import { ThemeProvider } from "next-themes";
 import UserNavbar from "../student/_components/userNavbar";
-import Provider from "@/src/components/Provider";
+import Provider from "@/components/Provider";
 import Sidebar from "./_components/Sidebar";
 import AdminNavbar from "./_components/adminNavbar";
 import { Toaster } from "react-hot-toast";

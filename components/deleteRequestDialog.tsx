@@ -1,5 +1,5 @@
 import { deleteRequest } from "@/actions/adminRequest";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/src/components/ui/dialog";
+} from "@/components/ui/dialog";
 
 export const DeleteRequestDialog = ({ id }: { id: number }) => {
   const DeletedeleteRequestWithId = deleteRequest.bind(null, id);

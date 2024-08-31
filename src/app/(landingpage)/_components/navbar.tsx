@@ -3,11 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { ThemeToggler } from "@/src/components/Themetoggler";
+import { ThemeToggler } from "@/components/Themetoggler";
 import Logo from "@/public/logo.jpg";
-import { Button } from "@/src/components/ui/button";
-import { Input } from "@/src/components/ui/input";
-import { Label } from "@/src/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
   SheetClose,
@@ -17,7 +17,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/src/components/ui/sheet";
+} from "@/components/ui/sheet";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {

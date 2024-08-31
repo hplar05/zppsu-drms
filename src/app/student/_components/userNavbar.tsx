@@ -1,19 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
-import { ThemeToggler } from "@/src/components/Themetoggler";
+import { ThemeToggler } from "@/components/Themetoggler";
 import Logo from "@/public/logo.jpg";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { signOut } from "next-auth/react";
 import LogoutButton from "./logoutButton";
-import NotificationMenu from "@/src/components/NotificationMenu";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/src/components/ui/avatar";
+import NotificationMenu from "@/components/NotificationMenu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const UserNavbar = async () => {
   const session = await getServerSession(authOptions);

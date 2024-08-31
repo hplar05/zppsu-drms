@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { authOptions } from "@/src/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -36,7 +36,7 @@ const Page = async () => {
         </div>
         <Tracking />
         <div className="flex flex-col gap-20 justify-center items-center my-20">
-          {res.length === 1 ? (
+          {res.length ? (
             <div className="gap-2 flex justify-between">
               <Button className="bg-[#800000] text-white" disabled>
                 Create Request

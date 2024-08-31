@@ -1,4 +1,4 @@
-import { Button } from "@/src/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -8,10 +8,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/src/components/ui/table";
+} from "@/components/ui/table";
 import { db } from "@/src/lib/db";
 import Link from "next/link";
-import { DeleteRequestDialog } from "../../../components/deleteRequestDialog";
+import { DeleteRequestDialog } from "../../../../components/deleteRequestDialog";
 import {
   Pagination,
   PaginationContent,
@@ -20,7 +20,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/src/components/ui/pagination";
+} from "@/components/ui/pagination";
 import { ActionRequest } from "./actionRequest";
 
 export default async function RequestLists({

@@ -4,7 +4,7 @@ import "@/src/app/globals.css";
 import UserNavbar from "./_components/userNavbar";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "next-themes";
-import Provider from "@/src/components/Provider";
+import Provider from "@/components/Provider";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";

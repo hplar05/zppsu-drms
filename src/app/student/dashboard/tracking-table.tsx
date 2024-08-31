@@ -2,7 +2,7 @@ import { db } from "@/src/lib/db";
 import React from "react";
 import { columns, Request } from "./columns";
 import { DataTable } from "@/src/app/student/dashboard/user-data-table";
-import NoRequestAvailable from "@/src/components/noRequestAvailable";
+import NoRequestAvailable from "@/components/noRequestAvailable";
 
 // Fetch requests based on the userId
 async function getRequests(userId: string): Promise<Request[]> {

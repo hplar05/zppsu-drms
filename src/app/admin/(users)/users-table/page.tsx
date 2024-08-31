@@ -1,8 +1,8 @@
 import React, { Suspense } from "react";
 import { db } from "@/src/lib/db";
-import NoRequestAvailable from "../../../../components/noRequestAvailable";
-import Search from "@/src/components/search";
-import RequestListsSkeleton from "../../../../components/requestTableSkeleton";
+import NoRequestAvailable from "../../../../../components/noRequestAvailable";
+import Search from "@/components/search";
+import RequestListsSkeleton from "../../../../../components/requestTableSkeleton";
 import UserLists from "../../_components/user-lists";
 
 export default async function RequestTable({

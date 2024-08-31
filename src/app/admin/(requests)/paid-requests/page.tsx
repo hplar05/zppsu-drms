@@ -5,7 +5,7 @@ import {
   Request,
 } from "@/src/app/admin/(requests)/request-table/columns";
 import { DataTable } from "../../_components/data-table";
-import NoRequestAvailable from "@/src/components/noRequestAvailable";
+import NoRequestAvailable from "@/components/noRequestAvailable";
 
 async function getRequests(): Promise<Request[]> {
   const res = await db.requestForm.findMany({

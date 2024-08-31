@@ -7,11 +7,11 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/src/components/ui/card";
-import { Label } from "@/src/components/ui/label";
-import { Input } from "@/src/components/ui/input";
-import { Textarea } from "@/src/components/ui/textarea";
-import { Button } from "@/src/components/ui/button";
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import { createRequest } from "@/actions/studentRequest";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
@@ -27,7 +27,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/src/components/ui/select";
+} from "@/components/ui/select";
 import { StudentRequestSchema } from "@/src/lib/validation/studentRequestSchema";
 
 export default function StudentRequestForm() {

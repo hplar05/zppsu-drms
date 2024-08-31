@@ -1,4 +1,4 @@
-import { Main } from "@/src/components/craft";
+import { Main } from "@/components/craft";
 import Hero from "./_components/hero";
 import Feature from "./_components/features";
 import FAQ from "./_components/faqs";

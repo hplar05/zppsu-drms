@@ -16,7 +16,7 @@ export const DeleteRequestDialog = ({ id }: { id: number }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="destructive">Delete</Button>
+        <label htmlFor="">Delete</label>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

@@ -19,43 +19,42 @@ const RequestSchema = z.object({
 
 
 //create admin request
-
 export async function createRequest(formData: FormData) {
-    const nameOfStudent = formData.get('nameOfStudent') as string;
-    const studentId = formData.get('studentId') as string;
-    const email = formData.get('email') as string;
-    const mobileNumber = formData.get('mobileNumber') as string;
-    const course = formData.get('course') as string;
-    const yearAndsection = formData.get('yearAndsection') as string;
-    const attachment = formData.get('attachment') as string;
-    const purposeOfrequest = formData.get('purposeOfrequest') as string;
-
-
-    const session = await getServerSession(authOptions);
-
-    if (!session) return { error: "Unauthorized" }
+ 
+    try {
+        const nameOfStudent = formData.get('nameOfStudent') as string;
+        const studentId = formData.get('studentId') as string;
+        const email = formData.get('email') as string;
+        const mobileNumber = formData.get('mobileNumber') as string;
+        const course = formData.get('course') as string;
+        const yearAndsection = formData.get('yearAndsection') as string;
+        const attachment = formData.get('attachment') as string;
+        const purposeOfrequest = formData.get('purposeOfrequest') as string;
     
-    const adminId = session.user.id
+        const session = await getServerSession(authOptions);
+    
+        if (!session) return { error: "Unauthorized" }
+        
+        const adminId = session.user.id
+    
+        await db.requestForm.create({
+           data: {
+            nameOfStudent,
+            studentId,
+            email,
+            mobileNumber,
+            course,
+            yearAndsection,
+            attachment: attachment,
+            purposeOfrequest,
+            userId: adminId,
+           }
+        });
+    } catch (error) {
 
-    //  const mobilenumber = session.user.mobileNumber
+        return console.log(`Failed to create Document Request : ${error}`)
 
-    //  const email = session.user.email
-
-    // console.log(`${nameOfStudent}, ${course}, ${subjectname}, ${studId}`);
-
-    await db.requestForm.create({
-       data: {
-        nameOfStudent,
-        studentId,
-        email,
-        mobileNumber,
-        course,
-        yearAndsection,
-        attachment: attachment,
-        purposeOfrequest,
-        userId: adminId,
-       }
-    });
+    }
 
     revalidatePath("/admin/request-table")
     redirect("/admin/request-table");

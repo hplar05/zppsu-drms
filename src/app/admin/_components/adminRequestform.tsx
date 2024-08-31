@@ -16,27 +16,16 @@ import { createRequest } from "@/actions/adminRequest";
 import Link from "next/link";
 import { UploadDropzone } from "@/src/lib/utils";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { AdminCreateRequestSchema } from "@/src/lib/validation/adminCreateRequestSchema";
 
 // Define schema validation with zod
-const schema = z.object({
-  nameOfStudent: z.string().min(5, "Full name is required").max(100),
-  studentId: z.string().min(4, "Student ID is required").max(20),
-  email: z
-    .string()
-    .email()
-    .refine((email) => email.length <= 255, { message: "Email is too long" }),
-  mobileNumber: z.string().min(11, "Mobile Number is required"),
-  course: z.string().min(4, "Course is required").max(40),
-  yearAndsection: z.string().min(4, "Year & Section is required").max(40),
-  // subjectname: z.string().min(4, "Subject name is required").max(100),
-  purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
-});
 
 export default function Form() {
+  const [isPending, startTransition] = useTransition();
   const [attachmentUrl, setAttachmentUrl] = useState("");
   const [attachmentKey, setAttachmentKey] = useState("");
   const {
@@ -44,11 +33,10 @@ export default function Form() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(AdminCreateRequestSchema),
   });
 
   const onSubmit = async (data: any) => {
-    // Convert the `data` object to `FormData`
     const formData = new FormData();
 
     Object.keys(data).forEach((key) => {
@@ -58,8 +46,13 @@ export default function Form() {
     if (attachmentUrl) {
       formData.append("attachment", attachmentUrl);
     }
-
-    await createRequest(formData);
+    try {
+      startTransition(() => {
+        createRequest(formData);
+      });
+    } catch (error) {
+      toast.error(`Failed to create document request : ${error}`);
+    }
   };
 
   return (
@@ -217,7 +210,9 @@ export default function Form() {
           <Button variant="outline">
             <Link href="/admin/request-table">Cancel</Link>
           </Button>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={isPending}>
+            {isPending ? "Submitting..." : "Submit"}
+          </Button>
         </CardFooter>
       </form>
     </Card>

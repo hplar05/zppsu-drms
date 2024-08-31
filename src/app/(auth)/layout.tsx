@@ -8,8 +8,8 @@ import Providers from "@/src/providers/Providers";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "ZPPSU AUTH",
-  description: "ZPPSU AUTH",
+  title: "Authentication - ZPPSU DRMS",
+  description: "Authentication - ZPPSU DRMS",
 };
 
 export default async function RootLayout({

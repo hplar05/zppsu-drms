@@ -15,8 +15,8 @@ import UserFooter from "./_components/userFooter";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZPPSU Document Request",
-  description: "ZPPSU Document Request",
+  title: "Student - ZPPSU DRMS",
+  description: "Student - ZPPSU DRMS",
 };
 
 export default async function RootLayout({

@@ -6,8 +6,8 @@ import "@/src/app/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZPPSU DRMS",
-  description: "ZPPSU DRMS",
+  title: "Landing page  - ZPPSU DRMS",
+  description: "Landing page  - ZPPSU DRMS",
 };
 
 export default function RootLayout({

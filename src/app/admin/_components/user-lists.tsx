@@ -62,7 +62,7 @@ export default async function UserLists({
   const totalPages = Math.ceil(usercounts / itemsPerPage);
 
   return (
-    <Table className="-z-50">
+    <Table className="-z-50 border-2 rounded-md dark:border-white">
       <TableCaption>List of Users</TableCaption>
       <TableHeader>
         <TableRow>

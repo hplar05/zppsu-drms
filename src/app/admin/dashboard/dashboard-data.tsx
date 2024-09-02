@@ -32,25 +32,25 @@ export default function DashboardData({
 }: DashboardDataProps) {
   return (
     <div className="grid h-auto w-full grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="flex flex-col text-center">
+      <Card className="flex flex-col text-center dark:bg-transparent">
         <CardHeader>
           <CardDescription>Total Requests</CardDescription>
           <CardTitle>{totalRequest}</CardTitle>
         </CardHeader>
       </Card>
-      <Card className="flex flex-col text-center">
+      <Card className="flex flex-col text-center dark:bg-transparent">
         <CardHeader>
           <CardDescription>Total Users</CardDescription>
           <CardTitle>{totalUsers}</CardTitle>
         </CardHeader>
       </Card>
-      <Card className="flex flex-col text-center">
+      <Card className="flex flex-col text-center dark:bg-transparent">
         <CardHeader>
           <CardDescription>Completed</CardDescription>
           <CardTitle>{completed}</CardTitle>
         </CardHeader>
       </Card>
-      <Card className="flex flex-col text-center">
+      <Card className="flex flex-col text-center dark:bg-transparent">
         <CardHeader>
           <CardDescription>Decline</CardDescription>
           <CardTitle>{declined}</CardTitle>

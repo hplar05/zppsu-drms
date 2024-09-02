@@ -24,7 +24,7 @@ export default async function Page() {
 
   return (
     <main className="mt-2">
-      <div className="max-md:hidden">
+      <div className="max-md:hidden block">
         <AdminNavbar />
       </div>
       <div className="px-[2rem] py-[3rem]">

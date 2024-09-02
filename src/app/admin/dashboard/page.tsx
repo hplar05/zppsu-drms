@@ -23,7 +23,7 @@ export default async function Dashboard() {
 
   return (
     <main className="mt-2">
-      <div className="max-md:hidden">
+      <div className="max-md:hidden block">
         <AdminNavbar />
       </div>
 

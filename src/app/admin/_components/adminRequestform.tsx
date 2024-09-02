@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { createRequest } from "@/actions/adminRequest";
 import Link from "next/link";
-import { UploadDropzone } from "@/src/lib/utils";
+import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import toast from "react-hot-toast";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -46,17 +46,13 @@ export default function Form() {
     if (attachmentUrl) {
       formData.append("attachment", attachmentUrl);
     }
-    try {
-      startTransition(() => {
-        createRequest(formData);
-      });
-    } catch (error) {
-      toast.error(`Failed to create document request : ${error}`);
-    }
+    startTransition(() => {
+      createRequest(formData);
+    });
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto mt-3">
       <CardHeader>
         <CardTitle className="text-center">Create Request</CardTitle>
         <CardDescription className="text-center">
@@ -143,21 +139,23 @@ export default function Form() {
               )}
             </div>
           </div>
-          {/* <div className="space-y-2">
-            <Label htmlFor="subjectname">Request Subject Names</Label>
+          <div className="space-y-2">
+            <Label htmlFor="requestChoices">Document Type</Label>
             <Input
-              id="subjectname"
-              placeholder="request subject names..."
-              {...register("subjectname")}
+              id="requestChoices"
+              placeholder="document type... example Diploma"
+              {...register("requestChoices")}
             />
-            {errors.subjectname?.message && (
+            {errors.requestChoices?.message && (
               <p className="text-red-600">
-                {String(errors.subjectname.message)}
+                {String(errors.requestChoices.message)}
               </p>
             )}
-          </div> */}
+          </div>
           <div className="mx-auto">
-            <Label htmlFor="attachment">Request Form of the student</Label>
+            <Label htmlFor="attachment">
+              Request Form of the student Optional
+            </Label>
             {attachmentUrl.length ? (
               <div className="flex flex-col justify-center items-center">
                 <p>Attachment Uploaded</p>
@@ -170,8 +168,8 @@ export default function Form() {
                 </Button>
               </div>
             ) : (
-              <div>
-                <UploadDropzone
+              <div className="mt-4">
+                <UploadButton
                   endpoint="PdfDocsOrImageUploader"
                   onClientUploadComplete={(res: any) => {
                     setAttachmentUrl(res[0]?.url);

@@ -5,9 +5,7 @@ import { db } from "@/src/lib/db";
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 import {Knock} from '@knocklabs/node'
-import { $Enums } from "@prisma/client";
 
 
 const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY)

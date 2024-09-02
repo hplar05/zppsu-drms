@@ -35,6 +35,7 @@ export type Request = {
     | "COMPLETED";
   // createdAt: Date;
   // updateUt: Date;
+  requestChoices: string | null;
 };
 
 export const columns: ColumnDef<Request>[] = [
@@ -87,10 +88,10 @@ export const columns: ColumnDef<Request>[] = [
     accessorKey: "purposeOfrequest",
     header: "Purpose of Request",
   },
-  // {
-  //   accessorKey: "attachment",
-  //   header: "Attachment",
-  // },
+  {
+    accessorKey: "requestChoices",
+    header: "Document Type",
+  },
   {
     accessorKey: "action",
     header: "Status",

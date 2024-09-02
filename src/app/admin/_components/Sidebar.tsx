@@ -30,7 +30,7 @@ export default function UserSidebar() {
       : "flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground";
 
   return (
-    <div className="flex h-auto w-auto dark:bg-[#18191A]">
+    <div className="flex h-auto w-auto dark:bg-[#18191A] max-md:hidden">
       <nav className="bg-background border-r px-4 pb-6 pt-3 flex flex-col gap-4 dark:border-none">
         <Link className="space-x-2 flex items-center not-prose" href="/">
           <Image

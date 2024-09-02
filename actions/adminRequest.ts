@@ -6,7 +6,6 @@ import { AdminCreateRequestSchema } from "@/src/lib/validation/adminCreateReques
 import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 
 //create admin request
@@ -19,13 +18,17 @@ export async function createRequest(formData: FormData) {
     const course = formData.get('course') as string;
     const yearAndsection = formData.get('yearAndsection') as string;
     const attachment = formData.get('attachment') as string;
+    const requestChoices =  formData.get('requestChoices') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
+
 
     const session = await getServerSession(authOptions);
 
     if (!session) return { error: "Unauthorized" }
     
     const adminId = session.user.id
+
+    console.log(requestChoices)
  
     try {  
         await db.requestForm.create({
@@ -37,9 +40,10 @@ export async function createRequest(formData: FormData) {
             course,
             yearAndsection,
             attachment: attachment,
-            purposeOfrequest,
+            requestChoices: requestChoices,
+            purposeOfrequest,  
             userId: adminId,
-           }
+            }
         });
     } catch (error) {
 

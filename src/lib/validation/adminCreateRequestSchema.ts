@@ -14,4 +14,5 @@ export const AdminCreateRequestSchema = z.object({
     yearAndsection: z.string().min(4, "Year & Section is required").max(40),
     // subjectname: z.string().min(4, "Subject name is required").max(100),
     purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
+    requestChoices: z.string().min(2).max(50),
   });

@@ -3,6 +3,7 @@ import React from "react";
 import { columns, Request } from "./columns";
 import { DataTable } from "../../_components/data-table";
 import NoRequestAvailable from "@/components/noRequestAvailable";
+import AdminNavbar from "../../_components/adminNavbar";
 
 async function getRequests(): Promise<Request[]> {
   const res = await db.requestForm.findMany({
@@ -19,17 +20,22 @@ export default async function Page() {
   const requestData = await getRequests();
 
   return (
-    <main className="px-[2rem] py-[3rem]">
-      {requestCount === 0 ? (
-        <NoRequestAvailable />
-      ) : (
-        <div>
-          <h1 className="text-xl md:text-2xl font-bold text-left">
-            All Pending Requests
-          </h1>
-          <DataTable columns={columns} data={requestData} />
-        </div>
-      )}
+    <main className="mt-2">
+      <div className="max-md:hidden">
+        <AdminNavbar />
+      </div>
+      <div className="px-[2rem] py-[3rem]">
+        {requestCount === 0 ? (
+          <NoRequestAvailable />
+        ) : (
+          <div>
+            <h1 className="text-xl md:text-2xl font-bold text-left">
+              All Pending Requests
+            </h1>
+            <DataTable columns={columns} data={requestData} />
+          </div>
+        )}
+      </div>
     </main>
   );
 }

@@ -4,6 +4,7 @@ import NoRequestAvailable from "../../../../../components/noRequestAvailable";
 import Search from "@/components/search";
 import RequestListsSkeleton from "../../../../../components/requestTableSkeleton";
 import UserLists from "../../_components/user-lists";
+import AdminNavbar from "../../_components/adminNavbar";
 
 export default async function RequestTable({
   searchParams,
@@ -15,7 +16,10 @@ export default async function RequestTable({
   const requestAvailable = await db.requestForm.count();
 
   return (
-    <div className="-z-50">
+    <main className="mt-2 z-50">
+      <div className="max-md:hidden block">
+        <AdminNavbar />
+      </div>
       <main className="px-[2rem] py-[3rem] -z-50">
         <div className="text-center">
           <h1 className="text-xl md:text-2xl font-bold text-left">All Users</h1>
@@ -28,6 +32,6 @@ export default async function RequestTable({
           <UserLists query={query} currentPage={currentPage} />
         </Suspense>
       </main>
-    </div>
+    </main>
   );
 }

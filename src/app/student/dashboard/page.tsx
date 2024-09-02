@@ -44,7 +44,7 @@ const Page = async () => {
               <UploadPaySlipDrawer requestId={requestId!} />
             </div>
           ) : (
-            <Button className="bg-[#800000] text-white">
+            <Button className="bg-[#800000] text-white dark:bg-white dark:text-black">
               <Link href="/student/add-your-request">Create Request</Link>
             </Button>
           )}

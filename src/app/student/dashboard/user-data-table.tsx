@@ -32,7 +32,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
-import { UploadPaySlipDrawer } from "../_components/uploadPaySlipDrawer";
+import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -77,24 +77,27 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="flex items-center py-4 gap-3 text-black">
+      <div className="flex items-center py-4 gap-3">
         <Input
           placeholder="Search anything..."
           value={(table.getState().globalFilter as string) ?? ""}
           onChange={(event) =>
             table.setGlobalFilter(event.target.value || undefined)
           }
-          className="max-w-sm border-2 border-[#800000]"
+          className="max-w-sm border-2 border-[#800000] dark:border-white"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
-              variant="outline"
-              className="mr-auto bg-[#800000] text-white"
+              variant="default"
+              className="mr-auto bg-[#800000] dark:bg-white text-white dark:text-black"
             >
               Columns
             </Button>
           </DropdownMenuTrigger>
+          <Button className="bg-[#800000] dark:bg-white text-white dark:text-black">
+            <Link href={"/admin/create-request"}>Create Request +</Link>
+          </Button>
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()
@@ -116,12 +119,12 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border-2 border-[#800000]">
+      <div className="rounded-md border-2 border-[#800000] dark:border-white">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
-                className="border-b-4 border-[#800000]"
+                className="border-b-4 border-[#800000] dark:border-white"
                 key={headerGroup.id}
               >
                 {headerGroup.headers.map((header) => {
@@ -175,7 +178,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="ml-auto bg-[#800000] text-white"
+          className="ml-auto bg-[#800000] dark:bg-white text-white dark:text-black"
         >
           Previous
         </Button>
@@ -184,7 +187,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className="ml-auto bg-[#800000] text-white"
+          className="ml-auto bg-[#800000] dark:bg-white text-white dark:text-black"
         >
           Next
         </Button>

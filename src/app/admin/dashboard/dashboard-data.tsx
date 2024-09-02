@@ -61,7 +61,7 @@ export default function DashboardData({
         <ChartContainer
           config={{
             requests: { label: "Requests", color: "hsl(var(--chart-1))" },
-            approved: { label: "Approved", color: "hsl(var(--chart-2))" },
+            completed: { label: "Completed", color: "hsl(var(--chart-2))" },
             decline: { label: "Decline", color: "hsl(var(--chart-3))" },
             pending: { label: "Pending", color: "hsl(var(--chart-4))" },
           }}
@@ -81,7 +81,7 @@ export default function DashboardData({
                 name: "Feb",
                 requests: 1500,
                 completed: 900,
-                disapproved: 300,
+                decline: 300,
                 pending: 300,
               },
               {

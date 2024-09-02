@@ -23,7 +23,10 @@ export default async function Dashboard() {
 
   return (
     <main className="mt-2">
-      <AdminNavbar />
+      <div className="max-md:hidden">
+        <AdminNavbar />
+      </div>
+
       <DashboardData
         completed={completedCount}
         declined={declineCount}

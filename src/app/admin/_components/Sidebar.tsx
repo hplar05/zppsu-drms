@@ -31,7 +31,7 @@ export default function UserSidebar() {
 
   return (
     <div className="flex h-auto w-auto dark:bg-[#18191A] max-md:hidden">
-      <nav className="bg-background border-r px-4 pb-6 pt-3 flex flex-col gap-4 dark:border-none">
+      <nav className="bg-background border-r px-4 pb-2 pt-3 flex flex-col gap-4 dark:border-none">
         <Link className="space-x-2 flex items-center not-prose" href="/">
           <Image
             src={Logo}
@@ -44,7 +44,8 @@ export default function UserSidebar() {
             ZPPSU <span className="text-black dark:text-white">DRMS</span>
           </span>
         </Link>
-        <div className="text-muted-foreground font-medium text-base mt-[2rem]">
+        {/* <div className="border-b h-auto" /> */}
+        <div className="text-muted-foreground font-medium text-base mt-[1rem]">
           Main
         </div>
         <Link

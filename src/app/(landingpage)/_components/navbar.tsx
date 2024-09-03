@@ -35,7 +35,7 @@ const Navbar = () => {
           width={55}
           height={10}
           className="transition-all hover:opacity-75 dark:invert"
-        ></Image>
+        />
       </Link>
 
       <div className="flex items-center space-x-8 ml-2">
@@ -54,13 +54,13 @@ const Navbar = () => {
               onClick={() => {
                 router.push("/login");
               }}
-              className="text-white"
+              className="text-white bg-[#800000]"
             >
               Get Started
             </Button>
           </ul>
         </div>
-        <div className="p-2 max-md:block hidden max-md:mr-2 cursor-pointer">
+        <div className="p-2 max-md:block hidden  cursor-pointer">
           <Sheet>
             <SheetTrigger asChild>
               <svg
@@ -69,7 +69,7 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-8 mr-[1rem]"
               >
                 <path
                   strokeLinecap="round"
@@ -78,8 +78,28 @@ const Navbar = () => {
                 />
               </svg>
             </SheetTrigger>
-            <SheetContent>
-              <ul className="flex flex-col items-center space-y-4 gap-7 non-prose mb-8">
+            <SheetContent side="right">
+              <SheetTitle>
+                <div className="flex justify-center items-center">
+                  <Link
+                    className="space-x-2 flex items-center not-prose"
+                    href="/"
+                  >
+                    <Image
+                      src={Logo}
+                      alt="Logo"
+                      width={45}
+                      height={10}
+                      className="transition-all hover:opacity-75 dark:invert"
+                    />
+                    <span className="text-lg font-bold text-[#7D0303]">
+                      ZPPSU{" "}
+                      <span className="text-black dark:text-white">DRMS</span>
+                    </span>
+                  </Link>
+                </div>
+              </SheetTitle>
+              <ul className="flex flex-col items-center space-y-4 gap-7 non-prose mt-[3rem]">
                 <Link className="non-prose" href="#home">
                   Home
                 </Link>
@@ -93,7 +113,7 @@ const Navbar = () => {
                   onClick={() => {
                     router.push("/login");
                   }}
-                  className="text-white"
+                  className="text-white bg-[#800000]"
                 >
                   Get Started
                 </Button>

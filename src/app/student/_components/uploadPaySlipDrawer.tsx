@@ -80,6 +80,12 @@ export function UploadPaySlipDrawer({ requestId }: UploadPaySlipDrawerProps) {
                 ) : (
                   <div>
                     <UploadDropzone
+                      appearance={{
+                        button: {
+                          background: "#800000",
+                          color: "white",
+                        },
+                      }}
                       endpoint="imageUploader"
                       onClientUploadComplete={(res: any) => {
                         setPaySlipUrl(res[0]?.url);

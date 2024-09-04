@@ -170,6 +170,12 @@ export default function Form() {
             ) : (
               <div className="mt-4">
                 <UploadButton
+                  appearance={{
+                    button: {
+                      background: "#800000",
+                      color: "white",
+                    },
+                  }}
                   endpoint="PdfDocsOrImageUploader"
                   onClientUploadComplete={(res: any) => {
                     setAttachmentUrl(res[0]?.url);

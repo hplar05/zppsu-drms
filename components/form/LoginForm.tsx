@@ -58,9 +58,11 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-[700px] h-[90vh] flex flex-col items-center justify-center rounded-none">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold">Login</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center mb-2">
+          Login
+        </CardTitle>
         <CardDescription>
           Enter your email and password to access your account.
         </CardDescription>
@@ -76,7 +78,7 @@ const LoginForm = () => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="mail@example.com" {...field} />
+                      <Input placeholder="zppsu@gmail.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -100,7 +102,7 @@ const LoginForm = () => {
                 )}
               />
             </div>
-            <Button className="w-full mt-6" type="submit">
+            <Button className="w-full mt-6 bg-[#800000]" type="submit">
               Sign in
             </Button>
           </form>
@@ -110,7 +112,7 @@ const LoginForm = () => {
           {/* <GoogleSignInButton>Sign in with Google</GoogleSignInButton> */}
           <p className="text-center text-sm text-gray-600 mt-2">
             If you don&apos;t have an account, please&nbsp;
-            <Link className="text-blue-500 hover:underline" href="/register">
+            <Link className="text-[#800000] hover:underline" href="/register">
               Register
             </Link>
           </p>

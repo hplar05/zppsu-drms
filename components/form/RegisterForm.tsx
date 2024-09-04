@@ -76,9 +76,11 @@ const RegisterForm = () => {
   };
 
   return (
-    <Card className="w-full max-w-md text-base">
+    <Card className="w-[700px] h-[90vh] flex flex-col items-center justify-center rounded-none">
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold">Register</CardTitle>
+        <CardTitle className="text-2xl font-bold text-center">
+          Register
+        </CardTitle>
         <CardDescription>
           Fill out all input forms to create a account.
         </CardDescription>
@@ -149,7 +151,7 @@ const RegisterForm = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="mail@example.com" {...field} />
+                        <Input placeholder="zppsu@gmail.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -216,13 +218,13 @@ const RegisterForm = () => {
                   <FormLabel className="mb-2 text-right">
                     Image Uploaded
                   </FormLabel>
-                  <Image
+                  {/* <Image
                     alt="Done Upload"
                     src={imageUrl}
                     width={100}
                     height={100}
                     className="mb-3"
-                  />
+                  /> */}
                   <Button
                     variant={"ghost"}
                     onClick={() => {
@@ -244,6 +246,12 @@ const RegisterForm = () => {
                       <FormControl>
                         <div>
                           <UploadButton
+                            appearance={{
+                              button: {
+                                background: "#800000",
+                                color: "white",
+                              },
+                            }}
                             endpoint="imageUploader"
                             onClientUploadComplete={(res: any) => {
                               const imageUrl = res[0]?.url;
@@ -272,7 +280,7 @@ const RegisterForm = () => {
                 />
               )}
             </div>
-            <Button className="w-full mt-6" type="submit">
+            <Button className="w-full mt-6 bg-[#800000]" type="submit">
               Sign up
             </Button>
           </form>
@@ -282,7 +290,7 @@ const RegisterForm = () => {
           {/* <GoogleSignInButton>Sign up with Google</GoogleSignInButton> */}
           <p className="text-center text-sm text-gray-600 mt-2">
             If you don&apos;t have an account, please&nbsp;
-            <Link className="text-blue-500 hover:underline" href="/login">
+            <Link className="text-[#800000] hover:underline" href="/login">
               Login
             </Link>
           </p>

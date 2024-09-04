@@ -1,6 +1,6 @@
 import { db } from "@/src/lib/db";
 import React from "react";
-import { columns, Request } from "./columns";
+import { columns, Request } from "../../_components/columns";
 import { DataTable } from "../../_components/data-table";
 import NoRequestAvailable from "@/components/noRequestAvailable";
 import AdminNavbar from "../../_components/adminNavbar";

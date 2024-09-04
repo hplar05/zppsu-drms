@@ -95,9 +95,9 @@ export function DataTable<TData, TValue>({
               Columns
             </Button>
           </DropdownMenuTrigger>
-          <Button className="bg-[#800000] dark:bg-white text-white dark:text-black">
+          {/* <Button className="bg-[#800000] dark:bg-white text-white dark:text-black">
             <Link href={"/admin/create-request"}>Create Request +</Link>
-          </Button>
+          </Button> */}
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()

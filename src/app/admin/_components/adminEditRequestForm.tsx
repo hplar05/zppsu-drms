@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { RequestForm } from "@prisma/client";
-import { updateRequest } from "@/actions/adminrequest";
+import { updateRequest } from "@/actions/adminRequest";
 import { useFormState } from "react-dom";
 
 const EditRequestForm = ({ request }: { request: RequestForm }) => {

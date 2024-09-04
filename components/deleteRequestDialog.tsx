@@ -1,4 +1,4 @@
-import { deleteRequest } from "@/actions/adminrequest";
+import { deleteRequest } from "@/actions/adminRequest";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

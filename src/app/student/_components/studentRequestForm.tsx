@@ -12,7 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { createRequest } from "@/actions/studentrequest";
+import { createRequest } from "@/actions/studentRequest";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { UploadButton, UploadDropzone } from "@/src/lib/utils";

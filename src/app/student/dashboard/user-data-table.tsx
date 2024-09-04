@@ -78,26 +78,26 @@ export function DataTable<TData, TValue>({
   return (
     <>
       <div className="flex items-center py-4 gap-3">
-        <Input
+        {/* <Input
           placeholder="Search anything..."
           value={(table.getState().globalFilter as string) ?? ""}
           onChange={(event) =>
             table.setGlobalFilter(event.target.value || undefined)
           }
           className="max-w-sm border-2 border-[#800000] dark:border-white"
-        />
+        /> */}
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
+          {/* <DropdownMenuTrigger asChild>
             <Button
               variant="default"
               className="mr-auto bg-[#800000] dark:bg-white text-white dark:text-black"
             >
               Columns
             </Button>
-          </DropdownMenuTrigger>
-          <Button className="bg-[#800000] dark:bg-white text-white dark:text-black">
+          </DropdownMenuTrigger> */}
+          {/* <Button className="bg-[#800000] dark:bg-white text-white dark:text-black">
             <Link href={"/admin/create-request"}>Create Request +</Link>
-          </Button>
+          </Button> */}
           <DropdownMenuContent align="end">
             {table
               .getAllColumns()

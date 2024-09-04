@@ -7,6 +7,7 @@ import { Tracking } from "./tracking";
 import TrackingTable from "./tracking-table";
 import { db } from "@/src/lib/db";
 import { UploadPaySlipDrawer } from "../_components/uploadPaySlipDrawer";
+import { AdminMsgContainer } from "./adminMsgContainer";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -18,11 +19,16 @@ const Page = async () => {
     select: {
       action: true,
       id: true,
+      adminMessage: true,
     },
   });
-  const isActionCompletedOrDeclined = res.some(
-    (request) => request.action === "COMPLETED" || request.action === "DECLINE"
-  );
+  // const isActionCompletedOrDeclined = res.some(
+  //   (request) => request.action === "COMPLETED" || request.action === "DECLINE"
+  // );
+
+  const adminMsg = res.some((request) => request.adminMessage)
+    ? res[0].adminMessage
+    : null;
 
   // Get the ID of the request if it exists
   const requestId = res.length === 1 ? res[0].id : null;
@@ -35,7 +41,7 @@ const Page = async () => {
           <h2 className="text-xl font-bold">Welcome to Dashboard</h2>
         </div>
         <Tracking />
-        <div className="flex flex-col gap-20 justify-center items-center my-20">
+        <div className="flex flex-col gap-20 justify-center items-center my-16">
           {res.length ? (
             <div className="gap-2 flex justify-between">
               <Button className="bg-[#800000] text-white" disabled>
@@ -49,7 +55,14 @@ const Page = async () => {
             </Button>
           )}
         </div>
-        <TrackingTable userId={userId!} />
+        <div className="flex justify-between items-center gap-2 w-full mb-auto">
+          <div className="w-[70%] ">
+            <TrackingTable userId={userId!} />
+          </div>
+          <div className="w-[30%]">
+            <AdminMsgContainer adminMsg={adminMsg} />
+          </div>
+        </div>
       </div>
     </div>
   );

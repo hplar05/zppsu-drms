@@ -38,6 +38,7 @@ export async function createRequest(formData: FormData) {
     attachment,
     purposeOfrequest,
     requestChoices,
+    adminMessage: "Your request application is pending",
     user: {
       connect: {
         id: userId, 

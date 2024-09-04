@@ -49,6 +49,7 @@ model RequestForm {
   userId           String
   attachment       String?
   adminMessage     String?
+  payslipUrl       String?
   user             User     @relation(fields: [userId], references: [id])
   action           Action   @default(PENDING)
   requestChoices   String?

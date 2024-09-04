@@ -45,11 +45,6 @@ export const columns: ColumnDef<Request>[] = [
     accessorKey: "purposeOfrequest",
     header: "Purpose of Request",
   },
-
-  {
-    accessorKey: "adminMessage",
-    header: "Admin Message",
-  },
   {
     accessorKey: "action",
     header: "Status",

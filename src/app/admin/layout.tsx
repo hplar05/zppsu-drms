@@ -30,7 +30,10 @@ export default async function RootLayout({
   if (!session || !session.user) {
     redirect("/");
   }
-  if (session?.user.role === "STUDENT" || session?.user.role !== "ADMIN") {
+  if (
+    session?.user.role === "STUDENT" ||
+    (session?.user.role !== "ADMIN" && session?.user.role !== "SUPERADMIN")
+  ) {
     redirect("/denied");
   }
 
@@ -47,7 +50,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {session.user.role === "ADMIN" ? (
+        {session.user.role === "ADMIN" || session.user.role === "SUPERADMIN" ? (
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

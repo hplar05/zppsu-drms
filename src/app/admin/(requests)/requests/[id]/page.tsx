@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { JSX, SVGProps } from "react";
+import Image from "next/image";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const request = await db.requestForm.findUnique({
@@ -85,13 +86,28 @@ export default async function Page({ params }: { params: { id: string } }) {
               </Card>
               <Card>
                 <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">Action</h3>
+                  <h3 className="text-lg font-semibold">Status</h3>
                   <p className="text-sm text-muted-foreground">
                     {request.action}
                   </p>
                 </CardContent>
               </Card>
             </div>
+            <Card>
+              <CardContent className="p-4 flex flex-col gap-2 justify-center items-center">
+                <h3 className="text-lg font-semibold">PaySlip Image</h3>
+                <p className="text-sm text-muted-foreground">
+                  {request.payslipUrl && (
+                    <Image
+                      src={request.payslipUrl}
+                      width={500}
+                      height={500}
+                      alt="payslip"
+                    />
+                  )}
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>

@@ -12,6 +12,11 @@ export default async function Page({ params }: { params: { id: string } }) {
       id: parseInt(params.id),
     },
   });
+  const avatar = await db.user.findUnique({
+    where: {
+      id: request?.userId,
+    },
+  });
   if (!request) {
     notFound();
   }
@@ -20,10 +25,12 @@ export default async function Page({ params }: { params: { id: string } }) {
     <div className="flex flex-col h-auto">
       <header className="bg-muted/20 px-4 md:px-6 py-8">
         <div className="container max-w-3xl flex flex-col items-center gap-4">
-          <Avatar className="h-20 w-20">
-            <AvatarImage src="/placeholder-user.jpg" alt="@shadcn" />
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
+          {avatar?.image && (
+            <Avatar className="h-20 w-20">
+              <AvatarImage src={avatar?.image} alt="@zppsu" />
+              <AvatarFallback>ZPPSU</AvatarFallback>
+            </Avatar>
+          )}
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">{request.nameOfStudent}</h1>
             <p className="text-muted-foreground">
@@ -38,22 +45,6 @@ export default async function Page({ params }: { params: { id: string } }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
               <Card>
                 <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">Email Address</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {request.email}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">Mobile Number</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {request.mobileNumber}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
                   <h3 className="text-lg font-semibold">Request Form</h3>
                   <p className="text-sm text-muted-foreground">
                     {request.requestChoices}
@@ -65,30 +56,6 @@ export default async function Page({ params }: { params: { id: string } }) {
                   <h3 className="text-lg font-semibold">Purpose of Request</h3>
                   <p className="text-sm text-muted-foreground">
                     {request.purposeOfrequest}
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">
-                    Attachment Documents
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    <Link
-                      href={`${request.attachment}`}
-                      className="text-sm text-primary"
-                      prefetch={false}
-                    >
-                      RequestForm.pdf
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">Status</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {request.action}
                   </p>
                 </CardContent>
               </Card>

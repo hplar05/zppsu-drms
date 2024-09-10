@@ -22,7 +22,6 @@ export type Request = {
   nameOfStudent: string;
   email: string;
   yearAndsection: string;
-  // subjectname: string;
   mobileNumber: string;
   course: string;
   purposeOfrequest: string;

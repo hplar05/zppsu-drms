@@ -16,6 +16,9 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { uploadPayslip } from "@/actions/uploadpayslip";
 import Image from "next/image";
+import { z } from "zod";
+import { paySlipSchema } from "@/src/lib/validation/payslipUploadSchema";
+import { useRouter } from "next/navigation";
 
 interface UploadPaySlipDrawerProps {
   requestId: number;
@@ -24,22 +27,31 @@ interface UploadPaySlipDrawerProps {
 export function UploadPaySlipDrawer({ requestId }: UploadPaySlipDrawerProps) {
   const [payslipUrl, setPaySlipUrl] = useState("");
   const [getrequestId, setRequestId] = useState(requestId);
+  const router = useRouter();
 
-  const onSubmit = async (data: any) => {
-    const formData = new FormData();
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
 
-    Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
-    });
+    try {
+      paySlipSchema.parse({ payslipUrl });
 
-    if (payslipUrl) {
-      formData.append("payslipUrl", payslipUrl);
+      const formData = new FormData();
+
+      if (payslipUrl) {
+        formData.append("payslipUrl", payslipUrl);
+      }
+
+      formData.append("requestId", getrequestId.toString());
+      await uploadPayslip(formData);
+      toast.success("Successfully Uploaded PaySlip");
+      router.push("/student/dashboard");
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        error.errors.forEach((err) => {
+          toast.error(err.message);
+        });
+      }
     }
-
-    formData.append("requestId", getrequestId.toString());
-
-    await uploadPayslip(formData);
-    toast.success("Successfully Uploaded PaySlip");
   };
 
   return (
@@ -49,7 +61,7 @@ export function UploadPaySlipDrawer({ requestId }: UploadPaySlipDrawerProps) {
           Upload Pay Slip
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="dark:bg-black">
         <form onSubmit={onSubmit}>
           <div className="mx-auto w-full max-w-sm">
             <DrawerHeader>
@@ -58,7 +70,7 @@ export function UploadPaySlipDrawer({ requestId }: UploadPaySlipDrawerProps) {
                 If admin advice you to upload, Upload your pay slip here.
               </DrawerDescription>
             </DrawerHeader>
-            <div className=" pb-0">
+            <div className="pb-0">
               <div className="flex items-center justify-center">
                 {payslipUrl.length ? (
                   <div className="flex flex-col justify-center items-center gap-2">
@@ -110,16 +122,11 @@ export function UploadPaySlipDrawer({ requestId }: UploadPaySlipDrawerProps) {
               </div>
             </div>
             <DrawerFooter>
-              <Button
-                onClick={() => {
-                  console.log(requestId);
-                }}
-                className="bg-[#800000] text-white"
-              >
+              <Button className="bg-[#800000] text-white" type="submit">
                 Upload
               </Button>
               <DrawerClose asChild>
-                <Button type="submit" variant="outline">
+                <Button type="button" variant="outline">
                   Cancel
                 </Button>
               </DrawerClose>

@@ -27,5 +27,4 @@ export async function uploadPayslip(formData: FormData) {
  } catch (error) {
     console.log(`Failed to upload your payslip image : ${error}`)
  }
-
 }

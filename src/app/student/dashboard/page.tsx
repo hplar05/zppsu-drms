@@ -47,7 +47,11 @@ const Page = async () => {
               <Button className="bg-[#800000] text-white" disabled>
                 Create Request
               </Button>
-              <UploadPaySlipDrawer requestId={requestId!} />
+              <Button className="bg-[#800000] text-white">
+                <Link href={`/student/uploadpayslip/${requestId}`}>
+                  Upload Payslip
+                </Link>
+              </Button>
             </div>
           ) : (
             <Button className="bg-[#800000] text-white dark:bg-white dark:text-black">

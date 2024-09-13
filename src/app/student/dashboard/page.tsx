@@ -8,6 +8,7 @@ import TrackingTable from "./tracking-table";
 import { db } from "@/src/lib/db";
 import { UploadPaySlipDrawer } from "../_components/uploadPaySlipDrawer";
 import { AdminMsgContainer } from "./adminMsgContainer";
+import { AlertTriangle } from "lucide-react";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -39,6 +40,19 @@ const Page = async () => {
       <div className="p-5 m-6 h-[50vh] rounded-md">
         <div className="flex flex-col justify-center gap-2 w-[40%] pl-10 mb-10">
           <h2 className="text-xl font-bold">Welcome to Dashboard</h2>
+        </div>
+        <div
+          className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6"
+          role="alert"
+        >
+          <div className="flex">
+            <AlertTriangle className="h-6 w-6 mr-2" />
+            <p>
+              <strong className="font-bold">Important Reminder: </strong>
+              Expect 3 to 5 working days before getting your Request Documents
+              after submitting your Request Form Document, Thank you.
+            </p>
+          </div>
         </div>
         <Tracking />
         <div className="flex flex-col gap-20 justify-center items-center my-16">

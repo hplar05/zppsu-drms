@@ -8,8 +8,8 @@ import { useSession } from "next-auth/react";
 const UserAvatar = () => {
   const { data: session } = useSession();
   const avatarUrl = session?.user.image;
-  const fallbackAvatarUrl =
-    "https://utfs.io/f/9c2c5025-ae0d-4f81-a5d9-650573f7d0a6-b3d8py.jpg";
+  // const fallbackAvatarUrl =
+  //   "https://utfs.io/f/9c2c5025-ae0d-4f81-a5d9-650573f7d0a6-b3d8py.jpg";
   const adminName = session?.user.name;
   const userEmail = session?.user.email;
 
@@ -17,8 +17,8 @@ const UserAvatar = () => {
     <div className="flex flex-col justify-center gap-2">
       <div className="flex items-center gap-2">
         <Avatar>
-          <AvatarImage src={avatarUrl ?? fallbackAvatarUrl} />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={avatarUrl!} />
+          <AvatarFallback className="text-[0.60rem]">ZPPSU</AvatarFallback>
         </Avatar>
         <div>
           <h2 className="text-base font-bold">{adminName}</h2>

@@ -48,7 +48,7 @@ const UserNavbar = async () => {
                   <NotificationMenu />
                 </button>
                 <ThemeToggler />
-                <LogoutButton />
+                {/* <LogoutButton /> */}
               </div>
             ) : (
               <Button>

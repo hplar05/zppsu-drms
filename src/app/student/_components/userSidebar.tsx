@@ -54,34 +54,6 @@ export default function Sidebar() {
           <LayoutDashboardIcon className="h-5 w-5" />
           <span>Dashboard</span>
         </Link>
-        {/* <div className="text-muted-foreground font-medium text-base">
-          Your Requests
-        </div>
-        <Link
-          href="/student/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
-          <FileTextIcon className="h-5 w-5" />
-          <span>Pending Requests</span>
-        </Link>
-        <Link
-          href="/student/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-1  transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
-          <CheckIcon className="h-5 w-5" />
-          <span>Approve Requests</span>
-        </Link>
-        <Link
-          href="/student/dashboard"
-          className="flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
-          prefetch={false}
-        >
-          <ThumbsDownIcon className="h-5 w-5" />
-          <span>Decline Requests</span>
-        </Link> */}
-
         <div className="text-muted-foreground font-medium text-base">
           Others
         </div>
@@ -90,9 +62,13 @@ export default function Sidebar() {
           <span>Announcements</span>
         </Link>
 
-        <Link href="#" className={linkClasses("#")} prefetch={false}>
-          <SettingsIcon className="w-5 h-5" />
-          Settings
+        <Link
+          href="/student/profile"
+          className={linkClasses("/student/profile")}
+          prefetch={false}
+        >
+          <UserIcon className="w-5 h-5" />
+          Profile
         </Link>
 
         <div className="mt-auto w-full">

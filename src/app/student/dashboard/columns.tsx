@@ -31,6 +31,7 @@ export type Request = {
     | "COMPLETED";
   adminMessage: string | null;
   requestChoices: string | null;
+  payslipUrl: string | null;
   // createdAt: Date;
   // updateUt: Date;
 };
@@ -78,7 +79,7 @@ export const columns: ColumnDef<Request>[] = [
               <Link href={`${request.attachment}`}>View Request Form</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href={`${request.attachment}`}>View Payslip Image</Link>
+              <Link href={`${request.payslipUrl}`}>View Payslip Image</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Action</DropdownMenuLabel>

@@ -335,7 +335,7 @@ const RegisterForm = () => {
           </div>
           {/* <GoogleSignInButton>Sign up with Google</GoogleSignInButton> */}
           <p className="text-center text-sm text-gray-600 mt-2">
-            If you don&apos;t have an account, please&nbsp;
+            If you have an account, please&nbsp;
             <Link className="text-[#800000] hover:underline" href="/login">
               Login
             </Link>

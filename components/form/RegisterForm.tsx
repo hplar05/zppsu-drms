@@ -29,6 +29,7 @@ import {
 } from "../ui/card";
 import { PhoneInput } from "../phone-input";
 import { RegisterSchema } from "@/src/lib/validation/registerSchema";
+import { Eye, EyeOff } from "lucide-react";
 
 const RegisterForm = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -73,6 +74,16 @@ const RegisterForm = () => {
     } else {
       console.error("Registration failed");
     }
+  };
+
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const [confirmShowPassword, setConfirmShowPassword] = useState(false);
+  const toggleConfirmPasswordVisibility = () => {
+    setConfirmShowPassword(!confirmShowPassword);
   };
 
   return (
@@ -177,40 +188,75 @@ const RegisterForm = () => {
 
                 {/* <PhoneInput /> */}
               </div>
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Enter your password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Re-Enter your password</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Re-Enter your password"
-                        type="password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="relative">
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="password"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Enter your password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 pt-8 hover:bg-transparent"
+                  onClick={togglePasswordVisibility}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
+              <div className="relative">
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Re-Enter your password</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Re-Enter your password"
+                          type={confirmShowPassword ? "text" : "password"}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 pt-8 hover:bg-transparent"
+                  onClick={toggleConfirmPasswordVisibility}
+                  aria-label={
+                    confirmShowPassword ? "Hide password" : "Show password"
+                  }
+                >
+                  {confirmShowPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
             </div>
             <div className="mx-auto mt-2">
               {imageUrl.length ? (

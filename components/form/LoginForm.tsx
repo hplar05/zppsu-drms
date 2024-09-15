@@ -27,6 +27,8 @@ import {
   CardTitle,
 } from "../ui/card";
 import { LoginSchema } from "@/src/lib/validation/loginSchema";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const LoginForm = () => {
   const { data: session, status } = useSession();
@@ -39,6 +41,10 @@ const LoginForm = () => {
     },
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     const updatedSession = session?.user.role;
     const signInData = await signIn("credentials", {
@@ -84,23 +90,40 @@ const LoginForm = () => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Enter your password"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="relative">
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          id="password"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Enter your password"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-0 top-0 h-full px-3 pt-8 hover:bg-transparent"
+                  onClick={togglePasswordVisibility}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
             </div>
             <Button className="w-full mt-6 bg-[#800000]" type="submit">
               Sign in

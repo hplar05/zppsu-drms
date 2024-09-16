@@ -31,8 +31,8 @@ const UserAvatar = () => {
           : session?.user.role === "GRADUATE_STUDENT"
           ? "GRADUATE STUDENT"
           : session?.user.role === "SUPERADMIN"
-          ? "ZZPSU SUPERADMIN"
-          : "ZZPSU STUDENT"}
+          ? "ZPPSU SUPERADMIN"
+          : "ZPPSU STUDENT"}
       </Badge>
     </div>
   );

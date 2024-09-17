@@ -48,7 +48,9 @@ const UserNavbar = async () => {
                   <NotificationMenu />
                 </button>
                 <ThemeToggler />
-                {/* <LogoutButton /> */}
+                <div className="max-md:block hidden">
+                  <LogoutButton />
+                </div>
               </div>
             ) : (
               <Button>

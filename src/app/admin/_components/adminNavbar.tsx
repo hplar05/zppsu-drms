@@ -19,6 +19,7 @@ import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 import { signOut } from "next-auth/react";
 import UserAvatar from "@/components/avatar";
+import LogoutButton from "../../student/_components/logoutButton";
 
 const AdminNavbar = () => {
   const pathname = usePathname();
@@ -184,7 +185,10 @@ const AdminNavbar = () => {
         </Sheet>
       </div>
 
-      <Link className="space-x-2 flex items-center not-prose p-2 ml-5" href="/">
+      <Link
+        className="space-x-2 flex items-center not-prose p-2 ml-5 max-md:hidden"
+        href="/"
+      >
         <Image
           src={Logo}
           alt="Logo"
@@ -210,6 +214,9 @@ const AdminNavbar = () => {
             </div>
           </button>
           <ThemeToggler />
+          <div className="max-md:block hidden">
+            <LogoutButton />
+          </div>
         </div>
       </div>
     </nav>

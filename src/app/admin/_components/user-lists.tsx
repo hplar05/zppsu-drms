@@ -33,7 +33,7 @@ export default async function UserLists({
 
   const users = await db.user.findMany({
     where: {
-      role: "STUDENT",
+      role: { in: ["STUDENT", "GRADUATE_STUDENT"] },
       OR: [
         { name: { contains: query } },
         { studId: { contains: query } },

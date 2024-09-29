@@ -18,7 +18,9 @@ const UserAvatar = () => {
       <div className="flex items-center gap-2">
         <Avatar>
           <AvatarImage src={avatarUrl!} />
-          <AvatarFallback className="text-[0.60rem]">ZPPSU</AvatarFallback>
+          <AvatarFallback className="text-[0.60rem] text-white bg-red-400">
+            ZPPSU
+          </AvatarFallback>
         </Avatar>
         <div>
           <h2 className="text-base font-bold">{adminName}</h2>

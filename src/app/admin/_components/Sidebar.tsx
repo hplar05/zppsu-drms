@@ -62,7 +62,7 @@ export default function UserSidebar() {
           prefetch={false}
         >
           <UserIcon className="w-5 h-5" />
-          <span>User Lists</span>
+          <span>Students Lists</span>
         </Link>
         <div className="text-muted-foreground font-medium text-base">
           Requests

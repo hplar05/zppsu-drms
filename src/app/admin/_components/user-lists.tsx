@@ -33,6 +33,7 @@ export default async function UserLists({
 
   const users = await db.user.findMany({
     where: {
+      role: "STUDENT",
       OR: [
         { name: { contains: query } },
         { studId: { contains: query } },
@@ -63,7 +64,7 @@ export default async function UserLists({
 
   return (
     <Table className="-z-50 border-2 rounded-md dark:border-white">
-      <TableCaption>List of Users</TableCaption>
+      <TableCaption>List of Students</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-auto">Image</TableHead>
@@ -85,6 +86,9 @@ export default async function UserLists({
                   src={user.image ?? fallbackAvatarUrl}
                   alt="@shadcn"
                 />
+                <AvatarFallback className="text-[0.60rem] text-white  bg-red-400">
+                  ZPPSU
+                </AvatarFallback>
               </Avatar>
             </TableCell>
             <TableCell>{user.name}</TableCell>

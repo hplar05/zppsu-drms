@@ -22,9 +22,11 @@ export default async function RequestTable({
       </div>
       <main className="px-[2rem] py-[3rem] -z-50">
         <div className="text-center">
-          <h1 className="text-xl md:text-2xl font-bold text-left">All Users</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-left">
+            Students List
+          </h1>
           <div className=" flex items-center justify-between gap-2 md:mt-3 mb-6">
-            <Search placeholder="Search users..." />
+            <Search placeholder="Search students..." />
           </div>
         </div>
 

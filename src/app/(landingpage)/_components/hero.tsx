@@ -18,7 +18,7 @@ const Hero = async () => {
           width={172}
           height={72}
           alt="Company Logo"
-          className="not-prose mb-6 dark:invert md:mb-8 max-md:hidden"
+          className=" mb-6 dark:invert md:mb-8 max-md:hidden"
         />
         <h1 className="!mb-0 max-md:text-[2rem]">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>

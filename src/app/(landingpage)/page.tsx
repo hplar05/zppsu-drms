@@ -7,12 +7,14 @@ import Navbar from "./_components/navbar";
 
 export default function Page() {
   return (
-    <Main>
+    <div>
       <Navbar />
-      <Hero />
-      <Feature />
-      <FAQ />
+      <Main>
+        <Hero />
+        <Feature />
+        <FAQ />
+      </Main>
       <Footer />
-    </Main>
+    </div>
   );
 }

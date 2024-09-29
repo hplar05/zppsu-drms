@@ -58,7 +58,7 @@ const LoginForm = () => {
       console.log(signInData.error);
     } else {
       toast.success("Successfully Logged In");
-      router.push("/student/dashboard");
+      router.push("/student/reminders");
       router.refresh();
     }
   };

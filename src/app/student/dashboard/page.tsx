@@ -49,7 +49,7 @@ const Page = async () => {
             <AlertTriangle className="h-6 w-6 mr-2" />
             <p>
               <strong className="font-bold">Important Reminder: </strong>
-              Expect 3 to 5 working days before getting your Request Documents
+              Expect 2 to 3 working days before getting your Request Documents
               after submitting your Request Form Document, Thank you.
             </p>
           </div>

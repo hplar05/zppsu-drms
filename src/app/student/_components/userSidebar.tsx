@@ -38,7 +38,7 @@ export default function Sidebar() {
             width={45}
             height={10}
             className="transition-all hover:opacity-75 dark:invert"
-          ></Image>
+          />
           <span className="text-lg font-bold text-[#7D0303]">
             ZPPSU <span className="text-black dark:text-white">DRMS</span>
           </span>
@@ -46,6 +46,14 @@ export default function Sidebar() {
         <div className="text-muted-foreground font-medium text-base mt-[2rem]">
           Home
         </div>
+        <Link
+          href="/student/reminders"
+          className={linkClasses("/student/reminders")}
+          prefetch={false}
+        >
+          <MegaphoneIcon className="h-5 w-5" />
+          <span>Reminders</span>
+        </Link>
         <Link
           href="/student/dashboard"
           className={linkClasses("/student/dashboard")}

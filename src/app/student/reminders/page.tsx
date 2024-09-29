@@ -54,22 +54,22 @@ export default function Reminders() {
                   </ul>
                 </li>
                 <li>
-                  <strong>Cashier's Office</strong>
+                  <strong>Cashiers Office</strong>
                   <ul className="list-disc list-inside ml-5">
                     <li>Pay the corresponding fee</li>
                   </ul>
                 </li>
                 <li>
-                  <strong>Registrar's Office</strong>
+                  <strong>Registrars Office</strong>
                   <ul className="list-disc list-inside ml-5">
                     <li>Submit official receipt</li>
                   </ul>
                 </li>
                 <li>
-                  <strong>Registrar's Office (After 2 days)</strong>
+                  <strong>Registrars Office (After 2 days)</strong>
                   <ul className="list-disc list-inside ml-5">
                     <li>
-                      Claim Transcript of Records (TOR) from the registrar's
+                      Claim Transcript of Records (TOR) from the registrars
                       office
                     </li>
                   </ul>
@@ -135,7 +135,7 @@ export default function Reminders() {
       </Tabs>
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-500 mb-2">
-          For more information, please contact the Registrar's Office
+          For more information, please contact the Registrars Office
         </p>
         <Button>
           <Link href="/student/dashboard">Request a Document</Link>

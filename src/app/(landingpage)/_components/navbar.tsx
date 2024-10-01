@@ -24,7 +24,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <header className="non-prose scroll-smooth flex item-center justify-between shadow-sm shadow-gray-200 dark:shadow-none sticky top-0 dark:bg-[#020817] bg-white">
+    <header className="non-prose scroll-smooth flex item-center justify-between shadow-sm shadow-gray-200 dark:shadow-none dark:bg-[#020817] bg-white">
       <Link
         className="space-x-2 md:ml-5 ml-0 flex items-center not-prose p-4"
         href="#about"

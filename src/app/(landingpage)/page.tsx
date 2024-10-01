@@ -11,8 +11,8 @@ export default function Page() {
       <Navbar />
       <Main>
         <Hero />
-        <Feature />
-        <FAQ />
+        {/* <Feature />
+        <FAQ /> */}
       </Main>
       <Footer />
     </div>

@@ -51,6 +51,7 @@
     "recharts": "^2.12.7",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "twilio": "^5.3.3",
     "uploadthing": "^6.13.2",
     "vaul": "^0.9.1",
     "zod": "^3.23.8"

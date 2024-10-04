@@ -41,5 +41,5 @@ export const updateprofile = async (
     }
 
     revalidatePath("/student/profile");
-    redirect("/student/dashboard");
+    redirect("/student/profile");
 }

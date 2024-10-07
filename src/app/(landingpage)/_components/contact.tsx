@@ -13,7 +13,7 @@ export default function ContactUs() {
               Get in Touch
             </h2>
             <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              We'd love to hear from you. Fill out the form below and we'll get
+              Wed love to hear from you. Fill out the form below and well get
               back to you as soon as possible.
             </p>
             <form className="space-y-4">
@@ -33,7 +33,7 @@ export default function ContactUs() {
             <div className="space-y-2">
               <h3 className="text-2xl font-bold">Contact Information</h3>
               <p className="text-gray-500">
-                Don't hesitate to reach out using the information below:
+                Dont hesitate to reach out using the information below:
               </p>
             </div>
             <div className="space-y-4">

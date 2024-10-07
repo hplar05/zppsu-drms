@@ -1,6 +1,6 @@
 import LoginForm from "@/components/form/LoginForm";
 import { Card } from "@/components/ui/card";
-import Logo from "@/public/authimage.jpg";
+import Logo from "@/public/header-bg.jpg";
 import Image from "next/image";
 
 const page = () => {

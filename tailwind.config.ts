@@ -20,6 +20,9 @@ export default withUt({
       },
     },
     extend: {
+      backgroundImage: {
+        "header-img": "url('/header-bg.jpg')"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -24,7 +24,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <header className="non-prose scroll-smooth flex item-center justify-between shadow-sm shadow-gray-200 dark:shadow-none dark:bg-[#020817] bg-white">
+    <header className="scroll-smooth flex item-center justify-between shadow-gray-200   bg-[#800000f1] top-0 sticky z-50">
       <Link
         className="space-x-2 md:ml-5 ml-0 flex items-center not-prose p-4"
         href="#about"
@@ -39,16 +39,22 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center space-x-8 ml-2">
-        <div className="text-md hidden md:block non-prose mr-8">
-          <ul className="flex items-center space-x-4 non-prose">
-            <Link className="non-prose" href="#home">
+        <div className="text-md hidden md:block  mr-8">
+          <ul className="flex items-center space-x-4">
+            <Link className="text-white hover:underline" href="#home">
               Home
             </Link>
-            <Link className="non-prose" href="#features">
+            <Link className="text-white hover:underline" href="#about">
+              About Us
+            </Link>
+            <Link className="text-white hover:underline" href="#features">
               Features
             </Link>
-            <Link className="non-prose" href="#faq">
+            <Link className="text-white hover:underline" href="#faq">
               FAQ
+            </Link>
+            <Link className="text-white hover:underline" href="#contact">
+              Contact Us
             </Link>
             <Button
               onClick={() => {
@@ -60,7 +66,7 @@ const Navbar = () => {
             </Button>
           </ul>
         </div>
-        <div className="p-2 max-md:block hidden  cursor-pointer">
+        <div className="p-2 max-md:block hidden  cursor-pointer ">
           <Sheet>
             <SheetTrigger asChild>
               <svg
@@ -69,7 +75,7 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-8 mr-[1rem]"
+                className="size-8 mr-[1rem] text-white"
               >
                 <path
                   strokeLinecap="round"
@@ -79,7 +85,7 @@ const Navbar = () => {
               </svg>
             </SheetTrigger>
             <SheetContent side="right">
-              <SheetTitle>
+              <SheetTitle className="border-b pb-4">
                 <div className="flex justify-center items-center">
                   <Link
                     className="space-x-2 flex items-center not-prose"
@@ -99,15 +105,21 @@ const Navbar = () => {
                   </Link>
                 </div>
               </SheetTitle>
-              <ul className="flex flex-col items-center space-y-4 gap-7 non-prose mt-[3rem]">
-                <Link className="non-prose" href="#home">
+              <ul className="flex flex-col items-center space-y-4 gap-7 mt-[3rem] ">
+                <Link className=" " href="#home">
                   Home
                 </Link>
-                <Link className="non-prose" href="#features">
+                <Link className=" " href="#about">
+                  About Us
+                </Link>
+                <Link className=" " href="#features">
                   Features
                 </Link>
-                <Link className="non-prose" href="#faq">
+                <Link className=" " href="#faq">
                   FAQ
+                </Link>
+                <Link className=" " href="#contact">
+                  Contact Us
                 </Link>
                 <Button
                   onClick={() => {

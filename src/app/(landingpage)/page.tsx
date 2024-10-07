@@ -4,6 +4,9 @@ import Feature from "./_components/features";
 import FAQ from "./_components/faqs";
 import Footer from "./_components/footer";
 import Navbar from "./_components/navbar";
+import About from "./_components/about";
+import MoreAbout from "./_components/moreabout";
+import ContactUs from "./_components/contact";
 
 export default function Page() {
   return (
@@ -11,8 +14,11 @@ export default function Page() {
       <Navbar />
       <Main>
         <Hero />
-        {/* <Feature />
-        <FAQ /> */}
+        <About />
+        <MoreAbout />
+        <Feature />
+        <FAQ />
+        <ContactUs />
       </Main>
       <Footer />
     </div>

@@ -7,7 +7,7 @@ import Logo from "@/public/logo.jpg";
 
 export default function Footer() {
   return (
-    <footer className="not-prose border-t">
+    <footer className="not-prose border-t bg-[#800000f1]">
       <Section>
         <Container className="grid gap-6">
           <div className="grid gap-6">
@@ -20,17 +20,17 @@ export default function Footer() {
                 className="transition-all hover:opacity-75 dark:invert"
               ></Image>
             </Link>
-            <p>
+            <p className="text-white">
               <Balancer>
                 Zamboanga Peninsula Polytechnic State University
               </Balancer>
             </p>
-            <div className="mb-6 flex flex-col gap-4 text-sm text-muted-foreground underline underline-offset-4 md:mb-0 md:flex-row">
+            <div className="mb-6 flex flex-col gap-4 text-sm text-muted-foreground underline underline-offset-4 md:mb-0 md:flex-row text-gray-200">
               <Link href="/privacy-policy">Privacy Policy</Link>
               <Link href="/terms-of-service">Terms of Service</Link>
               <Link href="/cookie-policy">Cookie Policy</Link>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-gray-200">
               © <a href="https://github.com/hplar05">ZPPSU</a>. All rights
               reserved. 2024-present.
             </p>

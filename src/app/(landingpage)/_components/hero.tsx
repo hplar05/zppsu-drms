@@ -11,7 +11,7 @@ import { getServerSession } from "next-auth";
 const Hero = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <Section id="home" className="border-b">
+    <Section id="home" className="border-b bg-header-img bg-fixed bg-cover">
       <Container className="flex flex-col items-center text-center">
         <Image
           src={Logo}
@@ -20,21 +20,21 @@ const Hero = async () => {
           alt="Company Logo"
           className=" mb-6 dark:invert md:mb-8 max-md:hidden"
         />
-        <h1 className="!mb-0 max-md:text-[2rem]">
+        <h1 className="!mb-0 max-md:text-[2rem] text-white font-semibold">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>
         </h1>
-        <h3 className="text-muted-foreground max-md:text-[1rem] ">
+        <h3 className="text-gray-200 max-md:text-[1rem] ">
           <Balancer>
             Effortlessly Request Essential Documents Like Diplomas, TORs, Grade
             Slips, Form 137, and More Through Our Registration Portal
           </Balancer>
         </h3>
         <div className="not-prose mt-6 flex gap-2 md:mt-12">
-          <Button className="bg-[#800000]" asChild>
+          {/* <Button className="bg-[#800000]" asChild>
             <Link href={session?.user ? "/student/dashboard" : "/login"}>
               Get Started -{">"}
             </Link>
-          </Button>
+          </Button> */}
         </div>
       </Container>
     </Section>

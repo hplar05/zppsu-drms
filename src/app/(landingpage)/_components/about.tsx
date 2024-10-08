@@ -22,10 +22,13 @@ const Feature = () => {
             />
           </div>
           <div className="flex flex-col gap-6 py-8">
-            <h3 className="!my-0">Lorem ipsum dolor sit</h3>
-            <p className="font-light leading-[1.4] opacity-70">
-              Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-              labore et dolore magna aliqua.
+            <h3 className="!my-0 not-prose text-5xl max-md:text-[lg]">
+              MISSION
+            </h3>
+            <p className="font-light leading-[1.4] opacity-70 text-gray-800 not-prose">
+              Provide effective and efficient services through advanced
+              technological studies and researches for the empowerment of the
+              human resources.
             </p>
             {/* <div className="not-prose flex items-center gap-2">
               <Button className="w-fit" asChild>

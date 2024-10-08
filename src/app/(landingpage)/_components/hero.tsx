@@ -23,13 +23,16 @@ const Hero = async () => {
         <h1 className="!mb-0 max-md:text-[2rem] text-white font-semibold">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>
         </h1>
-        <h3 className="text-gray-200 max-md:text-[1rem] ">
+        <h3 className="text-gray-200 max-md:text-[1rem] text-justify">
           <Balancer>
-            Effortlessly Request Essential Documents Like Diplomas, TORs, Grade
-            Slips, Form 137, and More Through Our Registration Portal
+            Zamboanga Peninsula Polytechnic State University is dedicated to
+            empowering individuals through knowledge, diversity, and positive
+            global impact. The university remains committed to excellence,
+            innovation, and inclusivity in the changing landscape of higher
+            education, embodied by the motto "Un Sagwan, Un Layag.
           </Balancer>
         </h3>
-        <div className="not-prose mt-6 flex gap-2 md:mt-12">
+        <div className="not-prose flex gap-2 md:mt-12">
           {/* <Button className="bg-[#800000]" asChild>
             <Link href={session?.user ? "/student/dashboard" : "/login"}>
               Get Started -{">"}

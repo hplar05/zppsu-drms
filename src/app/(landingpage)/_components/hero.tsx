@@ -29,7 +29,7 @@ const Hero = async () => {
             empowering individuals through knowledge, diversity, and positive
             global impact. The university remains committed to excellence,
             innovation, and inclusivity in the changing landscape of higher
-            education, embodied by the motto "Un Sagwan, Un Layag.
+            education, embodied by the motto Un Sagwan, Un Layag.
           </Balancer>
         </h3>
         <div className="not-prose flex gap-2 md:mt-12">

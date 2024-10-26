@@ -58,23 +58,23 @@ export function UploadPaySlipDrawer({ requestId }: UploadPaySlipDrawerProps) {
     <Drawer>
       <DrawerTrigger asChild>
         <Button variant="default" className="bg-[#800000] text-white">
-          Upload Pay Slip
+          Upload Receipt
         </Button>
       </DrawerTrigger>
       <DrawerContent className="dark:bg-black">
         <form onSubmit={onSubmit}>
           <div className="mx-auto w-full max-w-sm">
             <DrawerHeader>
-              <DrawerTitle>Upload Pay Slip</DrawerTitle>
+              <DrawerTitle>Upload Receipt</DrawerTitle>
               <DrawerDescription className="text-xs">
-                If admin advice you to upload, Upload your pay slip here.
+                If admin advice you to upload, Upload your Receipt here.
               </DrawerDescription>
             </DrawerHeader>
             <div className="pb-0">
               <div className="flex items-center justify-center">
                 {payslipUrl.length ? (
                   <div className="flex flex-col justify-center items-center gap-2">
-                    <p>Payslip Uploaded</p>
+                    <p>Receipt Uploaded</p>
                     <Image
                       height={200}
                       width={200}

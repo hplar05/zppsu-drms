@@ -9,7 +9,7 @@ const UploadPaySlip = ({ params }: { params: { id: number } }) => {
 
   return (
     <div className="max-w-2xl mx-auto p-1 bg-background">
-      <h1 className="text-3xl font-bold mb-6">Payslip Upload</h1>
+      <h1 className="text-3xl font-bold mb-6">Receipt Upload</h1>
 
       <div
         className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6"
@@ -19,7 +19,7 @@ const UploadPaySlip = ({ params }: { params: { id: number } }) => {
           <AlertTriangle className="h-6 w-6 mr-2" />
           <p>
             <strong className="font-bold">Important Reminder:</strong> As
-            advised by the admin, please upload your payslip image. This is an
+            advised by the admin, please upload your Receipt image. This is an
             important step in our process.
           </p>
         </div>
@@ -30,7 +30,7 @@ const UploadPaySlip = ({ params }: { params: { id: number } }) => {
       <section className="mb-6">
         <h2 className="text-2xl font-semibold mb-3">Upload Instructions</h2>
         <ol className="list-decimal list-inside space-y-2">
-          <li>Prepare your payslip image for upload.</li>
+          <li>Prepare your Receipt image for upload.</li>
           <li>Ensure the image is clear and legible.</li>
           <li>The file size must not exceed 2MB.</li>
           <li>Acceptable file formats: JPG, and PNG.</li>
@@ -45,7 +45,7 @@ const UploadPaySlip = ({ params }: { params: { id: number } }) => {
             should be easily readable.
           </li>
           <li>
-            <strong>Completeness:</strong> Ensure the entire payslip is visible
+            <strong>Completeness:</strong> Ensure the entire Receipt is visible
             in the image.
           </li>
           <li>
@@ -69,7 +69,7 @@ const UploadPaySlip = ({ params }: { params: { id: number } }) => {
 
       <section>
         <h2 className="text-2xl font-semibold mb-3">Next Steps</h2>
-        <p>After successfully uploading your payslip:</p>
+        <p>After successfully uploading your Receipt:</p>
         <ol className="list-decimal list-inside space-y-2">
           <li>Our Admin will review the document.</li>
           <li>

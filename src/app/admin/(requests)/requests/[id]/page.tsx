@@ -62,7 +62,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             </div>
             <Card>
               <CardContent className="p-4 flex flex-col gap-2 justify-center items-center">
-                <h3 className="text-lg font-semibold">PaySlip Image</h3>
+                <h3 className="text-lg font-semibold">Receipt Image</h3>
                 <p className="text-sm text-muted-foreground">
                   {request.payslipUrl && (
                     <Image

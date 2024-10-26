@@ -16,7 +16,7 @@ export async function uploadPayslip(formData: FormData) {
           data: {
             payslipUrl,
             action: "PAID",
-            adminMessage: "Thank you for uploading your pay slip, Kindly wait for admin to approve your payment."
+            adminMessage: "Thank you for uploading your receipt, Kindly wait for admin to approve your payment."
           },
           where: { id: Number(id) },
         });
@@ -25,6 +25,6 @@ export async function uploadPayslip(formData: FormData) {
       redirect("/student/dashboard");
     
  } catch (error) {
-    console.log(`Failed to upload your payslip image : ${error}`)
+    console.log(`Failed to upload your receipt image : ${error}`)
  }
 }

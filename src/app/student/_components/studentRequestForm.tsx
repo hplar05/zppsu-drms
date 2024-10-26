@@ -63,7 +63,7 @@ export default function StudentRequestForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto my-5">
+    <Card className="w-full max-w-md mx-auto my-14">
       <CardHeader>
         <CardTitle className="text-center">Create Request</CardTitle>
         <CardDescription className="text-center">
@@ -241,7 +241,9 @@ export default function StudentRequestForm() {
           <Button variant="outline">
             <Link href="/student/dashboard">Cancel</Link>
           </Button>
-          <Button type="submit">Submit</Button>
+          <Button className="bg-[#800000] text-white" type="submit">
+            Submit
+          </Button>
         </CardFooter>
       </form>
     </Card>

@@ -125,7 +125,7 @@ export const columns: ColumnDef<Request>[] = [
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href={`/admin/requests/${request.id}`}>
-                View Payslip Image
+                View Receipt Image
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />

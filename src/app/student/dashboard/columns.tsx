@@ -79,7 +79,7 @@ export const columns: ColumnDef<Request>[] = [
               <Link href={`${request.attachment}`}>View Request Form</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href={`${request.payslipUrl}`}>View Payslip Image</Link>
+              <Link href={`${request.payslipUrl}`}>View Receipt Image</Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuLabel>Action</DropdownMenuLabel>

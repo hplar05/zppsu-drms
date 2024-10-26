@@ -55,7 +55,7 @@ const Page = async () => {
           </div>
         </div>
         <Tracking />
-        {/* <div className="flex flex-col gap-20 justify-center items-center my-16">
+        <div className="flex flex-col gap-20 justify-center items-center my-16">
           {res.length ? (
             <div className="gap-2 flex justify-between">
               <Button className="bg-[#800000] text-white" disabled>
@@ -63,7 +63,7 @@ const Page = async () => {
               </Button>
               <Button className="bg-[#800000] text-white">
                 <Link href={`/student/uploadpayslip/${requestId}`}>
-                  Upload Payslip
+                  Upload Receipt
                 </Link>
               </Button>
             </div>
@@ -71,21 +71,20 @@ const Page = async () => {
             <Button className="bg-[#800000] text-white dark:bg-white dark:text-black">
               <Link href="/student/add-your-request">Create Request</Link>
             </Button>
-            
           )}
-        </div> */}
-        <div className="flex flex-col gap-20 justify-center items-center my-16">
+        </div>
+        {/* <div className="flex flex-col gap-20 justify-center items-center my-16">
           <div className="gap-2 flex justify-between">
             <Button className="bg-[#800000] text-white">
               <Link href={`/student/uploadpayslip/${requestId}`}>
-                Upload Payslip
+                Upload Receipt
               </Link>
             </Button>
             <Button className="bg-[#800000] text-white dark:bg-white dark:text-black">
               <Link href="/student/add-your-request">Create Request</Link>
             </Button>
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-between items-center gap-2 w-full mb-auto">
           <div className="w-[70%] ">
             <TrackingTable userId={userId!} />

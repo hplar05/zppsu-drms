@@ -67,7 +67,7 @@ export default async function UserLists({
       <TableCaption>List of Students</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-auto">Image</TableHead>
+          {/* <TableHead className="w-auto">Image</TableHead> */}
           <TableHead className="w-auto">Name</TableHead>
           <TableHead className="w-auto">Username</TableHead>
           <TableHead className="w-auto">Student ID</TableHead>
@@ -80,7 +80,7 @@ export default async function UserLists({
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.id}>
-            <TableCell>
+            {/* <TableCell>
               <Avatar>
                 <AvatarImage
                   src={user.image ?? fallbackAvatarUrl}
@@ -90,7 +90,7 @@ export default async function UserLists({
                   ZPPSU
                 </AvatarFallback>
               </Avatar>
-            </TableCell>
+            </TableCell> */}
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.username}</TableCell>
             <TableCell>{user.studId}</TableCell>

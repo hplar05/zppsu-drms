@@ -16,28 +16,26 @@ const Hero = async () => {
         <Image
           src={Logo}
           width={172}
-          height={72}
+          height={52}
           alt="Company Logo"
-          className=" mb-6 dark:invert md:mb-8 max-md:hidden"
+          className="mb-6 dark:invert md:mb-8 max-md:hidden"
         />
         <h1 className="!mb-0 max-md:text-[2rem] text-white font-semibold">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>
         </h1>
-        <h3 className="text-gray-200 max-md:text-[1rem] text-justify">
+        <h3 className="text-gray-200 max-md:text-[0.5rem] text-justify">
           <Balancer>
             Zamboanga Peninsula Polytechnic State University is dedicated to
             empowering individuals through knowledge, diversity, and positive
-            global impact. The university remains committed to excellence,
-            innovation, and inclusivity in the changing landscape of higher
-            education, embodied by the motto Un Sagwan, Un Layag.
+            global impact.
           </Balancer>
         </h3>
         <div className="not-prose flex gap-2 md:mt-12">
-          {/* <Button className="bg-[#800000]" asChild>
+          <Button className="bg-[#800000]" asChild>
             <Link href={session?.user ? "/student/dashboard" : "/login"}>
               Get Started -{">"}
             </Link>
-          </Button> */}
+          </Button>
         </div>
       </Container>
     </Section>

@@ -6,8 +6,9 @@ import "@/src/app/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Landing page  - ZPPSU DRMS",
-  description: "Landing page  - ZPPSU DRMS",
+  title: "Home - ZPPSU DRMS",
+  description:
+    "Landing page of Zamboanga Peninsula Polytechnic State University Document Request Management System",
 };
 
 export default function RootLayout({

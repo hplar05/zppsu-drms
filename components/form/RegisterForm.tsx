@@ -258,74 +258,7 @@ const RegisterForm = () => {
                 </Button>
               </div>
             </div>
-            <div className="mx-auto mt-2">
-              {imageUrl.length ? (
-                <div className="flex justify-center items-center flex-col">
-                  <FormLabel className="mb-2 text-right">
-                    Image Uploaded
-                  </FormLabel>
-                  {/* <Image
-                    alt="Done Upload"
-                    src={imageUrl}
-                    width={100}
-                    height={100}
-                    className="mb-3"
-                  /> */}
-                  <Button
-                    variant={"ghost"}
-                    onClick={() => {
-                      setImageUrl("");
-                    }}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              ) : (
-                <FormField
-                  control={form.control}
-                  name="image"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="mb-2">
-                        Upload your Avatar Image (optional)
-                      </FormLabel>
-                      <FormControl>
-                        <div>
-                          <UploadButton
-                            appearance={{
-                              button: {
-                                background: "#800000",
-                                color: "white",
-                              },
-                            }}
-                            endpoint="imageUploader"
-                            onClientUploadComplete={(res: any) => {
-                              const imageUrl = res[0]?.url;
-                              if (imageUrl) {
-                                field.onChange(imageUrl);
-                                toast.success("Image uploaded successfully");
-                              }
-                              if (res && res.length > 0 && res[0].url) {
-                                setImageUrl(res[0].url);
-                              } else {
-                                console.error(
-                                  "Please input a valid avatar image.",
-                                  res
-                                );
-                              }
-                            }}
-                            onUploadError={(error: Error) => {
-                              toast.error(`ERROR! ${error.message}`);
-                            }}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              )}
-            </div>
+            {/* Temporary remove image upload */}
             <Button className="w-full mt-6 bg-[#800000]" type="submit">
               Sign up
             </Button>

@@ -26,6 +26,7 @@ model User {
   requestForm  RequestForm[]
   announcement Announcement[]
   role         Role           @default(STUDENT)
+  // isApprove    Boolean?
   createdAt    DateTime       @default(now())
   updateUt     DateTime       @updatedAt
 }

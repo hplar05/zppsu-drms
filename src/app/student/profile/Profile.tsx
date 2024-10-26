@@ -17,7 +17,7 @@ export default function Profile() {
   const { data: session } = useSession();
   return (
     <div className="gap-2">
-      <Card className="mb-4">
+      <Card className="mb-4 dark:bg-[#18191A]">
         <CardContent className="p-6">
           <div className="flex flex-col md:flex-row gap-6">
             {session?.user.image?.length ? (
@@ -51,7 +51,7 @@ export default function Profile() {
         </CardContent>
       </Card>
       <div className="grid gap-2 md:grid-cols-2">
-        <Card className="mb-4">
+        <Card className="mb-4 dark:bg-[#18191A]">
           <CardHeader>
             <CardTitle>Contact Info</CardTitle>
           </CardHeader>
@@ -71,7 +71,7 @@ export default function Profile() {
           </CardContent>
         </Card>
 
-        <Card className="mb-4">
+        <Card className="mb-4 dark:bg-[#18191A]">
           <CardHeader>
             <CardTitle>Education Info</CardTitle>
           </CardHeader>
@@ -91,7 +91,7 @@ export default function Profile() {
           </CardContent>
         </Card>
       </div>
-      <Card className="mb-2">
+      <Card className="mb-2 dark:bg-[#18191A]">
         <CardHeader>
           <CardTitle>Data Privacy</CardTitle>
         </CardHeader>

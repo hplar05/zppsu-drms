@@ -48,13 +48,18 @@ const Page = async () => {
           <div className="flex">
             <AlertTriangle className="h-6 w-6 mr-2" />
             <p>
-              <strong className="font-bold">Important Reminder: </strong>
+              <strong className="font-bold max-md:w-auto">
+                Important Reminder:
+              </strong>
               Expect 2 to 3 working days before getting your Request Documents
               after submitting your Request Form Document, Thank you.
             </p>
           </div>
         </div>
-        <Tracking />
+        <div className="max-md:hidden block">
+          <Tracking />
+        </div>
+
         <div className="flex flex-col gap-20 justify-center items-center my-16">
           {res.length ? (
             <div className="gap-2 flex justify-between">

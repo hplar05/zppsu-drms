@@ -23,7 +23,7 @@ const Hero = async () => {
         <h1 className="!mb-0 max-md:text-[2rem] text-white font-semibold">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>
         </h1>
-        <h3 className="text-gray-200 max-md:text-[0.5rem] text-justify">
+        <h3 className="text-gray-200 max-md:text-[1rem] text-justify">
           <Balancer>
             Zamboanga Peninsula Polytechnic State University is dedicated to
             empowering individuals through knowledge, diversity, and positive

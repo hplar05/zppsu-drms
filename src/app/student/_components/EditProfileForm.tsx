@@ -22,7 +22,7 @@ export function EditProfileForm({ user }: { user: User }) {
   const [state, formAction] = useFormState(UpdateProfileWithId, null);
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto dark:bg-[#18191A]">
       <CardHeader>
         <CardTitle>Edit Profile</CardTitle>
         <CardDescription>Update Profile.</CardDescription>

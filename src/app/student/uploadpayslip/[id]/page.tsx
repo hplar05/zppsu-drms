@@ -8,7 +8,7 @@ const UploadPaySlip = ({ params }: { params: { id: number } }) => {
   const requestId = params.id; // Extract the requestId from params
 
   return (
-    <div className="max-w-2xl mx-auto p-1 bg-background">
+    <div className="max-w-2xl mx-auto bg-background max-md:p-6">
       <h1 className="text-3xl font-bold mb-6">Receipt Upload</h1>
 
       <div

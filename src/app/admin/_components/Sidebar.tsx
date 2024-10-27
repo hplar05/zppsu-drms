@@ -122,9 +122,13 @@ export default function UserSidebar() {
           <MegaphoneIcon className="h-5 w-5" />
           <span>Announcements</span>
         </Link>
-        <Link href="#" className={linkClasses("#")} prefetch={false}>
-          <SettingsIcon className="w-5 h-5" />
-          Settings
+        <Link
+          href="/admin/profile"
+          className={linkClasses("/admin/profile")}
+          prefetch={false}
+        >
+          <UserIcon className="w-5 h-5" />
+          Profile
         </Link>
         <div className="mt-auto w-full">
           <div className="mb-12">

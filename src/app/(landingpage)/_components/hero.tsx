@@ -13,7 +13,7 @@ const Hero = async () => {
   return (
     <Section
       id="home"
-      className="border-b bg-header-img bg-fixed bg-cover pb-20"
+      className="border-b bg-header-img bg-fixed bg-cover pb-20 min-h-[70vh] max-md:min-h-[50vh]"
     >
       <Container className="flex flex-col items-center text-center gap-2">
         <Image
@@ -21,7 +21,7 @@ const Hero = async () => {
           width={172}
           height={52}
           alt="Company Logo"
-          className="mb-6 dark:invert md:mb-8 max-md:hidden"
+          className="mb-6 dark:invert md:mb-8"
         />
         <h1 className="!mb-0 max-md:text-[2rem] text-white font-semibold">
           <Balancer>Zamboanga Peninsula Polytechnic State University</Balancer>

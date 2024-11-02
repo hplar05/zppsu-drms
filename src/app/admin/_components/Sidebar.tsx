@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import Image from "next/image";
 import Logo from "@/public/logo.jpg";
 import { usePathname } from "next/navigation";
+import PendingApprovalICon from "./pendingApprovalIcon";
+import { UserCog } from "lucide-react";
 
 export default function UserSidebar() {
   const pathname = usePathname();
@@ -56,6 +58,16 @@ export default function UserSidebar() {
           <LayoutDashboardIcon className="h-5 w-5" />
           <span>Admin Dashboard</span>
         </Link>
+
+        <Link
+          href="/admin/pending-approval-users"
+          className={linkClasses("/admin/pending-approval-users")}
+          prefetch={false}
+        >
+          <UserCog className="w-5 h-5" />
+          <span>Pending Approval Users</span>
+        </Link>
+
         <Link
           href="/admin/users-table"
           className={linkClasses("/admin/users-table")}
@@ -64,6 +76,7 @@ export default function UserSidebar() {
           <UserIcon className="w-5 h-5" />
           <span>Students Lists</span>
         </Link>
+
         <div className="text-muted-foreground font-medium text-base">
           Requests
         </div>

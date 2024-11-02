@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -27,6 +21,9 @@ model User {
   announcement Announcement[]
   role         Role           @default(STUDENT)
   isApprove    Boolean        @default(false)
+  proofOfID    String?
+  yearAttended String?
+  semmester    String?
   createdAt    DateTime       @default(now())
   updateUt     DateTime       @updatedAt
 }
@@ -34,8 +31,44 @@ model User {
 enum Role {
   STUDENT
   GRADUATE_STUDENT
+  IRREGULAR
   ADMIN
   SUPERADMIN
+}
+
+enum Course {
+  BSIT
+  BSAT
+  BSET
+  BSEIexT
+  BSMT
+  BSCRACT
+  BSCompTech
+  BSEntrep
+  BSHM
+  BSInfoTech
+  BSMarE
+  BSDevcom
+  BFA
+}
+
+enum RegistrarForms {
+  Enrollment_Form
+  Diploma
+  TOR
+  Report_of_Grades
+  Certificate_of_Transfer
+  Application_of_Cross_Enrollment
+  Certificate_of_Enrollment
+  Request_Form_for_Students_Permanent_Record
+  Evaluation_Form
+  Request_Form_for_Document_Issurance
+  Students_List
+  College_Students_Permanent_Record
+  Application_Form_for_Graduation
+  Completion_Removal_Form
+  Prospectus
+  Enrollment_List
 }
 
 model RequestForm {

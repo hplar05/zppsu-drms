@@ -10,6 +10,7 @@ import Logo from "@/public/logo.jpg";
 import { usePathname } from "next/navigation";
 import PendingApprovalICon from "./pendingApprovalIcon";
 import { UserCog } from "lucide-react";
+import Message from "@mui/icons-material/Message";
 
 export default function UserSidebar() {
   const pathname = usePathname();
@@ -131,6 +132,14 @@ export default function UserSidebar() {
         <div className="text-muted-foreground font-medium text-base">
           Others
         </div>
+        <Link
+          href="/admin/chats"
+          className={linkClasses("/admin/chats")}
+          prefetch={false}
+        >
+          <Message className="h-5 w-5" />
+          <span>Chats</span>
+        </Link>
         <Link href="#" className={linkClasses("#")} prefetch={false}>
           <MegaphoneIcon className="h-5 w-5" />
           <span>Announcements</span>

@@ -10,6 +10,7 @@ import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";
 import { Knock } from "@knocklabs/node";
 import UserSidebar from "./_components/userSidebar";
+import { FloatingButton } from "@/components/FloatingButton";
 // import UserFooter from "./_components/userFooter";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -58,6 +59,7 @@ export default async function RootLayout({
               <UserSidebar />
               <main className="flex-1 h-screen pt-1">{children}</main>
             </div>
+            <FloatingButton />
           </ThemeProvider>
         </Provider>
       </body>

@@ -1,5 +1,4 @@
 import "@/src/app/globals.css";
-
 export const metadata = {
   title: "Denied - ZPPSU DRMS",
   description: "Denied - ZPPSU DRMS",

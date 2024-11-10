@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,9 +9,27 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { AlertCircle, Clock } from "lucide-react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function PendingApproval() {
+  const router = useRouter();
+  // logout function
+  // const SignOut = () => {
+  //   try {
+  //     setTimeout(() => {
+  //       signOut();
+  //       toast.success("Logout Successfully");
+  //       router.push("/");
+  //     }, 1000);
+  //   } catch (error) {
+  //     console.log(`Something went wrong! ${error}`);
+  //     toast.error("Something went wrong!");
+  //   }
+  // };
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
@@ -42,8 +61,9 @@ export default function PendingApproval() {
           <Button variant="outline" asChild>
             <Link href="/">Return to Home</Link>
           </Button>
-          {/* <Button asChild>
-            <Link href="/contact">Contact Support</Link>
+          {/* LogOut function */}
+          {/* <Button onClick={SignOut} variant="destructive">
+            Logout
           </Button> */}
         </CardFooter>
       </Card>

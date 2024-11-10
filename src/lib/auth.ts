@@ -47,7 +47,8 @@ export const authOptions: NextAuthOptions = {
                 image: existingUser.image,
                 role: existingUser.role,
                 studId: existingUser.studId,
-                course: existingUser.course
+                course: existingUser.course,
+                isApprove: existingUser.isApprove
             }
           }
         })
@@ -66,7 +67,8 @@ export const authOptions: NextAuthOptions = {
                     image: user.image,
                     role: user.role,
                     studId: user.studId,
-                    course: user.course
+                    course: user.course,
+                    isApprove: user.isApprove
                 }
             }
             return token
@@ -84,7 +86,8 @@ export const authOptions: NextAuthOptions = {
                     image: token.image,
                     role: token.role,
                     studId: token.studId,
-                    course: token.course
+                    course: token.course,
+                    isApprove: token.isApprove
                 }
             }
             return session

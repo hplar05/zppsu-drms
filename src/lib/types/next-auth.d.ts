@@ -12,7 +12,8 @@ declare module "next-auth" {
         image: string | null,
         course: string,
         studId: string,
-        role: Role
+        role: Role,
+        isApprove: boolean
     }
 
     interface Session {
@@ -25,7 +26,8 @@ declare module "next-auth" {
             image: string | null,
             course: string,
             studId: string,
-            role: Role
+            role: Role,
+            isApprove: boolean
         }
     }
 }
@@ -40,6 +42,7 @@ declare module "next-auth/jwt" {
         image: string | null,
         course: string,
         studId: string,
-        role: Role
+        role: Role,
+        isApprove: boolean
     }
 }

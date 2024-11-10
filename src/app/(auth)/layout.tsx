@@ -19,7 +19,7 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
 
-  if (session) redirect("/alreadyLoggedIn");
+  if (session) redirect("/student-dashboard");
 
   return (
     <html lang="en">

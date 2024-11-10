@@ -10,7 +10,7 @@ import { authOptions } from "@/src/lib/auth";
 import { redirect } from "next/navigation";
 import { Knock } from "@knocklabs/node";
 import UserSidebar from "./_components/userSidebar";
-import UserFooter from "./_components/userFooter";
+// import UserFooter from "./_components/userFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +25,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession(authOptions);
+
+  if (session?.user.isApprove === false) {
+    redirect("/pending-approval");
+  }
   if (session?.user.role === "ADMIN" || session?.user.role === "SUPERADMIN")
     redirect("/admin/dashboard");
   if (!session || !session.user) redirect("/login");

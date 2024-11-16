@@ -33,6 +33,7 @@ export default async function UserLists({
 
   const users = await db.user.findMany({
     where: {
+      isApprove: { equals: true },
       role: { in: ["STUDENT", "GRADUATE_STUDENT"] },
       OR: [
         { name: { contains: query } },
@@ -74,7 +75,7 @@ export default async function UserLists({
           <TableHead className="w-auto">Course</TableHead>
           <TableHead className="w-auto">Email</TableHead>
           <TableHead className="w-auto">Mobile Number</TableHead>
-          <TableHead className="w-auto">Role</TableHead>
+          <TableHead className="w-auto">Academic Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

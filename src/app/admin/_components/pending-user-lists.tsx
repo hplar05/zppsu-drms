@@ -74,7 +74,7 @@ export default async function PendingUserLists({
           <TableHead className="w-auto">Course</TableHead>
           <TableHead className="w-auto">Email</TableHead>
           <TableHead className="w-auto">Mobile Number</TableHead>
-          <TableHead className="w-auto">Role</TableHead>
+          <TableHead className="w-auto">Academic Status</TableHead>
           <TableHead className="w-auto">Proof Attachment</TableHead>
           <TableHead className="w-auto">Action</TableHead>
         </TableRow>

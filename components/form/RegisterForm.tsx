@@ -47,32 +47,43 @@ const RegisterForm = () => {
       proofOfID: "",
       confirmPassword: "",
       studId: "",
-      course: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
-    const response = await fetch("api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: values.name,
-        mobileNumber: values.mobileNumber,
-        username: values.username,
-        email: values.email,
-        proofOfID: values.proofOfID,
-        password: values.password,
-        course: values.course,
-        studId: values.studId,
-      }),
-    });
-    if (response.ok) {
-      toast.success("Successfully registered!");
-      router.push("/login");
-    } else {
-      console.error("Registration failed");
+    try {
+      const response = await fetch("api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name,
+          mobileNumber: values.mobileNumber,
+          username: values.username,
+          email: values.email,
+          proofOfID: values.proofOfID,
+          password: values.password,
+          course: values.course,
+          studId: values.studId,
+          role: values.role,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Successfully registered!");
+        router.push("/login");
+      } else if (response.status === 409) {
+        const errorData = await response.json();
+        toast.error(
+          errorData.message || "A conflict occurred. Please try again."
+        );
+      } else {
+        toast.error("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
     }
   };
 
@@ -87,7 +98,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Card className="w-[700px] h-[90vh] flex flex-col items-center justify-center rounded-none">
+    <Card className="w-[700px] h-[90vh] flex flex-col items-center justify-center rounded-none overflow-auto">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">
           Register
@@ -141,19 +152,76 @@ const RegisterForm = () => {
                   )}
                 />
               </div>
-              <FormField
-                control={form.control}
-                name="course"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Course</FormLabel>
-                    <FormControl>
-                      <Input placeholder="your course" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="flex justify-between">
+                <FormField
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Academic Status</FormLabel>
+                      <FormControl>
+                        <select
+                          className="rounded-sm border-gray-300 dark:border-white border flex overflow-auto"
+                          {...field}
+                        >
+                          {[
+                            "SELECT",
+                            "STUDENT",
+                            "GRADUATE_STUDENT",
+                            "IRREGULAR",
+                            "DROPOUT",
+                            "RETURNEES",
+                            "ADMIN",
+                            "SUPERADMIN",
+                          ].map((role) => (
+                            <option key={role} value={role}>
+                              {role.replace("_", " ")}
+                            </option>
+                          ))}
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="course"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Course</FormLabel>
+                      <FormControl>
+                        <select
+                          className="rounded-sm border-gray-300 dark:border-white border flex"
+                          {...field}
+                        >
+                          {[
+                            "SELECT",
+                            "BSIT",
+                            "BSAT",
+                            "BSET",
+                            "BSEIexT",
+                            "BSMT",
+                            "BSCRACT",
+                            "BSCompTech",
+                            "BSEntrep",
+                            "BSHM",
+                            "BSInfoTech",
+                            "BSMarE",
+                            "BSDevcom",
+                            "BFA",
+                          ].map((course) => (
+                            <option key={course} value={course}>
+                              {course}
+                            </option>
+                          ))}
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <div className="flex justify-between gap-2">
                 <FormField
                   control={form.control}

@@ -2,33 +2,42 @@ import { z } from "zod";
 
 export type RegisterType = z.infer<typeof RegisterSchema>
 
-export const RegisterSchema = z.object({
-    username: z.string().min(1, "Username is required").max(100),
-    email: z.string().min(1, "Email is required").email("Invalid email"),
-    password: z
-      .string()
-      .min(8, { message: "Minimum password length is 8 characters" })
-      .max(20, { message: "Maximum password length is 20 characters" })
-      .refine(
-        (password) => {
-          // reg-ex code, chat gpt generated: at least one lowercase letter, one uppercase letter, and one special character
-          const passwordPattern =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[\w!@#$%^&*]+$/;
-          return passwordPattern.test(password);
-        },
-        {
-          message:
-            "Password must contain at least one lowercase letter, one uppercase letter, and one special character.",
-        }
-      ),
-    confirmPassword: z.string().min(1, "Password confirmation is required"),
-    name: z.string().min(3, "name is required"),
-    proofOfID: z.string().min(3, "proofs of id is required"),
-    mobileNumber: z.string().min(13, "mobile number is required").max(13),
-    studId: z.string().min(5, "student id is required").max(15),
-    course: z.string().min(4, "course is required").max(100),
+export const RegisterSchema = z
+  .object({
+    name: z.string().nonempty("Name is required"),
+    username: z.string().nonempty("Username is required"),
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(8, "Password must be at least 8 characters long"),
+    confirmPassword: z.string().min(8, "Confirm password is required"),
+    proofOfID: z.string().url("Proof of ID must be a valid URL"),
+    mobileNumber: z.string().regex(/^(\+63)?\d{10}$/, "Invalid mobile number"),
+    studId: z.string().nonempty("Student ID is required"),
+    course: z.enum([
+      "BSIT",
+      "BSAT",
+      "BSET",
+      "BSEIexT",
+      "BSMT",
+      "BSCRACT",
+      "BSCompTech",
+      "BSEntrep",
+      "BSHM",
+      "BSInfoTech",
+      "BSMarE",
+      "BSDevcom",
+      "BFA",
+    ]),
+    role: z.enum([
+      "STUDENT",
+      "GRADUATE_STUDENT",
+      "IRREGULAR",
+      "DROPOUT",
+      "RETURNEES",
+      "ADMIN",
+      "SUPERADMIN",
+    ]),
   })
   .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
     path: ["confirmPassword"],
-    message: "Password do not match",
   });

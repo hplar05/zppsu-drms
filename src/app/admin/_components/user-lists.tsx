@@ -29,12 +29,12 @@ export default async function UserLists({
   currentPage: number;
 }) {
   await new Promise((resolve) => setTimeout(resolve, 500));
-  const itemsPerPage = 10;
+  const itemsPerPage = 6;
 
   const users = await db.user.findMany({
     where: {
       isApprove: { equals: true },
-      role: { in: ["STUDENT", "GRADUATE_STUDENT"] },
+      role: { in: ["STUDENT", "GRADUATE_STUDENT", "RETURNEES", "DROPOUT"] },
       OR: [
         { name: { contains: query } },
         { studId: { contains: query } },

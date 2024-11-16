@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/pagination";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function PendingUserLists({
   query,
@@ -29,7 +31,7 @@ export default async function PendingUserLists({
   currentPage: number;
 }) {
   await new Promise((resolve) => setTimeout(resolve, 500));
-  const itemsPerPage = 10;
+  const itemsPerPage = 6;
 
   const users = await db.user.findMany({
     where: {
@@ -76,7 +78,8 @@ export default async function PendingUserLists({
           <TableHead className="w-auto">Mobile Number</TableHead>
           <TableHead className="w-auto">Academic Status</TableHead>
           <TableHead className="w-auto">Proof Attachment</TableHead>
-          <TableHead className="w-auto">Action</TableHead>
+          <TableHead className="text-center">Action</TableHead>
+          <TableHead className="text-center">Created At</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -102,14 +105,20 @@ export default async function PendingUserLists({
             <TableCell>
               <Badge>ZPPSU {user.role}</Badge>
             </TableCell>
-            <TableCell></TableCell>
+            <TableCell className="underline text-center cursor-pointer">
+              <Link href={user.proofOfID || "#"}>View</Link>
+            </TableCell>
+            <TableCell className="flex justify-between">
+              <Button variant={"success"}>Approve</Button>
+              <Button variant={"destructive"}>Decline</Button>
+            </TableCell>
             <TableCell></TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={10} className="text-center">
+          <TableCell colSpan={11} className="text-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

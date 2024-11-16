@@ -33,9 +33,9 @@ import { Eye, EyeOff } from "lucide-react";
 
 const RegisterForm = () => {
   const [imageUrl, setImageUrl] = useState("");
-  const [imageKey, setImageKey] = useState("");
+  // const [imageKey, setImageKey] = useState("");
   const router = useRouter();
-  const phdefaultcode = "+63";
+  // const phdefaultcode = "+63";
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
@@ -44,7 +44,7 @@ const RegisterForm = () => {
       username: "",
       email: "",
       password: "",
-      image: "",
+      proofOfID: "",
       confirmPassword: "",
       studId: "",
       course: "",
@@ -62,7 +62,7 @@ const RegisterForm = () => {
         mobileNumber: values.mobileNumber,
         username: values.username,
         email: values.email,
-        image: values.image,
+        proofOfID: values.proofOfID,
         password: values.password,
         course: values.course,
         studId: values.studId,
@@ -258,7 +258,74 @@ const RegisterForm = () => {
                 </Button>
               </div>
             </div>
-            {/* Temporary remove image upload */}
+            <div className="mx-auto mt-2">
+              {imageUrl.length ? (
+                <div className="flex justify-center items-center flex-col">
+                  <FormLabel className="mb-1 text-right">
+                    Image Uploaded
+                  </FormLabel>
+                  <img
+                    alt="Done Upload"
+                    src={imageUrl}
+                    width={80}
+                    height={80}
+                    className="mb-1"
+                  />
+                  <Button
+                    variant={"ghost"}
+                    onClick={() => {
+                      setImageUrl("");
+                    }}
+                  >
+                    Remove
+                  </Button>
+                </div>
+              ) : (
+                <FormField
+                  control={form.control}
+                  name="proofOfID"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="mb-2">
+                        Upload your proof of ID
+                      </FormLabel>
+                      <FormControl>
+                        <div>
+                          <UploadButton
+                            appearance={{
+                              button: {
+                                background: "#800000",
+                                color: "white",
+                              },
+                            }}
+                            endpoint="imageUploader"
+                            onClientUploadComplete={(res: any) => {
+                              const imageUrl = res[0]?.url;
+                              if (imageUrl) {
+                                field.onChange(imageUrl);
+                                toast.success("Image uploaded successfully");
+                              }
+                              if (res && res.length > 0 && res[0].url) {
+                                setImageUrl(res[0].url);
+                              } else {
+                                console.error(
+                                  "Please input a valid avatar image.",
+                                  res
+                                );
+                              }
+                            }}
+                            onUploadError={(error: Error) => {
+                              toast.error(`ERROR! ${error.message}`);
+                            }}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+            </div>
             <Button className="w-full mt-6 bg-[#800000]" type="submit">
               Sign up
             </Button>

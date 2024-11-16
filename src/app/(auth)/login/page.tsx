@@ -1,6 +1,6 @@
 import LoginForm from "@/components/form/LoginForm";
 import { Card } from "@/components/ui/card";
-import Logo from "@/public/header-bg.jpg";
+import Logo from "@/public/auth-img.jpg";
 import Image from "next/image";
 
 const page = () => {
@@ -11,7 +11,7 @@ const page = () => {
           <Image
             src={Logo}
             alt="Company Logo"
-            className="mb-6 h-[87vh] w-[700px]"
+            className="mb-6 h-[93vh] w-[700px] pt-6"
           />
         </Card>
 

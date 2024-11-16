@@ -16,7 +16,7 @@ const userSchema = z
         return passwordPattern.test(password)
     }, { message: "Password must contain at least one lowercase letter, one uppercase letter, and one special character." }),
     name: z.string().min(3, "name is required"),
-    image: z.string(),
+    proofOfID: z.string().min(3, "proofs of id is required"),
     mobileNumber: z.string().min(13, "mobile number is required").max(13),
     studId: z.string().min(5, "student id is required").max(15),
     course: z.string().min(4, "course is required").max(100),
@@ -26,7 +26,7 @@ const userSchema = z
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const {email, username, name, image, password, mobileNumber, course, studId} = userSchema.parse(body);
+        const {email, username, name, proofOfID, password, mobileNumber, course, studId} = userSchema.parse(body);
 
         // check if email already exist
         const existingUserByEmail = await db.user.findUnique({
@@ -51,7 +51,7 @@ export async function POST(req: Request) {
                 username,
                 email,
                 password: hashedPassword,
-                image,
+                proofOfID,
                 name,
                 mobileNumber,
                 studId,

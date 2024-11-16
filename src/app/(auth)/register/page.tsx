@@ -1,7 +1,7 @@
 import RegisterForm from "@/components/form/RegisterForm";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import Logo from "@/public/header-bg.jpg";
+import Logo from "@/public/auth-img.jpg";
 
 const page = () => {
   return (
@@ -11,7 +11,7 @@ const page = () => {
           <Image
             src={Logo}
             alt="Company Logo"
-            className="mb-6 h-[87vh] w-[700px]"
+            className="mb-6 h-[93vh] w-[700px] pt-6"
           />
         </Card>
         <RegisterForm />

@@ -23,7 +23,7 @@ export const RegisterSchema = z.object({
       ),
     confirmPassword: z.string().min(1, "Password confirmation is required"),
     name: z.string().min(3, "name is required"),
-    image: z.string(),
+    proofOfID: z.string().min(3, "proofs of id is required"),
     mobileNumber: z.string().min(13, "mobile number is required").max(13),
     studId: z.string().min(5, "student id is required").max(15),
     course: z.string().min(4, "course is required").max(100),

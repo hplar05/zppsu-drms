@@ -1,9 +1,39 @@
-import React from "react";
+import React, { Suspense } from "react";
+import { db } from "@/src/lib/db";
+import Search from "@/components/search";
+import RequestListsSkeleton from "./../../../../components/requestTableSkeleton";
 
-const page = () => {
+import AdminNavbar from "./../_components/adminNavbar";
+import PendingUserLists from "../_components/pending-user-lists";
+
+export default async function PendingNewUserTable({
+  searchParams,
+}: {
+  searchParams?: { query?: string; page?: string };
+}) {
+  const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
+  // const requestAvailable = await db.requestForm.count();
+
   return (
-    <div className="flex justify-center items-center min-h-screen">Hi</div>
-  );
-};
+    <main className="mt-2 z-50">
+      <div className="max-md:hidden block">
+        <AdminNavbar />
+      </div>
+      <main className="px-[2rem] py-[3rem] -z-50">
+        <div className="text-center">
+          <h1 className="text-xl md:text-2xl font-bold text-left">
+            Pending New Registered Accounts
+          </h1>
+          <div className=" flex items-center justify-between gap-2 md:mt-3 mb-6">
+            <Search placeholder="Search users..." />
+          </div>
+        </div>
 
-export default page;
+        <Suspense key={query + currentPage} fallback={<RequestListsSkeleton />}>
+          <PendingUserLists query={query} currentPage={currentPage} />
+        </Suspense>
+      </main>
+    </main>
+  );
+}

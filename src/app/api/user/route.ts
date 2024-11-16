@@ -58,6 +58,23 @@ const userSchema = z.object({
       if (existingUser) {
         return NextResponse.json({ message: "Email already exists" }, { status: 409 });
       }
+
+      const existingUsername = await db.user.findUnique({
+        where: { username },
+      });
+  
+      if (existingUsername) {
+        return NextResponse.json({ message: "Username already exists" }, { status: 409 });
+      }
+
+    //   const existingNumber = await db.user.findUnique({
+    //     where: { mobileNumber },
+    //   });
+  
+    //   if (existingNumber) {
+    //     return NextResponse.json({ message: "Username already exists" }, { status: 409 });
+    //   }
+  
   
       const hashedPassword = await hash(password, 10);
       const newUser = await db.user.create({

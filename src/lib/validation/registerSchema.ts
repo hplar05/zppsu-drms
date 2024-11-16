@@ -33,8 +33,8 @@ export const RegisterSchema = z
       "IRREGULAR",
       "DROPOUT",
       "RETURNEES",
-      "ADMIN",
-      "SUPERADMIN",
+      // "ADMIN",
+      // "SUPERADMIN",
     ]),
   })
   .refine((data) => data.password === data.confirmPassword, {

@@ -171,8 +171,8 @@ const RegisterForm = () => {
                             "IRREGULAR",
                             "DROPOUT",
                             "RETURNEES",
-                            "ADMIN",
-                            "SUPERADMIN",
+                            // "ADMIN",
+                            // "SUPERADMIN",
                           ].map((role) => (
                             <option key={role} value={role}>
                               {role.replace("_", " ")}

@@ -41,6 +41,7 @@ const userSchema = z.object({
       "IRREGULAR",
       "DROPOUT",
       "RETURNEES",
+      "SHIFTER",
     //   "ADMIN",
     //   "SUPERADMIN",
     ]),

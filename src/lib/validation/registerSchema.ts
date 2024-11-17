@@ -33,6 +33,7 @@ export const RegisterSchema = z
       "IRREGULAR",
       "DROPOUT",
       "RETURNEES",
+      "SHIFTER",
       // "ADMIN",
       // "SUPERADMIN",
     ]),

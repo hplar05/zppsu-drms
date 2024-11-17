@@ -171,6 +171,7 @@ const RegisterForm = () => {
                             "IRREGULAR",
                             "DROPOUT",
                             "RETURNEES",
+                            "SHIFTER",
                             // "ADMIN",
                             // "SUPERADMIN",
                           ].map((role) => (

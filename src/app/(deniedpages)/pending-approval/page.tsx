@@ -11,24 +11,18 @@ import {
 import { AlertCircle, Clock } from "lucide-react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function PendingApproval() {
-  const router = useRouter();
-  // logout function
-  // const SignOut = () => {
-  //   try {
-  //     setTimeout(() => {
-  //       signOut();
-  //       toast.success("Logout Successfully");
-  //       router.push("/");
-  //     }, 1000);
-  //   } catch (error) {
-  //     console.log(`Something went wrong! ${error}`);
-  //     toast.error("Something went wrong!");
-  //   }
-  // };
+  const SignOut = async () => {
+    try {
+      await signOut({ callbackUrl: "/" });
+      toast.success("Logout Successfully");
+    } catch (error) {
+      console.log(`Something went wrong! ${error}`);
+      toast.error("Something went wrong!");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -50,9 +44,9 @@ export default function PendingApproval() {
                 Thank you for creating an account
               </p>
               <p className="text-sm text-muted-foreground">
-                An Registrar admin needs to approve your account before you can
-                access the system. You will recieve an email if your account is
-                approve or decline.
+                A Registrar admin needs to approve your account before you can
+                access the system. You will receive an email if your account is
+                approved or declined.
               </p>
             </div>
           </div>
@@ -61,10 +55,9 @@ export default function PendingApproval() {
           <Button variant="outline" asChild>
             <Link href="/">Return to Home</Link>
           </Button>
-          {/* LogOut function */}
-          {/* <Button onClick={SignOut} variant="destructive">
+          <Button onClick={SignOut} variant="destructive">
             Logout
-          </Button> */}
+          </Button>
         </CardFooter>
       </Card>
     </div>

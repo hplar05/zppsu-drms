@@ -69,13 +69,15 @@ export default async function UserLists({
       <TableHeader>
         <TableRow>
           {/* <TableHead className="w-auto">Image</TableHead> */}
-          <TableHead className="w-auto">Name</TableHead>
+          <TableHead className="w-auto">Full Name</TableHead>
           <TableHead className="w-auto">Username</TableHead>
           <TableHead className="w-auto">Student ID</TableHead>
           <TableHead className="w-auto">Course</TableHead>
           <TableHead className="w-auto">Email</TableHead>
           <TableHead className="w-auto">Mobile Number</TableHead>
           <TableHead className="w-auto">Academic Status</TableHead>
+          <TableHead className="w-auto">No. of Request</TableHead>
+          <TableHead className="w-auto text-center">Created At</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -99,14 +101,26 @@ export default async function UserLists({
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.mobileNumber}</TableCell>
             <TableCell>
-              <Badge>ZPPSU {user.role}</Badge>
+              <Badge>{user.role}</Badge>
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell className="text-center">
+              {new Date(user.createdAt).toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true,
+              })}
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={8} className="text-center">
+          <TableCell colSpan={11} className="text-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

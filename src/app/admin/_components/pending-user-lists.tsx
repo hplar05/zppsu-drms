@@ -22,6 +22,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { ApproveDialog } from "./approveDialog";
+import { DeclineDialog } from "./declineDialog";
 
 export default async function PendingUserLists({
   query,
@@ -46,6 +48,18 @@ export default async function PendingUserLists({
     },
     skip: (currentPage - 1) * itemsPerPage,
     take: itemsPerPage,
+    select: {
+      id: true,
+      name: true,
+      username: true,
+      studId: true,
+      course: true,
+      email: true,
+      mobileNumber: true,
+      role: true,
+      proofOfID: true,
+      createdAt: true, // Include createdAt field
+    },
   });
 
   const usercounts = await db.user.count({
@@ -69,15 +83,14 @@ export default async function PendingUserLists({
       <TableCaption>List of Students</TableCaption>
       <TableHeader>
         <TableRow>
-          {/* <TableHead className="w-auto">Image</TableHead> */}
-          <TableHead className="w-auto">Name</TableHead>
-          <TableHead className="w-auto">Username</TableHead>
+          <TableHead className="w-auto">Full Name</TableHead>
+          {/* <TableHead className="w-auto">Username</TableHead> */}
           <TableHead className="w-auto">Student ID</TableHead>
           <TableHead className="w-auto">Course</TableHead>
           <TableHead className="w-auto">Email</TableHead>
           <TableHead className="w-auto">Mobile Number</TableHead>
           <TableHead className="w-auto">Academic Status</TableHead>
-          <TableHead className="w-auto">Proof Attachment</TableHead>
+          <TableHead className="w-auto">Attachment</TableHead>
           <TableHead className="text-center">Action</TableHead>
           <TableHead className="text-center">Created At</TableHead>
         </TableRow>
@@ -85,40 +98,39 @@ export default async function PendingUserLists({
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.id}>
-            {/* <TableCell>
-                <Avatar>
-                  <AvatarImage
-                    src={user.image ?? fallbackAvatarUrl}
-                    alt="@shadcn"
-                  />
-                  <AvatarFallback className="text-[0.60rem] text-white  bg-red-400">
-                    ZPPSU
-                  </AvatarFallback>
-                </Avatar>
-              </TableCell> */}
             <TableCell>{user.name}</TableCell>
-            <TableCell>{user.username}</TableCell>
+            {/* <TableCell>{user.username}</TableCell> */}
             <TableCell>{user.studId}</TableCell>
             <TableCell>{user.course}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.mobileNumber}</TableCell>
             <TableCell>
-              <Badge>ZPPSU {user.role}</Badge>
+              <Badge>{user.role}</Badge>
             </TableCell>
             <TableCell className="underline text-center cursor-pointer">
               <Link href={user.proofOfID || "#"}>View</Link>
             </TableCell>
-            <TableCell className="flex justify-between">
-              <Button variant={"success"}>Approve</Button>
-              <Button variant={"destructive"}>Decline</Button>
+            <TableCell className="flex gap-2">
+              <ApproveDialog userId={user.id} />
+              <DeclineDialog userId={user.id} />
             </TableCell>
-            <TableCell></TableCell>
+            <TableCell className="text-center">
+              {new Date(user.createdAt).toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true,
+              })}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={11} className="text-center">
+          <TableCell colSpan={12} className="text-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>

@@ -20,6 +20,8 @@ import toast from "react-hot-toast";
 import { signOut } from "next-auth/react";
 import UserAvatar from "@/components/avatar";
 import LogoutButton from "../../student/_components/logoutButton";
+import { UserCog } from "lucide-react";
+import Message from "@mui/icons-material/Message";
 
 const AdminNavbar = () => {
   const pathname = usePathname();
@@ -62,7 +64,7 @@ const AdminNavbar = () => {
               />
             </svg>
           </SheetTrigger>
-          <SheetContent side="left">
+          <SheetContent side="left" className="dark:bg-[#18191A]">
             <SheetHeader>
               <SheetTitle>
                 <Link
@@ -95,6 +97,16 @@ const AdminNavbar = () => {
                 <LayoutDashboardIcon className="h-5 w-5" />
                 <span>Admin Dashboard</span>
               </Link>
+
+              <Link
+                href="/admin/pending-approval-users"
+                className={linkClasses("/admin/pending-approval-users")}
+                prefetch={false}
+              >
+                <UserCog className="w-5 h-5" />
+                <span>Pending Approval Users</span>
+              </Link>
+
               <Link
                 href="/admin/users-table"
                 className={linkClasses("/admin/users-table")}
@@ -157,6 +169,14 @@ const AdminNavbar = () => {
               <div className="text-muted-foreground font-medium text-base">
                 Others
               </div>
+              <Link
+                href="/admin/chats"
+                className={linkClasses("/admin/chats")}
+                prefetch={false}
+              >
+                <Message className="h-5 w-5" />
+                <span>Chats</span>
+              </Link>
               <Link href="#" className={linkClasses("#")} prefetch={false}>
                 <MegaphoneIcon className="h-5 w-5" />
                 <span>Announcements</span>

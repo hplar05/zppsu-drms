@@ -1,14 +1,23 @@
 import "@/src/app/globals.css";
+import { authOptions } from "@/src/lib/auth";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 export const metadata = {
   title: "Denied - ZPPSU DRMS",
   description: "Denied - ZPPSU DRMS",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);
+
+  if (session?.user.isApprove === true) {
+    redirect("/student/dashboard");
+  }
+
   return (
     <html lang="en">
       <body>{children}</body>

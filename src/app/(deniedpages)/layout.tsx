@@ -17,7 +17,7 @@ export default async function RootLayout({
 
   if (session?.user.isApprove === true) {
     revalidatePath("/pending-approval");
-    redirect("/student/dashboard");
+    redirect("/student/reminders");
   }
 
   return (

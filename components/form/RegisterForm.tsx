@@ -98,7 +98,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Card className="w-[700px] h-[90vh] flex flex-col items-center justify-center rounded-none overflow-auto">
+    <Card className="w-auto h-auto flex flex-col items-center justify-center rounded-none overflow-auto">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl font-bold text-center">
           Register
@@ -109,7 +109,7 @@ const RegisterForm = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="w-auto">
             <div className="space-y-2">
               <FormField
                 control={form.control}
@@ -124,7 +124,7 @@ const RegisterForm = () => {
                   </FormItem>
                 )}
               />
-              <div className="flex justify-between">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
                   name="username"
@@ -132,7 +132,11 @@ const RegisterForm = () => {
                     <FormItem>
                       <FormLabel>Username</FormLabel>
                       <FormControl>
-                        <Input placeholder="johndoe" {...field} />
+                        <Input
+                          className="w-full"
+                          placeholder="zppsu123"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -145,13 +149,97 @@ const RegisterForm = () => {
                     <FormItem>
                       <FormLabel>Student ID</FormLabel>
                       <FormControl>
-                        <Input placeholder="your student id" {...field} />
+                        <Input
+                          className="w-full"
+                          placeholder="your student id"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
+              <FormField
+                control={form.control}
+                name="course"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Course</FormLabel>
+                    <FormControl>
+                      <select
+                        className="w-full p-2 border rounded-md"
+                        {...field}
+                      >
+                        {[
+                          "SELECT",
+                          "COLLEGE OF TEACHER EDUCATION",
+                          "BACHELOR OF ELEMENTARY EDUCATION",
+                          "BACHELOR OF SECONDARY EDUCATION - MAJOR IN MATHEMATICS",
+                          "BACHELOR OF SECONDARY EDUCATION - MAJOR IN ENGLISH",
+                          "BACHELOR OF TECHNOLOGY AND LIVELIHOOD EDUCATION - MAJOR IN HOME ECONOMICS",
+                          "BACHELOR OF TECHNOLOGY AND LIVELIHOOD EDUCATION - MAJOR IN INDUSTRIAL ARTS",
+                          "BACHELOR OF TECHNOLOGY AND LIVELIHOOD EDUCATION - MAJOR IN INFORMATION COMMUNICATION TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN AUTOMOTIVE TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN CIVIL TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR DRAFTING TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN ELECTRICAL TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN ELECTRONICS TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN FOOD SERVICES MANAGEMENT",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN GARMENTS, FASHION, AND DESIGN",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN MECHANICAL TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN WELDING AND FABRICATION TECHNOLOGY",
+                          "BACHELOR OF TECHNICAL – VOCATIONAL TEACHER EDUCATION - MAJOR IN HEATING, VENTILATION, AND AIR-CONDITIONING TECHNOLOGY",
+                          "DEPARTMENT OF PHYSICAL EDUCATION",
+                          "BACHELOR OF PHYSICAL EDUCATION",
+                          "BACHELOR OF SCIENCE IN EXERCISE AND SPORTS SCIENCES - MAJOR IN FITNESS AND SPORTS COACHING",
+                          "BACHELOR OF SCIENCE IN EXERCISE AND SPORTS SCIENCES - MAJOR IN FITNESS AND SPORTS MANAGEMENT",
+                          "COLLEGE OF MARITIME EDUCATION",
+                          "BACHELOR OF SCIENCE IN MARINE ENGINEERING",
+                          "COLLEGE OF ENGINEERING AND TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN CIVIL ENGINEERING",
+                          "BACHELOR OF SCIENCE IN AUTOMOTIVE TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN ELECTRICAL TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN MECHANICAL TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN ELECTRONICS TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN COMPUTER TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN REFRIGERATION AND AIR-CONDITIONING TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INDUSTRIAL TECHNOLOGY - MAJOR IN CIVIL TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INDUSTRIAL TECHNOLOGY - MAJOR IN ARCHITECTURAL DRAFTING TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INDUSTRIAL TECHNOLOGY - MAJOR IN FOOD TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INDUSTRIAL TECHNOLOGY - MAJOR IN GARMENTS A TEXTILE TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INDUSTRIAL TECHNOLOGY - MAJOR IN POWER PLANT ENGINEERING TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INDUSTRIAL TECHNOLOGY - MAJOR IN MECHATRONICS TECHNOLOGY",
+                          "COLLEGE OF INFORMATION COMPUTING SCIENCES",
+                          "BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY",
+                          "BACHELOR OF SCIENCE IN INFORMATION SYSTEMS",
+                          "COLLEGE OF ARTS HUMANITIES AND SOCIAL SCIENCES",
+                          "BACHELOR OF SCIENCE IN DEVELOPMENT COMMUNICATION",
+                          "BATSILYER NG SINING SA FILIPINO",
+                          "BACHELOR OF SCIENCE IN FINE ARTS - MAJOR IN INDUSTRIAL ARTS",
+                          "SCHOOL OF BUSINESS ADMINISTRATION",
+                          "BACHELOR OF SCIENCE IN ENTREPRENEURSHIP",
+                          "BACHELOR OF SCIENCE IN HOSPITALITY MANAGEMENT",
+                          "DIPLOMA OF TECHNOLOGY - AUTOMOTIVE ENGINEERING TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - CIVIL ENGINEERING TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - ELECTRICAL ENGINEERING TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - ELECTRONICS AND COMMUNICATION TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - FOOD SERVICES AND MANAGEMENT TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - GARMENTS, FASHION AND DESIGN TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - HOSPITALITY MANAGEMENT TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - INFORMATION TECHNOLOGY",
+                          "DIPLOMA OF TECHNOLOGY - MECHANICAL ENGINEERING TECHNOLOGY",
+                        ].map((course) => (
+                          <option key={course} value={course}>
+                            {course}
+                          </option>
+                        ))}
+                      </select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <div className="flex justify-between">
                 <FormField
                   control={form.control}
@@ -161,7 +249,7 @@ const RegisterForm = () => {
                       <FormLabel>Academic Status</FormLabel>
                       <FormControl>
                         <select
-                          className="rounded-sm border-gray-300 dark:border-white border flex overflow-auto"
+                          className="w-full p-2 border rounded-md"
                           {...field}
                         >
                           {[
@@ -185,45 +273,9 @@ const RegisterForm = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={form.control}
-                  name="course"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Course</FormLabel>
-                      <FormControl>
-                        <select
-                          className="rounded-sm border-gray-300 dark:border-white border flex"
-                          {...field}
-                        >
-                          {[
-                            "SELECT",
-                            "BSIT",
-                            "BSAT",
-                            "BSET",
-                            "BSEIexT",
-                            "BSMT",
-                            "BSCRACT",
-                            "BSCompTech",
-                            "BSEntrep",
-                            "BSHM",
-                            "BSInfoTech",
-                            "BSMarE",
-                            "BSDevcom",
-                            "BFA",
-                          ].map((course) => (
-                            <option key={course} value={course}>
-                              {course}
-                            </option>
-                          ))}
-                        </select>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
               </div>
-              <div className="flex justify-between gap-2">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
                   name="email"
@@ -257,74 +309,80 @@ const RegisterForm = () => {
 
                 {/* <PhoneInput /> */}
               </div>
-              <div className="relative">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          id="password"
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Enter your password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-0 top-0 h-full px-3 pt-8 hover:bg-transparent"
-                  onClick={togglePasswordVisibility}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-500" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-500" />
-                  )}
-                </Button>
-              </div>
-              <div className="relative">
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Re-Enter your password</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Re-Enter your password"
-                          type={confirmShowPassword ? "text" : "password"}
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-0 top-0 h-full px-3 pt-8 hover:bg-transparent"
-                  onClick={toggleConfirmPasswordVisibility}
-                  aria-label={
-                    confirmShowPassword ? "Hide password" : "Show password"
-                  }
-                >
-                  {confirmShowPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-500" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-500" />
-                  )}
-                </Button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Password Field */}
+                <div className="relative">
+                  <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Enter your password"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-9"
+                    onClick={togglePasswordVisibility}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-500" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-500" />
+                    )}
+                  </Button>
+                </div>
+
+                {/* Confirm Password Field */}
+                <div className="relative">
+                  <FormField
+                    control={form.control}
+                    name="confirmPassword"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Confirm Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            type={confirmShowPassword ? "text" : "password"}
+                            placeholder="Confirm your password"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-9"
+                    onClick={toggleConfirmPasswordVisibility}
+                    aria-label={
+                      confirmShowPassword ? "Hide password" : "Show password"
+                    }
+                  >
+                    {confirmShowPassword ? (
+                      <EyeOff className="h-4 w-4 text-gray-500" />
+                    ) : (
+                      <Eye className="h-4 w-4 text-gray-500" />
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
             <div className="mx-auto mt-2">
@@ -384,7 +442,7 @@ const RegisterForm = () => {
                               }
                             }}
                             onUploadError={(error: Error) => {
-                              toast.error(`ERROR! ${error.message}`);
+                              // toast.error(error! ${error.message});
                             }}
                           />
                         </div>

@@ -35,6 +35,12 @@ export default function StudentRequestForm() {
   const [attachmentKey, setAttachmentKey] = useState("");
   const { data: session } = useSession();
   // const [selectedDocument, setSelectedDocument] = useState("");
+  const [selectedDocument, setSelectedDocument] = useState("");
+
+  const handleSelectChange = (event: { target: { value: any } }) => {
+    const value = event.target.value;
+    setSelectedDocument(value); // Update the state
+  };
 
   const {
     register,
@@ -154,7 +160,8 @@ export default function StudentRequestForm() {
             <Label htmlFor="document">Document Type</Label>
             <Input
               id="requestChoices"
-              placeholder="document type you request...example Diploma"
+              placeholder="Document Request"
+              value={selectedDocument}
               {...register("requestChoices")}
             />
             {errors.requestChoices?.message && (
@@ -162,24 +169,34 @@ export default function StudentRequestForm() {
                 {String(errors.requestChoices.message)}
               </p>
             )}
-            {/* <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Select document" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="TOR">TOR</SelectItem>
-                <SelectItem value="Diploma">DIPLOMA</SelectItem>
-                <SelectItem value="Form 137">FORM 137</SelectItem>
-                <SelectItem value="Grade Slip">GRADE SLIP</SelectItem>
-                <SelectItem value="Request Subject">
-                  REQUEST SUBJECTS
-                </SelectItem>
-              </SelectContent>
-            </Select> */}
-            {/* <Input id="requestChoices" value={selectedDocument} /> */}
-            {/* {errors.requestChoices && (
-              <p className="text-red-600">Document Type is required.</p>
-            )} */}
+            <select
+              className="w-full p-2 border rounded-md"
+              onChange={handleSelectChange}
+            >
+              {[
+                "SELECT",
+                "Enrollment Form",
+                "Diploma",
+                "TOR",
+                "Report of Grades",
+                "Certificate of Transfer",
+                "Application of Cross Enrollment",
+                "Certificate of Enrollment",
+                "Request Form for Students Permanent Record",
+                "Evaluation Form",
+                "Request Form for Document Issurance",
+                "Students List",
+                "College Students Permanent Record",
+                "Application Form for Graduation",
+                "Completion Removal Form",
+                "Prospectus",
+                "Enrollment List",
+              ].map((document) => (
+                <option key={document} value={document}>
+                  {document}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <Label htmlFor="attachment">Request Form Optional</Label>

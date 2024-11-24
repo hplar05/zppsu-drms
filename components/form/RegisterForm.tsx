@@ -110,7 +110,7 @@ const RegisterForm = () => {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-auto">
-            <div className="space-y-2">
+            <div className="space-y-2 max-md:space-y-2">
               <FormField
                 control={form.control}
                 name="name"
@@ -118,7 +118,11 @@ const RegisterForm = () => {
                   <FormItem>
                     <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your full name" {...field} />
+                      <Input
+                        className="max-md:h-[2rem]"
+                        placeholder="Enter your full name ex Mikaella Rayno"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -133,7 +137,7 @@ const RegisterForm = () => {
                       <FormLabel>Username</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-full"
+                          className="max-md:h-[2rem]"
                           placeholder="zppsu123"
                           {...field}
                         />
@@ -150,7 +154,7 @@ const RegisterForm = () => {
                       <FormLabel>Student ID</FormLabel>
                       <FormControl>
                         <Input
-                          className="w-full"
+                          className="max-md:h-[2rem]"
                           placeholder="your student id"
                           {...field}
                         />
@@ -275,7 +279,7 @@ const RegisterForm = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-md:gap-2">
                 <FormField
                   control={form.control}
                   name="email"
@@ -283,7 +287,11 @@ const RegisterForm = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="zppsu@gmail.com" {...field} />
+                        <Input
+                          className="max-md:h-[2rem]"
+                          placeholder="zppsu@gmail.com"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -298,6 +306,7 @@ const RegisterForm = () => {
                       <FormLabel>Mobile Number</FormLabel>
                       <FormControl>
                         <Input
+                          className="max-md:h-[2rem]"
                           placeholder="add +63 at your phone number"
                           {...field}
                         />
@@ -309,7 +318,7 @@ const RegisterForm = () => {
 
                 {/* <PhoneInput /> */}
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-md:gap-2">
                 {/* Password Field */}
                 <div className="relative">
                   <FormField
@@ -320,6 +329,7 @@ const RegisterForm = () => {
                         <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
+                            className="max-md:h-[2rem]"
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter your password"
                             {...field}
@@ -333,7 +343,7 @@ const RegisterForm = () => {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute right-2 top-9"
+                    className="absolute right-2 top-9 max-md:top-7"
                     onClick={togglePasswordVisibility}
                     aria-label={
                       showPassword ? "Hide password" : "Show password"
@@ -357,6 +367,7 @@ const RegisterForm = () => {
                         <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
                           <Input
+                            className="max-md:h-[2rem]"
                             type={confirmShowPassword ? "text" : "password"}
                             placeholder="Confirm your password"
                             {...field}
@@ -370,7 +381,7 @@ const RegisterForm = () => {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute right-2 top-9"
+                    className="absolute right-2 top-9 max-md:top-7"
                     onClick={toggleConfirmPasswordVisibility}
                     aria-label={
                       confirmShowPassword ? "Hide password" : "Show password"

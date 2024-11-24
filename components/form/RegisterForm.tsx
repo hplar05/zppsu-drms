@@ -14,12 +14,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import GoogleSignInButton from "@/components/GoogleButton";
+// import GoogleSignInButton from "@/components/GoogleButton";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { UploadButton, UploadDropzone } from "@/src/lib/utils";
 import { useState } from "react";
-import { Image } from "@nextui-org/react";
+// import { Image } from "@nextui-org/react";
 import {
   Card,
   CardContent,
@@ -27,7 +27,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { PhoneInput } from "../phone-input";
+// import { PhoneInput } from "../phone-input";
 import { RegisterSchema } from "@/src/lib/validation/registerSchema";
 import { Eye, EyeOff } from "lucide-react";
 

@@ -343,7 +343,7 @@ const RegisterForm = () => {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute right-2 top-9 max-md:top-7"
+                    className="absolute right-2 top-8 max-md:top-7"
                     onClick={togglePasswordVisibility}
                     aria-label={
                       showPassword ? "Hide password" : "Show password"
@@ -381,7 +381,7 @@ const RegisterForm = () => {
                     type="button"
                     variant="ghost"
                     size="icon"
-                    className="absolute right-2 top-9 max-md:top-7"
+                    className="absolute right-2 top-8 max-md:top-7"
                     onClick={toggleConfirmPasswordVisibility}
                     aria-label={
                       confirmShowPassword ? "Hide password" : "Show password"

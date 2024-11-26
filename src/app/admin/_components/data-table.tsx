@@ -153,6 +153,7 @@ export function DataTable<TData, TValue>({
                     <TableCell
                       key={cell.id}
                       className="truncate max-w-[150px] relative"
+                      title={String(cell.getValue())}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,

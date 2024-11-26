@@ -64,8 +64,8 @@ export default function Profile() {
               </div>
             </CardContent>
           </Card>
-          <div className="grid gap-2 md:grid-cols-2">
-            <Card className="mb-4 dark:bg-[#18191A]">
+          <div className="">
+            <Card className="mb-4 dark:bg-[#18191A] text-center">
               <CardHeader>
                 <CardTitle>Contact Info</CardTitle>
               </CardHeader>
@@ -84,33 +84,13 @@ export default function Profile() {
                 </div>
               </CardContent>
             </Card>
-
-            <Card className="mb-4 dark:bg-[#18191A]">
-              <CardHeader>
-                <CardTitle>Education Info</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h3 className="font-semibold">Course</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {session?.user.course}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold">Student Number</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {session?.user.studId}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
           </div>
-          <Card className="mb-2 dark:bg-[#18191A]">
+          <Card className="mb-2 dark:bg-[#18191A] text-center">
             <CardHeader>
               <CardTitle>Data Privacy</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>
+              <p className="text-justify">
                 Data privacy is a priority in our system, where we protect your
                 personal information through advanced encryption and secure
                 access controls. We ensure that only authorized users can access

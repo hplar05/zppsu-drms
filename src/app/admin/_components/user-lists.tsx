@@ -29,7 +29,7 @@ export default async function UserLists({
   currentPage: number;
 }) {
   await new Promise((resolve) => setTimeout(resolve, 500));
-  const itemsPerPage = 6;
+  const itemsPerPage = 10;
 
   const users = await db.user.findMany({
     where: {
@@ -83,41 +83,49 @@ export default async function UserLists({
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.id}>
-            {/* <TableCell>
-              <Avatar>
-                <AvatarImage
-                  src={user.image ?? fallbackAvatarUrl}
-                  alt="@shadcn"
-                />
-                <AvatarFallback className="text-[0.60rem] text-white  bg-red-400">
-                  ZPPSU
-                </AvatarFallback>
-              </Avatar>
-            </TableCell> */}
-            <TableCell>{user.name}</TableCell>
-            <TableCell>{user.username}</TableCell>
-            <TableCell>{user.studId}</TableCell>
-            <TableCell>{user.course}</TableCell>
-            <TableCell>{user.email}</TableCell>
-            <TableCell>{user.mobileNumber}</TableCell>
+            <TableCell className="truncate max-w-[150px]" title={user.name}>
+              {user.name}
+            </TableCell>
+            <TableCell className="truncate max-w-[150px]" title={user.username}>
+              {user.username}
+            </TableCell>
+            <TableCell className="truncate max-w-[100px]" title={user.studId}>
+              {user.studId}
+            </TableCell>
+            <TableCell className="truncate max-w-[100px]" title={user.course}>
+              {user.course}
+            </TableCell>
+            <TableCell
+              className="truncate max-w-[200px] break-all"
+              title={user.email}
+            >
+              {user.email}
+            </TableCell>
+            <TableCell
+              className="truncate max-w-[150px]"
+              title={user.mobileNumber}
+            >
+              {user.mobileNumber}
+            </TableCell>
             <TableCell>
               <Badge>{user.role}</Badge>
             </TableCell>
-            <TableCell></TableCell>
+            <TableCell>{/* No. of Request */}</TableCell>
             <TableCell className="text-center">
               {new Date(user.createdAt).toLocaleString("en-US", {
                 year: "numeric",
-                month: "short",
+                month: "numeric",
                 day: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-                hour12: true,
+                // hour: "2-digit",
+                // minute: "2-digit",
+                // second: "2-digit",
+                // hour12: true,
               })}
             </TableCell>
           </TableRow>
         ))}
       </TableBody>
+
       <TableFooter>
         <TableRow>
           <TableCell colSpan={11} className="text-center">

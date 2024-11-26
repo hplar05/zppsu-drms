@@ -150,7 +150,10 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      className="truncate max-w-[150px] relative"
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

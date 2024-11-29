@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -7,190 +8,117 @@ import {
   CardTitle,
   CardContent,
 } from "@/components/ui/card";
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-} from "@/components/ui/chart";
-import { JSX, SVGProps } from "react";
-import { BarChart, CartesianGrid, XAxis, Bar } from "recharts";
+import { RequestChart } from "../_components/charts/RequestChart";
+import { UserChart } from "../_components/charts/UserChart";
+import SelectRanged from "../_components/charts/SelectRanged";
+
+type RangeOptions = "1day" | "7days" | "30days" | "1year";
 
 interface DashboardDataProps {
   totalRequest: number;
   totalUsers: number;
+  totalPending: number;
   completed: number;
   declined: number;
+  data: { date: string; totalRequests: number }[];
 }
+
+const filterDataByRange = (
+  data: { date: string; totalRequests: number }[],
+  range: RangeOptions
+) => {
+  const now = new Date();
+  const cutoffDate = new Date();
+
+  if (range === "1day") {
+    cutoffDate.setDate(now.getDate() - 1);
+  } else if (range === "7days") {
+    cutoffDate.setDate(now.getDate() - 7);
+  } else if (range === "30days") {
+    cutoffDate.setDate(now.getDate() - 30);
+  } else if (range === "1year") {
+    cutoffDate.setFullYear(now.getFullYear() - 1);
+  }
+
+  return data.filter(({ date }) => new Date(date) >= cutoffDate);
+};
 
 export default function DashboardData({
   totalRequest,
-  totalUsers,
+  totalPending,
   completed,
   declined,
+  data,
 }: DashboardDataProps) {
-  return (
-    <div className="grid h-auto w-full grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="flex flex-col text-center dark:bg-transparent">
-        <CardHeader>
-          <CardDescription>Total Requests</CardDescription>
-          <CardTitle>{totalRequest}</CardTitle>
-        </CardHeader>
-      </Card>
-      <Card className="flex flex-col text-center dark:bg-transparent">
-        <CardHeader>
-          <CardDescription>Total Users</CardDescription>
-          <CardTitle>{totalUsers}</CardTitle>
-        </CardHeader>
-      </Card>
-      <Card className="flex flex-col text-center dark:bg-transparent">
-        <CardHeader>
-          <CardDescription>Completed</CardDescription>
-          <CardTitle>{completed}</CardTitle>
-        </CardHeader>
-      </Card>
-      <Card className="flex flex-col text-center dark:bg-transparent">
-        <CardHeader>
-          <CardDescription>Decline</CardDescription>
-          <CardTitle>{declined}</CardTitle>
-        </CardHeader>
-      </Card>
+  const [range, setRange] = useState<RangeOptions>("7days");
 
-      <div className="col-span-1 md:col-span-2 lg:col-span-4 flex items-center justify-center mt-20 overflow-auto">
-        <ChartContainer
-          config={{
-            requests: { label: "Requests", color: "hsl(var(--chart-1))" },
-            completed: { label: "Completed", color: "hsl(var(--chart-2))" },
-            decline: { label: "Decline", color: "hsl(var(--chart-3))" },
-            pending: { label: "Pending", color: "hsl(var(--chart-4))" },
-          }}
-          className="min-h-[500px]"
-        >
-          <BarChart
-            accessibilityLayer
-            data={[
-              {
-                name: "Jan",
-                requests: 1200,
-                completed: 800,
-                decline: 200,
-                pending: 200,
-              },
-              {
-                name: "Feb",
-                requests: 1500,
-                completed: 900,
-                decline: 300,
-                pending: 300,
-              },
-              {
-                name: "Mar",
-                requests: 1800,
-                completed: 1000,
-                decline: 400,
-                pending: 400,
-              },
-              {
-                name: "Apr",
-                requests: 2000,
-                completed: 1200,
-                decline: 400,
-                pending: 400,
-              },
-              {
-                name: "May",
-                requests: 2300,
-                completed: 1400,
-                decline: 500,
-                pending: 400,
-              },
-              {
-                name: "Jun",
-                requests: 2500,
-                completed: 1500,
-                decline: 600,
-                pending: 400,
-              },
-            ]}
-          >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="name"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={12}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey="requests"
-              fill="var(--color-requests)"
-              radius={[4, 4, 0, 0]}
-            />
-            <Bar
-              dataKey="completed"
-              fill="var(--color-completed)"
-              radius={[4, 4, 0, 0]}
-            />
-            <Bar
-              dataKey="decline"
-              fill="var(--color-decline)"
-              radius={[4, 4, 0, 0]}
-            />
-            <Bar
-              dataKey="pending"
-              fill="var(--color-pending)"
-              radius={[4, 4, 0, 0]}
-            />
-          </BarChart>
-        </ChartContainer>
+  const filteredData = filterDataByRange(data, range);
+
+  const rangeOptions = [
+    { value: "1day", label: "Last 1 Day" },
+    { value: "7days", label: "Last 7 Days" },
+    { value: "30days", label: "Last 30 Days" },
+    { value: "1year", label: "Last 1 Year" },
+  ];
+
+  return (
+    <div>
+      <div className="grid h-auto w-full grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle>Total Request</CardTitle>
+            <CardTitle>{totalRequest}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle>Pending</CardTitle>
+            <CardTitle>{totalPending}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle>Completed</CardTitle>
+            <CardTitle>{completed}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle>Declined</CardTitle>
+            <CardTitle>{declined}</CardTitle>
+          </CardHeader>
+        </Card>
+      </div>
+      <div className="flex justify-end items-center mb-4 mr-6">
+        <SelectRanged
+          value={range}
+          onChange={(value: string) => setRange(value as RangeOptions)}
+          options={rangeOptions}
+          className="w-40"
+        />
+      </div>
+
+      <div className="ml-6 grid grid-cols-1 lg:grid-cols-2 gap-4 mr-6">
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <CardTitle>Requests</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <RequestChart data={filteredData} />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <CardTitle>Users</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent>{/* <UserChart data={filteredData} /> */}</CardContent>
+        </Card>
       </div>
     </div>
-  );
-}
-
-function ArrowDownIcon(
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 5v14" />
-      <path d="m19 12-7 7-7-7" />
-    </svg>
-  );
-}
-
-function ArrowUpIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m5 12 7-7 7 7" />
-      <path d="M12 19V5" />
-    </svg>
   );
 }

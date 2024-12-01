@@ -111,7 +111,7 @@ export default function DashboardData({
         </Card>
         <Card className="flex flex-col text-center dark:bg-transparent">
           <CardHeader>
-            <CardTitle className="text-[16px]">Approved Users</CardTitle>
+            <CardTitle className="text-[16px]">Not Approved Users</CardTitle>
             <CardTitle>{usersNotApproved}</CardTitle>
           </CardHeader>
         </Card>

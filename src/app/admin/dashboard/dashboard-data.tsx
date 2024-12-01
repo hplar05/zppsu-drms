@@ -1,18 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Card,
-  CardHeader,
-  CardDescription,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { RequestChart } from "../_components/charts/RequestChart";
-import { UserChart } from "../_components/charts/UserChart";
 import SelectRanged from "../_components/charts/SelectRanged";
+import UserChart from "../_components/charts/UserChart";
 
-type RangeOptions = "1day" | "7days" | "30days" | "1year";
+type RangeOptions = "1day" | "7days" | "30days" | "1year" | "max";
 
 interface DashboardDataProps {
   totalRequest: number;
@@ -21,12 +15,20 @@ interface DashboardDataProps {
   completed: number;
   declined: number;
   data: { date: string; totalRequests: number }[];
+  userData: { date: string; totalUsers: number }[];
+  usersApproved: number;
+  usersNotApproved: number;
+  nonAdminUsers: number;
 }
 
-const filterDataByRange = (
-  data: { date: string; totalRequests: number }[],
+const filterDataByRange = <T extends { date: string }>(
+  data: T[],
   range: RangeOptions
-) => {
+): T[] => {
+  if (range === "max") {
+    return data;
+  }
+
   const now = new Date();
   const cutoffDate = new Date();
 
@@ -45,20 +47,27 @@ const filterDataByRange = (
 
 export default function DashboardData({
   totalRequest,
+  totalUsers,
   totalPending,
   completed,
   declined,
   data,
+  userData,
+  usersApproved,
+  usersNotApproved,
+  nonAdminUsers,
 }: DashboardDataProps) {
   const [range, setRange] = useState<RangeOptions>("7days");
 
-  const filteredData = filterDataByRange(data, range);
+  const filteredRequests = filterDataByRange(data, range);
+  const filteredUsers = filterDataByRange(userData, range);
 
   const rangeOptions = [
     { value: "1day", label: "Last 1 Day" },
     { value: "7days", label: "Last 7 Days" },
     { value: "30days", label: "Last 30 Days" },
     { value: "1year", label: "Last 1 Year" },
+    { value: "max", label: "All Time" },
   ];
 
   return (
@@ -66,26 +75,44 @@ export default function DashboardData({
       <div className="grid h-auto w-full grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
         <Card className="flex flex-col text-center dark:bg-transparent">
           <CardHeader>
-            <CardTitle>Total Request</CardTitle>
+            <CardTitle className="text-[16px]">Total Request</CardTitle>
             <CardTitle>{totalRequest}</CardTitle>
           </CardHeader>
         </Card>
         <Card className="flex flex-col text-center dark:bg-transparent">
           <CardHeader>
-            <CardTitle>Pending</CardTitle>
+            <CardTitle className="text-[16px]">Pending</CardTitle>
             <CardTitle>{totalPending}</CardTitle>
           </CardHeader>
         </Card>
         <Card className="flex flex-col text-center dark:bg-transparent">
           <CardHeader>
-            <CardTitle>Completed</CardTitle>
+            <CardTitle className="text-[16px]">Completed</CardTitle>
             <CardTitle>{completed}</CardTitle>
           </CardHeader>
         </Card>
         <Card className="flex flex-col text-center dark:bg-transparent">
           <CardHeader>
-            <CardTitle>Declined</CardTitle>
+            <CardTitle className="text-[16px]">Declined</CardTitle>
             <CardTitle>{declined}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle className="text-[16px]">Total Users</CardTitle>
+            <CardTitle>{totalUsers}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle className="text-[16px]">Approved Users</CardTitle>
+            <CardTitle>{usersApproved}</CardTitle>
+          </CardHeader>
+        </Card>
+        <Card className="flex flex-col text-center dark:bg-transparent">
+          <CardHeader>
+            <CardTitle className="text-[16px]">Approved Users</CardTitle>
+            <CardTitle>{usersNotApproved}</CardTitle>
           </CardHeader>
         </Card>
       </div>
@@ -106,7 +133,7 @@ export default function DashboardData({
             </div>
           </CardHeader>
           <CardContent>
-            <RequestChart data={filteredData} />
+            <RequestChart data={filteredRequests} />
           </CardContent>
         </Card>
 
@@ -116,7 +143,9 @@ export default function DashboardData({
               <CardTitle>Users</CardTitle>
             </div>
           </CardHeader>
-          <CardContent>{/* <UserChart data={filteredData} /> */}</CardContent>
+          <CardContent>
+            <UserChart data={filteredUsers} />
+          </CardContent>
         </Card>
       </div>
     </div>

@@ -2,44 +2,32 @@ import React from "react";
 import {
   BarChart,
   CartesianGrid,
-  Line,
-  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
+  Bar,
 } from "recharts";
-
-// const data = [
-//   { value: 12, date: "2024-12-12" },
-//   { value: 15, date: "2024-12-11" },
-//   { value: 23, date: "2024-12-10" },
-//   { value: 1, date: "2024-12-10" },
-// ];
 
 type UserChartProps = {
   data: {
     date: string;
-    totalUser: number;
+    totalUsers: number;
   }[];
 };
 
-export const UserChart = ({ data }: UserChartProps) => {
+const UserChart: React.FC<UserChartProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" minHeight={300}>
       <BarChart data={data}>
-        <CartesianGrid />
+        <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
-        <Line
-          //   dot={false}
-          dataKey="totalUsers"
-          type="monotone"
-          name="Total Users"
-          stroke="hsl(var(--primary))"
-        />
+        <Bar dataKey="totalUsers" fill="#8884d8" name="Total Users" />
       </BarChart>
     </ResponsiveContainer>
   );
 };
+
+export default UserChart;

@@ -48,7 +48,7 @@ const AdminNavbar = () => {
       <div className="max-md:block justify-center items-center hidden">
         <Sheet>
           <div></div>
-          <SheetTrigger asChild className="mt-4 ml-4">
+          <SheetTrigger asChild className="mt-2 ml-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

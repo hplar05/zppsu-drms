@@ -58,6 +58,7 @@ const Page = async () => {
         </div>
         <div className="max-md:hidden block">
           <Tracking />
+          -npm
         </div>
 
         <div className="flex flex-col gap-20 justify-center items-center my-16">

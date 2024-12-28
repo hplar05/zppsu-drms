@@ -2,42 +2,32 @@ import React from "react";
 
 export const Tracking = () => {
   return (
-    <div className="flex items-center justify-center w-full">
-      <div className="flex items-center gap-4 max-w-4xl w-full">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
-            1
-          </div>
-          <span className="text-sm font-medium">Pending</span>
-        </div>
-        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
-            2
-          </div>
-          <span className="text-sm font-medium">Approve or Decline</span>
-        </div>
-        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
-            3
-          </div>
-          <span className="text-sm font-medium">Pending Payment</span>
-        </div>
-        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
-            4
-          </div>
-          <span className="text-sm font-medium">Paid</span>
-        </div>
-        <div className="flex-1 h-[2px] dark:bg-muted bg-gray-400" />
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-medium">
-            5
-          </div>
-          <span className="text-sm font-medium">Completed</span>
-        </div>
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+        Request Status
+      </h2>
+      <div className="flex items-center justify-between">
+        {[
+          "Pending",
+          "Approve or Decline",
+          "Pending Payment",
+          "Paid",
+          "Completed",
+        ].map((step, index) => (
+          <React.Fragment key={step}>
+            <div className="flex flex-col items-center">
+              <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+                {index + 1}
+              </div>
+              <span className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-300">
+                {step}
+              </span>
+            </div>
+            {index < 4 && (
+              <div className="flex-1 h-1 bg-gray-200 dark:bg-gray-700" />
+            )}
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
 "use client";
 
+import React, { useState } from "react";
 import {
   ColumnDef,
   flexRender,
-  SortingState,
   getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
+  getPaginationRowModel,
+  SortingState,
+  getSortedRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
-  VisibilityState,
 } from "@tanstack/react-table";
 
 import {
@@ -22,17 +22,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
-import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -44,17 +35,7 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-
-  const [pagination, setPagination] = React.useState({
-    pageIndex: 0,
-    pageSize: 9,
-  });
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
@@ -65,68 +46,34 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    onPaginationChange: setPagination,
     state: {
       sorting,
       columnFilters,
-      columnVisibility,
-      pagination,
     },
   });
 
   return (
-    <>
-      <div className="flex items-center py-4 gap-3">
-        {/* <Input
-          placeholder="Search anything..."
-          value={(table.getState().globalFilter as string) ?? ""}
-          onChange={(event) =>
-            table.setGlobalFilter(event.target.value || undefined)
+    <div>
+      {/* <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter requests..."
+          value={
+            (table.getColumn("requestChoices")?.getFilterValue() as string) ??
+            ""
           }
-          className="max-w-sm border-2 border-[#800000] dark:border-white"
-        /> */}
-        <DropdownMenu>
-          {/* <DropdownMenuTrigger asChild>
-            <Button
-              variant="default"
-              className="mr-auto bg-[#800000] dark:bg-white text-white dark:text-black"
-            >
-              Columns
-            </Button>
-          </DropdownMenuTrigger> */}
-          {/* <Button className="bg-[#800000] dark:bg-white text-white dark:text-black">
-            <Link href={"/admin/create-request"}>Create Request +</Link>
-          </Button> */}
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-      <div className="rounded-md border-2 border-[#800000] dark:border-white">
+          onChange={(event) =>
+            table
+              .getColumn("requestChoices")
+              ?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div> */}
+      <div className="rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow
-                className="border-b-4 border-[#800000] dark:border-white"
-                key={headerGroup.id}
-              >
+              <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -172,26 +119,24 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      {/* <div className="flex items-center justify-end space-x-2 py-4">
         <Button
-          variant="default"
+          variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="ml-auto bg-[#800000] dark:bg-white text-white dark:text-black"
         >
           Previous
         </Button>
         <Button
-          variant="default"
+          variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className="ml-auto bg-[#800000] dark:bg-white text-white dark:text-black"
         >
           Next
         </Button>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 }

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const AdminMsgContainer = ({
   adminMsg,
@@ -16,15 +9,15 @@ export const AdminMsgContainer = ({
   const noMsg = "No message for now";
 
   return (
-    <div className="h-auto">
-      <Card className="dark:border-white dark:bg-transparent rounded-md border-2 border-[#800000]">
-        <CardHeader>
-          <CardTitle>Admin Message</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p>{adminMsg?.length ? adminMsg : noMsg}</p>
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="bg-white dark:bg-gray-800 shadow-lg">
+      <CardHeader>
+        <CardTitle className="text-xl text-primary">Admin Message</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-gray-600 dark:text-gray-300">
+          {adminMsg?.length ? adminMsg : noMsg}
+        </p>
+      </CardContent>
+    </Card>
   );
 };

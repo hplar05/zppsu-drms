@@ -1,42 +1,76 @@
 import Image from "next/image";
 import Link from "next/link";
-import Balancer from "react-wrap-balancer";
-
 import { Section, Container } from "@/components/craft";
 import Logo from "@/public/logo.jpg";
 
 export default function Footer() {
   return (
-    <footer className="not-prose border-t bg-[#800000f1]">
+    <footer className="bg-[#7D0303] text-white">
       <Section>
-        <Container className="grid gap-6">
-          <div className="grid gap-6">
-            <Link href="/">
+        <Container className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-4">
+            <Link href="/" className="flex items-center space-x-2">
               <Image
                 src={Logo}
-                alt="Logo"
-                width={60}
-                height={10}
-                className="transition-all hover:opacity-75 dark:invert"
-              ></Image>
+                alt="ZPPSU Logo"
+                width={40}
+                height={40}
+                className="invert"
+              />
+              <span className="text-lg font-bold">ZPPSU DRMS</span>
             </Link>
-            <p className="text-white">
-              <Balancer>
-                Zamboanga Peninsula Polytechnic State University
-              </Balancer>
+            <p className="text-sm">
+              Zamboanga Peninsula Polytechnic State University Document Request
+              Management System
             </p>
-            <div className="mb-6 flex flex-col gap-4 text-sm underline underline-offset-4 md:mb-0 md:flex-row text-gray-200">
-              <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms-of-service">Terms of Service</Link>
-              <Link href="/cookie-policy">Cookie Policy</Link>
-            </div>
-            <p className="text-gray-200">
-              © <a href="https://zppsu-drms.online">ZPPSU</a>. All rights
-              reserved. 2024-present.
-            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="#home">Home</Link>
+              </li>
+              <li>
+                <Link href="#about">About Us</Link>
+              </li>
+              <li>
+                <Link href="#features">Features</Link>
+              </li>
+              <li>
+                <Link href="#faq">FAQ</Link>
+              </li>
+              <li>
+                <Link href="#contact">Contact Us</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/privacy-policy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="/terms-of-service">Terms of Service</Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy">Cookie Policy</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <p>W375+4J8, R.T.Lim St, Zamboanga, Zamboanga del Sur</p>
+            <p>(062) 993 5096</p>
+            <p>admin@zppsu-drms.online</p>
           </div>
         </Container>
       </Section>
+      <div className="bg-[#5D0202] py-4 text-center text-sm">
+        <Container>
+          © {new Date().getFullYear()} ZPPSU DRMS. All rights reserved.
+        </Container>
+      </div>
     </footer>
   );
 }

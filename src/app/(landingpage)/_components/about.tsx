@@ -1,48 +1,47 @@
-// React and Next.js imports
 import Image from "next/image";
-import Link from "next/link";
-
-// UI component imports
-import * as Craft from "@/components/craft";
-import { Button } from "@/components/ui/button";
-
-// Asset imports
+import { Section, Container } from "@/components/craft";
 import Placeholder from "@/public/placeholder.jpg";
 
-const Feature = () => {
+const About = () => {
   return (
-    <section id="about">
-      <Craft.Section>
-        <Craft.Container className="grid items-stretch md:grid-cols-2 md:gap-12">
-          <div className="not-prose relative flex h-96 overflow-hidden rounded-lg border">
+    <Section
+      id="about"
+      className="min-h-screen flex justify-center items-center"
+    >
+      <Container>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          About ZPPSU
+        </h2>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-6">
+              Provide effective and efficient services through advanced
+              technological studies and researches for the empowerment of human
+              resources.
+            </p>
             <Image
               src={Placeholder}
-              alt="placeholder"
-              className="fill object-cover"
+              alt="ZPPSU Campus"
+              className="rounded-lg shadow-lg"
             />
           </div>
-          <div className="flex flex-col gap-6 py-8">
-            <h3 className="!my-0 not-prose text-5xl max-md:text-[lg]">
-              MISSION
-            </h3>
-            <p className="font-light leading-[1.4] opacity-70 text-gray-800 not-prose">
-              Provide effective and efficient services through advanced
-              technological studies and researches for the empowerment of the
-              human resources.
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
+            <p className="text-gray-700 dark:text-gray-300 mb-6">
+              ZPPSU as the leading provider of globally competitive human
+              resources.
             </p>
-            {/* <div className="not-prose flex items-center gap-2">
-              <Button className="w-fit" asChild>
-                <Link href="#">Get Started</Link>
-              </Button>
-              <Button className="w-fit" variant="link" asChild>
-                <Link href="#">Learn More {"->"}</Link>
-              </Button>
-            </div> */}
+            <Image
+              src={Placeholder}
+              alt="ZPPSU Students"
+              className="rounded-lg shadow-lg"
+            />
           </div>
-        </Craft.Container>
-      </Craft.Section>
-    </section>
+        </div>
+      </Container>
+    </Section>
   );
 };
 
-export default Feature;
+export default About;

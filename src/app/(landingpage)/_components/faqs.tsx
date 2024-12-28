@@ -1,79 +1,52 @@
-// React and Next.js imports
 import React from "react";
-
-// Third-party library imports
 import { ArrowUpRight } from "lucide-react";
-
-// UI component imports
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
-// Custom components
 import { Section, Container } from "@/components/craft";
 
-type FAQItem = {
-  question: string;
-  answer: string;
-  link?: string;
-};
-
-const content: FAQItem[] = [
+const faqItems = [
   {
-    question: "Lorem ipsum dolor sit amet?",
+    question: "How do I request a document?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    link: "https://google.com",
+      "Log in to your account, navigate to the document request section, select the type of document you need, and follow the prompts to submit your request.",
   },
   {
-    question: "Ut enim ad minim veniam?",
+    question: "How long does it take to process a document request?",
     answer:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "Processing times vary depending on the type of document requested. Generally, it takes 3-5 business days, but some documents may take longer.",
   },
   {
-    question: "Duis aute irure dolor in reprehenderit?",
+    question: "Is there a fee for requesting documents?",
     answer:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Some documents may require a processing fee. The fee amount will be displayed before you confirm your request.",
   },
   {
-    question: "Excepteur sint occaecat cupidatat non proident?",
+    question: "How will I know when my document is ready?",
     answer:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "You'll receive an email notification when your document is ready for pickup or has been sent digitally, depending on the option you chose.",
   },
 ];
 
 const FAQ = () => {
   return (
-    <Section id="faq" className="min-h-screen flex items-center justify-center">
+    <Section id="faq" className="min-h-screen flex justify-center items-center">
       <Container>
-        <h3 className="!mt-0">Frequently Asked Questions</h3>
-        <h4 className="text-muted-foreground">
-          Can&apos;t find the answer you&apos;re looking for? Reach out to our
-          customer support team.
-        </h4>
-        <div className="not-prose mt-4 flex flex-col gap-4 md:mt-8">
-          {content.map((item, index) => (
-            <Accordion key={index} type="single" collapsible>
-              <AccordionItem
-                value={item.question}
-                className="rounded-md border bg-muted/20 px-4 transition-all hover:bg-muted/50"
-              >
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div className="max-w-3xl mx-auto">
+          {faqItems.map((item, index) => (
+            <Accordion key={index} type="single" collapsible className="mb-4">
+              <AccordionItem value={item.question}>
                 <AccordionTrigger className="text-left hover:no-underline">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-base md:w-3/4">
+                <AccordionContent className="text-gray-600 dark:text-gray-300">
                   {item.answer}
-                  {item.link && (
-                    <a
-                      href={item.link}
-                      className="mt-2 flex w-full items-center opacity-60 transition-all hover:opacity-100"
-                    >
-                      Learn more <ArrowUpRight className="ml-1" size="16" />
-                    </a>
-                  )}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

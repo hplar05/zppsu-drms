@@ -1,103 +1,60 @@
-// React and Next.js imports
-import Link from "next/link";
-
-// Third-party library imports
-import Balancer from "react-wrap-balancer";
-
-// UI component imports
 import { Section, Container } from "@/components/craft";
+import { FileText, Clock, UserCheck, Shield } from "lucide-react";
 
-// Icon imports
-import { Coins, ArrowRight } from "lucide-react";
-
-type FeatureText = {
-  icon: JSX.Element;
-  title: string;
-  description: string;
-  href?: string;
-  cta?: string;
-};
-
-const featureText: FeatureText[] = [
+const features = [
   {
-    icon: <Coins className="h-6 w-6" />,
-    title: "Lorem Ipsum",
-    href: "/",
+    icon: <FileText className="h-10 w-10 text-[#7D0303]" />,
+    title: "Easy Document Requests",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    cta: "Learn More",
+      "Submit and track your document requests with just a few clicks.",
   },
   {
-    icon: <Coins className="h-6 w-6" />,
-    title: "Lorem Ipsum",
-    href: "/",
+    icon: <Clock className="h-10 w-10 text-[#7D0303]" />,
+    title: "Quick Processing",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    cta: "Learn More",
+      "Experience faster turnaround times for your document requests.",
   },
   {
-    icon: <Coins className="h-6 w-6" />,
-    title: "Lorem Ipsum",
-    href: "/",
+    icon: <UserCheck className="h-10 w-10 text-[#7D0303]" />,
+    title: "User-Friendly Interface",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    cta: "Learn More",
+      "Navigate our system with ease, designed with students in mind.",
   },
   {
-    icon: <Coins className="h-6 w-6" />,
-    title: "Lorem Ipsum",
-    href: "/",
+    icon: <Shield className="h-10 w-10 text-[#7D0303]" />,
+    title: "Secure and Confidential",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    cta: "Learn More",
+      "Your personal information and documents are protected with top-notch security.",
   },
 ];
 
-const Feature = () => {
+const Features = () => {
   return (
     <Section
       id="features"
-      className="border-b border-t min-h-screen flex items-center justify-center"
+      className="bg-gray-100 dark:bg-gray-800  min-h-screen flex justify-center items-center"
     >
-      <Container className="not-prose">
-        <div className="flex flex-col gap-6">
-          <h3 className="text-4xl">
-            <Balancer>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </Balancer>
-          </h3>
-          <h4 className="text-2xl font-light opacity-70">
-            <Balancer>
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-            </Balancer>
-          </h4>
-
-          <div className="mt-6 grid gap-6 md:mt-12 md:grid-cols-4">
-            {featureText.map(
-              ({ icon, title, description, href, cta }, index) => (
-                <Link
-                  href={`${href}`}
-                  className="flex flex-col justify-between gap-6 rounded-lg border p-6 transition-all hover:-mt-2 hover:mb-2"
-                  key={index}
-                >
-                  <div className="grid gap-4">
-                    {icon}
-                    <h4 className="text-xl text-primary">{title}</h4>
-                    <p className="text-base opacity-75">{description}</p>
-                  </div>
-                  {cta && (
-                    <div className="flex h-fit items-center text-sm font-semibold">
-                      <p>{cta}</p> <ArrowRight className="ml-2 h-4 w-4" />
-                    </div>
-                  )}
-                </Link>
-              )
-            )}
-          </div>
+      <Container>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          Our Features
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md"
+            >
+              <div className="mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {feature.description}
+              </p>
+            </div>
+          ))}
         </div>
       </Container>
     </Section>
   );
 };
 
-export default Feature;
+export default Features;

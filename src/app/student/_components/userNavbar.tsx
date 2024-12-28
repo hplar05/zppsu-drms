@@ -87,7 +87,7 @@ const UserNavbar = () => {
                       variant="ghost"
                       className="relative h-8 w-8 rounded-full"
                     >
-                      <Avatar className="h-8 w-8">
+                      <Avatar className="h-8 w-8 ml-3">
                         <AvatarImage
                           src={session.user.image || undefined}
                           alt={session.user.name || "User"}
@@ -151,7 +151,7 @@ const UserNavbar = () => {
             ))}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center px-5">
+            <div className="flex items-center px-5 ">
               {session?.user && (
                 <>
                   <div className="flex-shrink-0">

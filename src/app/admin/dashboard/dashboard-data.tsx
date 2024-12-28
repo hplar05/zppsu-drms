@@ -5,6 +5,17 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { RequestChart } from "../_components/charts/RequestChart";
 import SelectRanged from "../_components/charts/SelectRanged";
 import UserChart from "../_components/charts/UserChart";
+import {
+  Activity,
+  Users,
+  Clock,
+  CheckCircle,
+  XCircle,
+  TrendingUp,
+  UserCheck,
+  UserX,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 type RangeOptions = "1day" | "7days" | "30days" | "1year" | "max";
 
@@ -19,6 +30,13 @@ interface DashboardDataProps {
   usersApproved: number;
   usersNotApproved: number;
   nonAdminUsers: number;
+}
+
+interface StatCardProps {
+  title: string;
+  value: number;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
 }
 
 const filterDataByRange = <T extends { date: string }>(
@@ -44,6 +62,20 @@ const filterDataByRange = <T extends { date: string }>(
 
   return data.filter(({ date }) => new Date(date) >= cutoffDate);
 };
+
+const StatCard = ({ title, value, icon: Icon, color }: StatCardProps) => (
+  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+    <Card className={`bg-gradient-to-br ${color} text-white`}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        <Icon className="h-4 w-4" />
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+      </CardContent>
+    </Card>
+  </motion.div>
+);
 
 export default function DashboardData({
   totalRequest,
@@ -71,52 +103,56 @@ export default function DashboardData({
   ];
 
   return (
-    <div>
-      <div className="grid h-auto w-full grid-cols-1 gap-6 p-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Total Request</CardTitle>
-            <CardTitle>{totalRequest}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Pending</CardTitle>
-            <CardTitle>{totalPending}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Completed</CardTitle>
-            <CardTitle>{completed}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Declined</CardTitle>
-            <CardTitle>{declined}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Total Users</CardTitle>
-            <CardTitle>{totalUsers}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Approved Users</CardTitle>
-            <CardTitle>{usersApproved}</CardTitle>
-          </CardHeader>
-        </Card>
-        <Card className="flex flex-col text-center dark:bg-transparent">
-          <CardHeader>
-            <CardTitle className="text-[16px]">Not Approved Users</CardTitle>
-            <CardTitle>{usersNotApproved}</CardTitle>
-          </CardHeader>
-        </Card>
+    <div className="space-y-6">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          title="Total Requests"
+          value={totalRequest}
+          icon={Activity}
+          color="from-blue-500 to-blue-600"
+        />
+        <StatCard
+          title="Total Users"
+          value={totalUsers}
+          icon={Users}
+          color="from-green-500 to-green-600"
+        />
+        <StatCard
+          title="Pending"
+          value={totalPending}
+          icon={Clock}
+          color="from-yellow-500 to-yellow-600"
+        />
+        <StatCard
+          title="Completed"
+          value={completed}
+          icon={CheckCircle}
+          color="from-purple-500 to-purple-600"
+        />
       </div>
-      <div className="flex justify-end items-center mb-4 mr-6">
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <StatCard
+          title="Approved Users"
+          value={usersApproved}
+          icon={UserCheck}
+          color="from-indigo-500 to-indigo-600"
+        />
+        <StatCard
+          title="Not Approved Users"
+          value={usersNotApproved}
+          icon={UserX}
+          color="from-red-500 to-red-600"
+        />
+        <StatCard
+          title="Declined"
+          value={declined}
+          icon={XCircle}
+          color="from-pink-500 to-pink-600"
+        />
+      </div>
+
+      <div className="flex justify-end items-center mb-4">
         <SelectRanged
           value={range}
           onChange={(value: string) => setRange(value as RangeOptions)}
@@ -125,28 +161,22 @@ export default function DashboardData({
         />
       </div>
 
-      <div className="ml-6 grid grid-cols-1 lg:grid-cols-2 gap-4 mr-6">
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-center">
-              <CardTitle>Requests</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <RequestChart data={filteredRequests} />
-          </CardContent>
-        </Card>
+      <div className="grid gap-4 md:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <RequestChart data={filteredRequests} />
+        </motion.div>
 
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-center">
-              <CardTitle>Users</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <UserChart data={filteredUsers} />
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <UserChart data={filteredUsers} />
+        </motion.div>
       </div>
     </div>
   );

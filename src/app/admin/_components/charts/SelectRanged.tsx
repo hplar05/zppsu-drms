@@ -1,35 +1,43 @@
 import React from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Option = {
   value: string;
   label: string;
 };
 
-interface SelectProps {
+interface SelectRangedProps {
   value: string;
   onChange: (value: string) => void;
   options: Option[];
   className?: string;
 }
 
-const SelectRanged: React.FC<SelectProps> = ({
+const SelectRanged: React.FC<SelectRangedProps> = ({
   value,
   onChange,
   options,
   className,
 }) => {
   return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className={`border rounded px-2 py-1 ${className}`}
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <Select value={value} onValueChange={onChange}>
+      <SelectTrigger className={`w-[180px] ${className}`}>
+        <SelectValue placeholder="Select a range" />
+      </SelectTrigger>
+      <SelectContent>
+        {options.map((option) => (
+          <SelectItem key={option.value} value={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 };
 

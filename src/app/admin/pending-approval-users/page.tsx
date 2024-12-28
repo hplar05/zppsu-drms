@@ -17,9 +17,11 @@ export default async function PendingNewUserTable({
 
   return (
     <main className="mt-2 z-50">
-      <div className="max-md:hidden block">
-        <AdminNavbar />
-      </div>
+      <header className="bg-white dark:bg-transparent shadow-md z-10 ">
+        <div className="max-md:hidden block mr-4">
+          <AdminNavbar />
+        </div>
+      </header>
       <main className="px-[2rem] py-[3rem] -z-50">
         <div className="text-center">
           <h1 className="text-xl md:text-2xl font-bold text-left">

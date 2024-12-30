@@ -89,7 +89,7 @@ export default function DashboardData({
   usersNotApproved,
   nonAdminUsers,
 }: DashboardDataProps) {
-  const [range, setRange] = useState<RangeOptions>("7days");
+  const [range, setRange] = useState<RangeOptions>("max");
 
   const filteredRequests = filterDataByRange(data, range);
   const filteredUsers = filterDataByRange(userData, range);

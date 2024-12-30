@@ -58,7 +58,7 @@ export default async function PendingUserLists({
       mobileNumber: true,
       role: true,
       proofOfID: true,
-      createdAt: true, // Include createdAt field
+      createdAt: true,
     },
   });
 

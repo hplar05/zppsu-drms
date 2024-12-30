@@ -3,10 +3,11 @@ import { authOptions } from "@/src/lib/auth";
 import { db } from "@/src/lib/db";
 import UserNavbar from "../_components/userNavbar";
 import { Tracking } from "./tracking";
-import TrackingTable from "./tracking-table";
 import { AdminMsgContainer } from "./adminMsgContainer";
 import DashboardHeader from "./dashboardHeader";
 import DashboardActions from "./dashboardActions";
+import UserRequestLists from "../_components/UserRequestTable";
+import UserRequestTable from "./UserRequestTable";
 
 const Page = async () => {
   const session = await getServerSession(authOptions);
@@ -37,7 +38,7 @@ const Page = async () => {
           <div className="md:col-span-2">
             <Tracking />
             <DashboardActions res={res} requestId={requestId} />
-            <TrackingTable userId={userId!} />
+            <UserRequestTable />
           </div>
           <div>
             <AdminMsgContainer adminMsg={adminMsg} />

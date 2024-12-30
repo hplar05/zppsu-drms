@@ -30,7 +30,7 @@ export default async function UserRequestLists({
   query: string;
   currentPage: number;
 }) {
-  await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate loading delay
+  await new Promise((resolve) => setTimeout(resolve, 500));
   const itemsPerPage = 10;
   const session = await getServerSession(authOptions);
 
@@ -38,16 +38,14 @@ export default async function UserRequestLists({
     return <p>You need to log in to view your requests.</p>;
   }
 
-  // Fetch paginated request data for the logged-in user
   const requests = await db.requestForm.findMany({
     where: {
       userId: session.user.id,
       OR: [
         { nameOfStudent: { contains: query, mode: "insensitive" } },
-        { course: { contains: query, mode: "insensitive" } },
-        { email: { contains: query, mode: "insensitive" } },
-        { mobileNumber: { contains: query, mode: "insensitive" } },
+        { requestChoices: { contains: query, mode: "insensitive" } },
         { purposeOfrequest: { contains: query, mode: "insensitive" } },
+        { requestChoices: { contains: query, mode: "insensitive" } },
       ],
     },
     skip: (currentPage - 1) * itemsPerPage,
@@ -58,6 +56,7 @@ export default async function UserRequestLists({
       course: true,
       purposeOfrequest: true,
       action: true,
+      requestChoices: true,
     },
   });
 
@@ -67,10 +66,9 @@ export default async function UserRequestLists({
       userId: session.user.id,
       OR: [
         { nameOfStudent: { contains: query, mode: "insensitive" } },
-        { course: { contains: query, mode: "insensitive" } },
-        { email: { contains: query, mode: "insensitive" } },
-        { mobileNumber: { contains: query, mode: "insensitive" } },
+        { requestChoices: { contains: query, mode: "insensitive" } },
         { purposeOfrequest: { contains: query, mode: "insensitive" } },
+        { requestChoices: { contains: query, mode: "insensitive" } },
       ],
     },
   });
@@ -81,11 +79,10 @@ export default async function UserRequestLists({
     <Table className="-z-50 border-2 rounded-md dark:border-white">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-1/6">Student Name</TableHead>
-          <TableHead className="w-1/6">Course</TableHead>
+          <TableHead className="w-1/6">Requesting Form</TableHead>
           <TableHead className="w-1/6">Purpose of Request</TableHead>
           <TableHead className="w-1/6">Status</TableHead>
-          <TableHead className="w-1/6 text-center">Action</TableHead>
+          <TableHead className="w-1/6">Action</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -93,15 +90,9 @@ export default async function UserRequestLists({
           <TableRow key={request.id}>
             <TableCell
               className="truncate max-w-[150px]"
-              title={request.nameOfStudent}
+              title={request.requestChoices ?? ""}
             >
-              {request.nameOfStudent}
-            </TableCell>
-            <TableCell
-              className="truncate max-w-[100px]"
-              title={request.course}
-            >
-              {request.course}
+              {request.requestChoices}
             </TableCell>
             <TableCell
               className="truncate max-w-[100px]"
@@ -109,6 +100,7 @@ export default async function UserRequestLists({
             >
               {request.purposeOfrequest}
             </TableCell>
+
             <TableCell
               className="truncate max-w-[100px]"
               title={request.action}
@@ -120,7 +112,9 @@ export default async function UserRequestLists({
               title="Upload Receipt"
             >
               <Link href={`/student/uploadpayslip/${request.id}`}>
-                <Button>Upload Receipt</Button>
+                <Button className="bg-[#800000] hover:bg-[#b74646] text-white">
+                  Upload Receipt
+                </Button>
               </Link>
             </TableCell>
           </TableRow>

@@ -16,7 +16,7 @@ export const Tracking = () => {
         ].map((step, index) => (
           <React.Fragment key={step}>
             <div className="flex flex-col items-center">
-              <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+              <div className="w-10 h-10 rounded-full bg-[#800000] hover:bg-[#b74646] text-white flex items-center justify-center font-bold">
                 {index + 1}
               </div>
               <span className="mt-2 text-sm font-medium text-gray-600 dark:text-gray-300">

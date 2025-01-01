@@ -1,6 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import toast from "react-hot-toast";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { LoginSchema } from "@/src/lib/validation/loginSchema";
 import {
   Form,
   FormControl,
@@ -8,31 +17,16 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import GoogleSignInButton from "@/components/GoogleButton";
-import { signIn } from "next-auth/react";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { LoginSchema } from "@/src/lib/validation/loginSchema";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
 
-const LoginForm = () => {
+export default function LoginForm() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -41,108 +35,150 @@ const LoginForm = () => {
     },
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
-    const updatedSession = session?.user.role;
-    const signInData = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: false,
-    });
+    setIsLoading(true);
+    try {
+      const signInData = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
 
-    if (signInData?.error) {
-      toast.error("Incorrect Email or Password!");
-      console.log(signInData.error);
-    } else {
-      toast.success("Successfully Logged In");
-      router.push("/student/reminders");
-      router.refresh();
+      if (signInData?.error) {
+        toast.error("Incorrect Email or Password!");
+        console.error(signInData.error);
+      } else {
+        toast.success("Successfully Logged In");
+        router.push("/student/reminders");
+        router.refresh();
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An error occurred during login. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <Card className="w-[700px] h-[90vh] flex flex-col items-center justify-center rounded-none">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl font-bold text-center mb-2">
-          Login
-        </CardTitle>
-        <CardDescription>
-          Enter your email and password to access your account.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-            <div className="space-y-2">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="zppsu@gmail.com" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+    <div className="w-full max-w-md mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          Login to Your Account
+        </h1>
+        <p className="text-gray-600">
+          Enter your credentials to access your account
+        </p>
+      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-700">Email</FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Mail
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                      size={18}
+                    />
+                    <Input
+                      className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                      placeholder="zppsu@gmail.com"
+                      {...field}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-700">Password</FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Lock
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                      size={18}
+                    />
+                    <Input
+                      className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Enter your password"
+                      {...field}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="absolute right-0 top-1/2 transform -translate-y-1/2 h-full px-3 hover:bg-transparent"
+                      onClick={() => setShowPassword(!showPassword)}
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                    >
+                      {showPassword ? (
+                        <EyeOff className="h-4 w-4 text-gray-500" />
+                      ) : (
+                        <Eye className="h-4 w-4 text-gray-500" />
+                      )}
+                    </Button>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-[#800000] focus:ring-[#800000] border-gray-300 rounded"
               />
-              <div className="relative">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Password</FormLabel>
-                      <FormControl>
-                        <Input
-                          id="password"
-                          type={showPassword ? "text" : "password"}
-                          placeholder="Enter your password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-0 top-0 h-full px-3 pt-8 hover:bg-transparent"
-                  onClick={togglePasswordVisibility}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-500" />
-                  ) : (
-                    <Eye className="h-4 w-4 text-gray-500" />
-                  )}
-                </Button>
-              </div>
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-700"
+              >
+                Remember me
+              </label>
             </div>
-            <Button className="w-full mt-6 bg-[#800000]" type="submit">
-              Sign in
-            </Button>
-          </form>
-          <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
-            or
+            <div className="text-sm">
+              <a
+                href="#"
+                className="font-medium text-[#800000] hover:text-[#600000]"
+              >
+                Forgot your password?
+              </a>
+            </div>
           </div>
-          {/* <GoogleSignInButton>Sign in with Google</GoogleSignInButton> */}
-          <p className="text-center text-sm text-gray-600 mt-2">
-            If you don&apos;t have an account, please&nbsp;
-            <Link className="text-[#800000] hover:underline" href="/register">
-              Register
-            </Link>
-          </p>
-        </Form>
-      </CardContent>
-    </Card>
+          <Button
+            className="w-full bg-[#800000] hover:bg-[#600000] text-white py-2 px-4 rounded-md transition duration-150 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#800000] focus:ring-opacity-50"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing in..." : "Sign in"}
+          </Button>
+        </form>
+      </Form>
+      <div className="mt-6 text-center">
+        <p className="text-sm text-gray-600">
+          Don't have an account?{" "}
+          <Link
+            className="font-medium text-[#800000] hover:text-[#600000]"
+            href="/register"
+          >
+            Register here
+          </Link>
+        </p>
+      </div>
+    </div>
   );
-};
-
-export default LoginForm;
+}

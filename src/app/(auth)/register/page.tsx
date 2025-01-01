@@ -17,10 +17,9 @@ export default function RegisterPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#800000]/80 to-transparent"></div>
           <div className="absolute bottom-0 left-0 right-0 p-8 text-white z-10">
-            <h2 className="text-3xl font-bold mb-2">Join Our Community</h2>
+            <h2 className="text-3xl font-bold mb-2">Create your Account</h2>
             <p className="text-sm">
-              Create an account to access student services and manage your
-              information.
+              Create an account to access documents and request a document.
             </p>
           </div>
         </div>

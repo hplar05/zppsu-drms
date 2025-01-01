@@ -23,7 +23,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+    <header className="sticky top-0 z-50 bg-[#5D0202] dark:bg-gray-900 shadow-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center space-x-2">
@@ -34,8 +34,8 @@ const Navbar = () => {
               height={40}
               className="transition-all hover:opacity-75 dark:invert"
             />
-            <span className="text-lg font-bold text-[#7D0303]">
-              ZPPSU <span className="text-black dark:text-white">DRMS</span>
+            <span className="text-lg font-bold text-[#c72e2e]">
+              ZPPSU <span className="text-white ">DRMS</span>
             </span>
           </Link>
 
@@ -44,14 +44,14 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 hover:text-[#7D0303] dark:text-gray-300 dark:hover:text-white transition-colors"
+                className="text-white hover:text-[#c72e2e] transition-colors"
               >
                 {item.label}
               </Link>
             ))}
             <Button
               onClick={() => router.push("/login")}
-              className="bg-[#7D0303] text-white hover:bg-[#5D0202]"
+              className="bg-[#7D0303] text-white hover:bg-[#c72e2e]"
             >
               Get Started
             </Button>
@@ -59,11 +59,11 @@ const Navbar = () => {
           </nav>
 
           <div className="md:hidden flex items-center">
-            <ThemeToggler />
+            {/* <ThemeToggler /> */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="ml-2">
-                  <Menu className="h-6 w-6" />
+                <Button size="icon" className="ml-2 bg-transparent">
+                  <Menu className="h-6 w-6 text-white" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </SheetTrigger>

@@ -35,9 +35,9 @@ const Features = () => {
       className="bg-gray-100 dark:bg-gray-800  min-h-screen flex justify-center items-center"
     >
       <Container>
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Our Features
-        </h2>
+        </h2> */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div

@@ -20,7 +20,7 @@ const About = () => {
       className="min-h-screen flex justify-center items-center py-16"
     >
       <Container>
-        <motion.h2
+        {/* <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -28,7 +28,7 @@ const About = () => {
           className="text-3xl md:text-4xl font-bold text-center mb-12"
         >
           About ZPPSU
-        </motion.h2>
+        </motion.h2> */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial="initial"

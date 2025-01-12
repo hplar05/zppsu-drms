@@ -7,9 +7,9 @@ export default function ContactUs() {
       className="min-h-screen flex justify-center items-center bg-gray-100 dark:bg-gray-800"
     >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+        {/* <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Contact Us
-        </h2>
+        </h2> */}
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-20">
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">Contact Information</h3>

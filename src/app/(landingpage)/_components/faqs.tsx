@@ -15,7 +15,7 @@ const faqItems = [
       "Log in to your account, navigate to the document request section, select the type of document you need, and follow the prompts to submit your request.",
   },
   {
-    question: "How will I know when my document is ready?",
+    question: "What document can I request?",
     answer:
       "Enrolment Form, Diploma, Official Transcript of Records, Report of Grades, Certificate of Transfer (Honorable Dismal), Application of Cross Enrolment, Certification of Graduation, Certification of Grades & Credit Eamed, Certification of Enrolment ,Request Form for Student's Permanent Record, Evaluation Form, Request Form for Document Issuance ,College Student's Permanent Record, Application Form for Graduation ,Completion/Removal Form, and Prospectus",
   },

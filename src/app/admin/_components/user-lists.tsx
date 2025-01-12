@@ -182,7 +182,16 @@ export default async function UserLists({
                 </TooltipProvider>
               </TableCell>
               <TableCell className="truncate max-w-[100px]">
-                {user.studId}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="truncate max-w-[150px] inline-block">
+                      {user.studId}
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{user.studId}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </TableCell>
               <TableCell className="truncate max-w-[100px]">
                 <TooltipProvider>

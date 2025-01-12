@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Section, Container } from "@/components/craft";
-import Placeholder from "@/public/placeholder.jpg";
+import Mission from "@/public/mission.png";
+import Vision from "@/public/vision.jpg";
 
 const About = () => {
   return (
@@ -21,9 +22,9 @@ const About = () => {
               resources.
             </p>
             <Image
-              src={Placeholder}
+              src={Mission}
               alt="ZPPSU Campus"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg h-[300px] w-[500px]"
             />
           </div>
           <div>
@@ -33,9 +34,9 @@ const About = () => {
               resources.
             </p>
             <Image
-              src={Placeholder}
+              src={Vision}
               alt="ZPPSU Students"
-              className="rounded-lg shadow-lg"
+              className="rounded-lg shadow-lg h-[320px] w-[500px]"
             />
           </div>
         </div>

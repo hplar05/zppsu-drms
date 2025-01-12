@@ -15,6 +15,11 @@ const faqItems = [
       "Log in to your account, navigate to the document request section, select the type of document you need, and follow the prompts to submit your request.",
   },
   {
+    question: "How will I know when my document is ready?",
+    answer:
+      "Enrolment Form, Diploma, Official Transcript of Records, Report of Grades, Certificate of Transfer (Honorable Dismal), Application of Cross Enrolment, Certification of Graduation, Certification of Grades & Credit Eamed, Certification of Enrolment ,Request Form for Student's Permanent Record, Evaluation Form, Request Form for Document Issuance ,College Student's Permanent Record, Application Form for Graduation ,Completion/Removal Form, and Prospectus",
+  },
+  {
     question: "How long does it take to process a document request?",
     answer:
       "Processing times vary depending on the type of document requested. Generally, it takes 3-5 business days, but some documents may take longer.",
@@ -23,6 +28,11 @@ const faqItems = [
     question: "Is there a fee for requesting documents?",
     answer:
       "Some documents may require a processing fee. The fee amount will be displayed before you confirm your request.",
+  },
+  {
+    question: "What are the fees for requesting documents?",
+    answer:
+      "Records Verification/ Background Check - No fees, Records Authentication - 60/page, Completion form - 50/page, TOR - 65/page, Issuance of Diploma/ Proficiency certificates - 250 for the 2nd issuance, Evaluation of subjects, grades & units earned - No fees, Issuance of certifications/CAV (certification, authentication, verification) - 60/page",
   },
   {
     question: "How will I know when my document is ready?",

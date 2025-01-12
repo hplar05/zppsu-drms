@@ -21,7 +21,7 @@ export default withUt({
     },
     extend: {
       backgroundImage: {
-        "header-img": "url('/header-bg.jpg')"
+        "header-img": "url('/landingpage-img.jpg')"
       },
       colors: {
         border: "hsl(var(--border))",

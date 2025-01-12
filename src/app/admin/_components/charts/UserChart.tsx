@@ -20,7 +20,7 @@ const UserChart: React.FC<UserChartProps> = ({ data }) => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>User Growth</CardTitle>
+        <CardTitle>Registered User</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>

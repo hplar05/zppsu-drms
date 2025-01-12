@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-type RangeOptions = "1day" | "7days" | "30days" | "1year" | "max";
+type RangeOptions = "1day" | "7days" | "30days" | "1year" | "max" | "custom";
 
 interface DashboardDataProps {
   totalRequest: number;
@@ -35,35 +35,53 @@ interface DashboardDataProps {
 interface StatCardProps {
   title: string;
   value: number;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   color: string;
 }
 
 const filterDataByRange = <T extends { date: string }>(
   data: T[],
-  range: RangeOptions
+  range: RangeOptions,
+  startDate?: Date,
+  endDate?: Date
 ): T[] => {
   if (range === "max") {
     return data;
   }
 
   const now = new Date();
-  const cutoffDate = new Date();
+  let cutoffDate = new Date();
 
-  if (range === "1day") {
-    cutoffDate.setDate(now.getDate() - 1);
-  } else if (range === "7days") {
-    cutoffDate.setDate(now.getDate() - 7);
-  } else if (range === "30days") {
-    cutoffDate.setDate(now.getDate() - 30);
-  } else if (range === "1year") {
-    cutoffDate.setFullYear(now.getFullYear() - 1);
+  if (range === "custom" && startDate && endDate) {
+    return data.filter(
+      ({ date }) => new Date(date) >= startDate && new Date(date) <= endDate
+    );
+  }
+
+  switch (range) {
+    case "1day":
+      cutoffDate.setDate(now.getDate() - 1);
+      break;
+    case "7days":
+      cutoffDate.setDate(now.getDate() - 7);
+      break;
+    case "30days":
+      cutoffDate.setDate(now.getDate() - 30);
+      break;
+    case "1year":
+      cutoffDate.setFullYear(now.getFullYear() - 1);
+      break;
   }
 
   return data.filter(({ date }) => new Date(date) >= cutoffDate);
 };
 
-const StatCard = ({ title, value, icon: Icon, color }: StatCardProps) => (
+const StatCard: React.FC<StatCardProps> = ({
+  title,
+  value,
+  icon: Icon,
+  color,
+}) => (
   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
     <Card className={`bg-gradient-to-br ${color} text-white`}>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -89,10 +107,9 @@ export default function DashboardData({
   usersNotApproved,
   nonAdminUsers,
 }: DashboardDataProps) {
-  const [range, setRange] = useState<RangeOptions>("max");
-
-  const filteredRequests = filterDataByRange(data, range);
-  const filteredUsers = filterDataByRange(userData, range);
+  const [range, setRange] = useState<RangeOptions>("7days");
+  const [startDate, setStartDate] = useState<Date | undefined>(undefined);
+  const [endDate, setEndDate] = useState<Date | undefined>(undefined);
 
   const rangeOptions = [
     { value: "1day", label: "Last 1 Day" },
@@ -100,7 +117,17 @@ export default function DashboardData({
     { value: "30days", label: "Last 30 Days" },
     { value: "1year", label: "Last 1 Year" },
     { value: "max", label: "All Time" },
+    { value: "custom", label: "Custom Range" },
   ];
+
+  const handleRangeChange = (value: string, start?: Date, end?: Date) => {
+    setRange(value as RangeOptions);
+    setStartDate(start);
+    setEndDate(end);
+  };
+
+  const filteredRequests = filterDataByRange(data, range, startDate, endDate);
+  const filteredUsers = filterDataByRange(userData, range, startDate, endDate);
 
   return (
     <div className="space-y-6">
@@ -155,28 +182,20 @@ export default function DashboardData({
       <div className="flex justify-end items-center mb-4">
         <SelectRanged
           value={range}
-          onChange={(value: string) => setRange(value as RangeOptions)}
+          onChange={handleRangeChange}
           options={rangeOptions}
           className="w-40"
         />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <Card>
           <RequestChart data={filteredRequests} />
-        </motion.div>
+        </Card>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        <Card>
           <UserChart data={filteredUsers} />
-        </motion.div>
+        </Card>
       </div>
     </div>
   );

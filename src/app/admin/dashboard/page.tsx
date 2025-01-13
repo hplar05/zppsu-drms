@@ -9,6 +9,8 @@ export default async function DashboardPage() {
     completedCount,
     declinedCount,
     pendingCount,
+    paidCount,
+    pendingPaymentCount,
     requests,
     users,
     usersApproved,
@@ -64,6 +66,8 @@ export default async function DashboardPage() {
               <DashboardData
                 completed={completedCount}
                 declined={declinedCount}
+                totalPaid={paidCount}
+                totalPendingPayment={pendingPaymentCount}
                 totalPending={pendingCount}
                 totalRequest={requests}
                 totalUsers={users}

@@ -11,9 +11,10 @@ import {
   Clock,
   CheckCircle,
   XCircle,
-  TrendingUp,
   UserCheck,
   UserX,
+  FileClock,
+  PhilippinePeso,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -25,6 +26,8 @@ interface DashboardDataProps {
   totalPending: number;
   completed: number;
   declined: number;
+  totalPendingPayment: number;
+  totalPaid: number;
   data: { date: string; totalRequests: number }[];
   userData: { date: string; totalUsers: number }[];
   usersApproved: number;
@@ -99,6 +102,8 @@ export default function DashboardData({
   totalRequest,
   totalUsers,
   totalPending,
+  totalPendingPayment,
+  totalPaid,
   completed,
   declined,
   data,
@@ -133,25 +138,37 @@ export default function DashboardData({
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard
-          title="Total Requests"
+          title="Requests"
           value={totalRequest}
           icon={Activity}
           color="from-blue-500 to-blue-600"
         />
         <StatCard
-          title="Total Users"
-          value={totalUsers}
-          icon={Users}
-          color="from-green-500 to-green-600"
-        />
-        <StatCard
-          title="Pending"
+          title="Pending Request"
           value={totalPending}
           icon={Clock}
           color="from-yellow-500 to-yellow-600"
         />
         <StatCard
-          title="Completed"
+          title="Declined Request"
+          value={declined}
+          icon={XCircle}
+          color="from-red-500 to-red-600"
+        />
+        <StatCard
+          title="Pending Payment Request"
+          value={totalPendingPayment}
+          icon={FileClock}
+          color="from-green-500 to-green-600"
+        />
+        <StatCard
+          title="Paid Request"
+          value={totalPaid}
+          icon={PhilippinePeso}
+          color="from-pink-500 to-pink-600"
+        />
+        <StatCard
+          title="Completed Request"
           value={completed}
           icon={CheckCircle}
           color="from-purple-500 to-purple-600"
@@ -159,6 +176,12 @@ export default function DashboardData({
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <StatCard
+          title="Total Users"
+          value={totalUsers}
+          icon={Users}
+          color="from-green-500 to-green-600"
+        />
         <StatCard
           title="Approved Users"
           value={usersApproved}
@@ -170,12 +193,6 @@ export default function DashboardData({
           value={usersNotApproved}
           icon={UserX}
           color="from-red-500 to-red-600"
-        />
-        <StatCard
-          title="Declined"
-          value={declined}
-          icon={XCircle}
-          color="from-pink-500 to-pink-600"
         />
       </div>
 

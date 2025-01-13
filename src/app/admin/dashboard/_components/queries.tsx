@@ -17,6 +17,12 @@ export async function fetchDashboardCounts() {
     where: { action: "PENDING" },
   });
 
+  const pendingpayment = await db.requestForm.findMany({
+    where: { action: "APPROVE_PENDING_PAYMENT" },
+  });
+  const paid = await db.requestForm.findMany({
+    where: { action: "PAID" },
+  });
   const usersApproved = await db.user.count({ where: { isApprove: true } });
   const usersNotApproved = await db.user.count({ where: { isApprove: false } });
 
@@ -31,6 +37,8 @@ export async function fetchDashboardCounts() {
     completedCount: completed.length,
     declinedCount: declined.length,
     pendingCount: pending.length,
+    paidCount: paid.length,
+    pendingPaymentCount: pendingpayment.length,
     usersApproved,
     usersNotApproved,
     nonAdminUsers,

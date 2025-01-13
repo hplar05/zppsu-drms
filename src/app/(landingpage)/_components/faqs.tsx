@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import {
   Accordion,
@@ -42,28 +45,72 @@ const faqItems = [
 ];
 
 const FAQ = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+
   return (
-    <Section id="faq" className="min-h-screen flex justify-center items-center">
-      <Container>
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-          Frequently Asked Questions
-        </h2>
+    <section
+      id="faq"
+      className="min-h-screen flex justify-center items-center py-20 bg-gradient-to-b from-background to-background/80"
+      ref={sectionRef}
+    >
+      <Container className="relative">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+            Frequently Asked Questions
+          </h2>
+          <div className="h-1 w-20 bg-primary mx-auto rounded-full" />
+        </motion.div>
         <div className="max-w-3xl mx-auto">
           {faqItems.map((item, index) => (
-            <Accordion key={index} type="single" collapsible className="mb-4">
-              <AccordionItem value={item.question}>
-                <AccordionTrigger className="text-left hover:no-underline">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Accordion type="single" collapsible className="mb-4">
+                <AccordionItem
+                  value={item.question}
+                  className="border-b border-border/50"
+                >
+                  <AccordionTrigger className="text-left hover:no-underline py-4 px-6 bg-card/50 rounded-t-lg transition-colors duration-200 hover:bg-card/80">
+                    <span className="flex items-center text-foreground">
+                      {item.question}
+                      <ArrowUpRight className="ml-2 h-4 w-4 text-primary/60" />
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground bg-card/30 px-6 py-4 rounded-b-lg">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </motion.div>
           ))}
         </div>
+
+        {/* Decorative elements */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            transition={{ duration: 1 }}
+            className="absolute top-0 left-0 w-72 h-72 bg-primary/10 rounded-full filter blur-3xl"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.4 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="absolute bottom-0 right-0 w-96 h-96 bg-secondary/20 rounded-full filter blur-3xl"
+          />
+        </div>
       </Container>
-    </Section>
+    </section>
   );
 };
 

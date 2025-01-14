@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePDF } from "react-to-pdf";
-import { RequestStatus, RequestStatusData } from "@/src/lib/types/dashboard";
 
 type RangeOptions = "1day" | "7days" | "30days" | "1year" | "max" | "custom";
 
@@ -213,9 +212,9 @@ export default function DashboardData({
         </Card>
       </div>
 
-      {/* <div className="grid gap-4">
+      <div className="grid gap-4">
         <RequestStatusChart data={filteredRequests} />
-      </div> */}
+      </div>
     </div>
   );
 }

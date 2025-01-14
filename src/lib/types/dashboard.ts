@@ -2,11 +2,11 @@ export type RequestStatus = "PENDING" | "DECLINE" | "APPROVE_PENDING_PAYMENT" | 
 
 export interface RequestStatusData {
   date: string;
-  PENDING: number;
-  DECLINE: number;
-  APPROVE_PENDING_PAYMENT: number;
-  PAID: number;
-  COMPLETED: number;
+  PENDING?: number;
+  DECLINE?: number;
+  APPROVE_PENDING_PAYMENT?: number;
+  PAID?: number;
+  COMPLETED?: number;
   totalRequests: number;
 }
 

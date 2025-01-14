@@ -12,10 +12,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RequestStatus, RequestStatusData } from "@/src/lib/types/dashboard";
 
-type RequestStatusChartProps = {
-  data: RequestStatusData[];
-};
-
 const colors = {
   PENDING: "#FFA500",
   DECLINE: "#FF0000",
@@ -23,6 +19,10 @@ const colors = {
   PAID: "#32CD32",
   COMPLETED: "#4169E1",
 };
+
+interface RequestStatusChartProps {
+  data: RequestStatusData[];
+}
 
 export const RequestStatusChart: React.FC<RequestStatusChartProps> = ({
   data,

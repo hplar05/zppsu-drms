@@ -54,7 +54,7 @@ export async function fetchRequestData(
   if (createdBefore) createdAtQuery.lte = createdBefore;
 
   const allRequests = await db.requestForm.findMany({
-    select: { createdAt: true },
+    select: { createdAt: true, action: true },
     where:
       Object.keys(createdAtQuery).length > 0
         ? { createdAt: createdAtQuery }

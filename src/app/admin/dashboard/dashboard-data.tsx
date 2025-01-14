@@ -1,8 +1,11 @@
 "use client";
 
+import React, { useRef } from "react";
 import { useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { RequestChart } from "../_components/charts/RequestChart";
+import { RequestStatusChart } from "../_components/charts/RequestStatusChart";
 import SelectRanged from "../_components/charts/SelectRanged";
 import UserChart from "../_components/charts/UserChart";
 import {
@@ -14,9 +17,11 @@ import {
   UserCheck,
   UserX,
   FileClock,
-  PhilippinePeso,
+  Download,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { usePDF } from "react-to-pdf";
+import { RequestStatus, RequestStatusData } from "@/src/lib/types/dashboard";
 
 type RangeOptions = "1day" | "7days" | "30days" | "1year" | "max" | "custom";
 
@@ -79,25 +84,6 @@ const filterDataByRange = <T extends { date: string }>(
   return data.filter(({ date }) => new Date(date) >= cutoffDate);
 };
 
-const StatCard: React.FC<StatCardProps> = ({
-  title,
-  value,
-  icon: Icon,
-  color,
-}) => (
-  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-    <Card className={`bg-gradient-to-br ${color} text-white`}>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        <Icon className="h-4 w-4" />
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
-      </CardContent>
-    </Card>
-  </motion.div>
-);
-
 export default function DashboardData({
   totalRequest,
   totalUsers,
@@ -134,65 +120,77 @@ export default function DashboardData({
   const filteredRequests = filterDataByRange(data, range, startDate, endDate);
   const filteredUsers = filterDataByRange(userData, range, startDate, endDate);
 
+  const { toPDF, targetRef } = usePDF({ filename: "dashboard-data.pdf" });
+
   return (
-    <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="space-y-6" ref={targetRef}>
+      {/* <div className="flex justify-between items-center">
+        <Button
+          onClick={() => toPDF()}
+          className="bg-blue-500 hover:bg-blue-600 text-white"
+        >
+          <Download className="mr-2 h-4 w-4" /> Download PDF
+        </Button>
+      </div> */}
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <StatCard
-          title="Requests"
+          title="Total Requests"
           value={totalRequest}
           icon={Activity}
-          color="from-blue-500 to-blue-600"
+          color="bg-sky-500"
         />
-        <StatCard
-          title="Pending Request"
-          value={totalPending}
-          icon={Clock}
-          color="from-yellow-500 to-yellow-600"
-        />
-        <StatCard
-          title="Declined Request"
-          value={declined}
-          icon={XCircle}
-          color="from-red-500 to-red-600"
-        />
-        <StatCard
-          title="Pending Payment Request"
-          value={totalPendingPayment}
-          icon={FileClock}
-          color="from-green-500 to-green-600"
-        />
-        <StatCard
-          title="Paid Request"
-          value={totalPaid}
-          icon={PhilippinePeso}
-          color="from-pink-500 to-pink-600"
-        />
-        <StatCard
-          title="Completed Request"
-          value={completed}
-          icon={CheckCircle}
-          color="from-purple-500 to-purple-600"
-        />
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <StatCard
           title="Total Users"
           value={totalUsers}
           icon={Users}
-          color="from-green-500 to-green-600"
+          color="bg-green-500"
         />
         <StatCard
-          title="Approved Users"
+          title="Pending Requests"
+          value={totalPending}
+          icon={Clock}
+          color="bg-yellow-500"
+        />
+        <StatCard
+          title="Pending Payments"
+          value={totalPendingPayment}
+          icon={FileClock}
+          color="bg-orange-500"
+        />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <StatCard
+          title="Completed Requests"
+          value={completed}
+          icon={CheckCircle}
+          color="bg-blue-500"
+        />
+        <StatCard
+          title="Declined Requests"
+          value={declined}
+          icon={XCircle}
+          color="bg-red-500"
+        />
+        <StatCard
+          title="Total Paid"
+          value={totalPaid}
+          icon={Activity}
+          color="bg-purple-500"
+        />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <StatCard
+          title="Users Approved"
           value={usersApproved}
           icon={UserCheck}
-          color="from-indigo-500 to-indigo-600"
+          color="bg-teal-500"
         />
         <StatCard
-          title="Not Approved Users"
+          title="Users Not Approved"
           value={usersNotApproved}
           icon={UserX}
-          color="from-red-500 to-red-600"
+          color="bg-pink-500"
         />
       </div>
 
@@ -214,6 +212,29 @@ export default function DashboardData({
           <UserChart data={filteredUsers} />
         </Card>
       </div>
+
+      {/* <div className="grid gap-4">
+        <RequestStatusChart data={filteredRequests} />
+      </div> */}
     </div>
   );
 }
+
+const StatCard: React.FC<StatCardProps> = ({
+  title,
+  value,
+  icon: Icon,
+  color,
+}) => (
+  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+    <Card className={`bg-gradient-to-br ${color} text-white`}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        <Icon className="h-4 w-4" />
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+      </CardContent>
+    </Card>
+  </motion.div>
+);

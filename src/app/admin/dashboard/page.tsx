@@ -5,6 +5,7 @@ import DashboardData from "./dashboard-data";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function DashboardPage() {
+  // Fetching the counts and request data
   const {
     completedCount,
     declinedCount,
@@ -20,15 +21,31 @@ export default async function DashboardPage() {
 
   const { allRequests, users: userEntries } = await fetchRequestData();
 
-  const aggregatedRequests = allRequests.reduce<{ [key: string]: number }>(
-    (acc, { createdAt }) => {
-      const date = createdAt.toISOString().split("T")[0];
-      acc[date] = (acc[date] || 0) + 1;
-      return acc;
-    },
-    {}
-  );
+  // Aggregating requests by date and action
+  const aggregatedRequests = allRequests.reduce<{
+    [key: string]: {
+      PENDING: number;
+      DECLINE: number;
+      APPROVE_PENDING_PAYMENT: number;
+      PAID: number;
+      COMPLETED: number;
+    };
+  }>((acc, { createdAt, action }) => {
+    const date = createdAt.toISOString().split("T")[0];
+    if (!acc[date]) {
+      acc[date] = {
+        PENDING: 0,
+        DECLINE: 0,
+        APPROVE_PENDING_PAYMENT: 0,
+        PAID: 0,
+        COMPLETED: 0,
+      };
+    }
+    acc[date][action as keyof (typeof acc)["date"]]++;
+    return acc;
+  }, {});
 
+  // Aggregating users by date
   const aggregatedUsers = userEntries.reduce<{ [key: string]: number }>(
     (acc, { createdAt }) => {
       if (!createdAt) return acc;
@@ -39,9 +56,19 @@ export default async function DashboardPage() {
     {}
   );
 
+  // Mapping aggregated data into chart-compatible format
   const chartData = Object.keys(aggregatedRequests).map((date) => ({
     date,
-    totalRequests: aggregatedRequests[date],
+    totalRequests: Object.values(aggregatedRequests[date]).reduce(
+      (a, b) => a + b,
+      0
+    ),
+    PENDING: aggregatedRequests[date].PENDING || 0,
+    DECLINE: aggregatedRequests[date].DECLINE || 0,
+    APPROVE_PENDING_PAYMENT:
+      aggregatedRequests[date].APPROVE_PENDING_PAYMENT || 0,
+    PAID: aggregatedRequests[date].PAID || 0,
+    COMPLETED: aggregatedRequests[date].COMPLETED || 0,
   }));
 
   const userData = Object.keys(aggregatedUsers).map((date) => ({

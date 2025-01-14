@@ -93,7 +93,7 @@ const userSchema = z.object({
   export async function POST(req: Request) {
     try {
       const body = await req.json();
-      const { username, email, password, name, proofOfID, mobileNumber, studId, course, role } = userSchema.parse(body);
+      const { username, email, password, name, proofOfID, mobileNumber, studId, course, role} = userSchema.parse(body);
   
       const existingUser = await db.user.findUnique({
         where: { email },
@@ -122,7 +122,7 @@ const userSchema = z.object({
   
       const hashedPassword = await hash(password, 10);
       const newUser = await db.user.create({
-        data: { username, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role },
+        data: { username, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
       });
   
       return NextResponse.json({ message: "User created successfully", user: newUser }, { status: 201 });

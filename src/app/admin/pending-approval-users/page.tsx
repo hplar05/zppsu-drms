@@ -28,7 +28,9 @@ export default async function PendingNewUserTable({
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#121212] mt-2">
-      <AdminNavbar />
+      <div className="max-md:hidden block">
+        <AdminNavbar />
+      </div>
       <main className="container mx-auto px-4 py-8">
         <div className="bg-white dark:bg-[#121212] rounded-lg shadow-lg p-6">
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-6">

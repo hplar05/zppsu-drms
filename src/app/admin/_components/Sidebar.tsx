@@ -119,7 +119,7 @@ export default function UserSidebar() {
           prefetch={false}
         >
           <WalletIcon className="w-5 h-5" />
-          <span>Paid Requests</span>
+          <span>Waiting For Approval</span>
         </Link>
         <Link
           href="/admin/completed-requests"

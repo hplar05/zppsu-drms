@@ -90,7 +90,7 @@ model RequestForm {
   attachment       String?
   adminMessage     String?
   payslipUrl       String?
-  user             User     @relation(fields: [userId], references: [id])
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   action           Action   @default(PENDING)
   requestChoices   String?
   createdAt        DateTime @default(now())
@@ -128,7 +128,7 @@ model Announcement {
   title     String
   body      String
   adminId   String
-  user      User     @relation(fields: [adminId], references: [id])
+  user      User     @relation(fields: [adminId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updateUt  DateTime @updatedAt
 }

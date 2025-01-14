@@ -13,11 +13,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { RequestStatus, RequestStatusData } from "@/src/lib/types/dashboard";
 
 const colors = {
-  PENDING: "#FFA500",
+  PENDING: "#EAB308",
   DECLINE: "#FF0000",
-  APPROVE_PENDING_PAYMENT: "#00CED1",
-  PAID: "#32CD32",
-  COMPLETED: "#4169E1",
+  APPROVE_PENDING_PAYMENT: "#F97316",
+  PAID: "#A855F7",
+  COMPLETED: "#3B82F6",
 };
 
 interface RequestStatusChartProps {

@@ -13,6 +13,9 @@ model User {
   username     String         @unique
   password     String
   name         String
+  firstName    String?
+  middleName   String?
+  lastName     String?
   mobileNumber String
   image        String?
   course       String

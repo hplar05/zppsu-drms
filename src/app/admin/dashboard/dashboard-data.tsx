@@ -139,17 +139,18 @@ export default function DashboardData({
           icon={Activity}
           color="bg-sky-500"
         />
-        <StatCard
-          title="Total Users"
-          value={totalUsers}
-          icon={Users}
-          color="bg-green-500"
-        />
+
         <StatCard
           title="Pending Requests"
           value={totalPending}
           icon={Clock}
           color="bg-yellow-500"
+        />
+        <StatCard
+          title="Declined Requests"
+          value={declined}
+          icon={XCircle}
+          color="bg-red-500"
         />
         <StatCard
           title="Pending Payments"
@@ -160,22 +161,16 @@ export default function DashboardData({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <StatCard
+          title="Waiting for Approval"
+          value={totalPaid}
+          icon={Activity}
+          color="bg-purple-500"
+        />
+        <StatCard
           title="Completed Requests"
           value={completed}
           icon={CheckCircle}
           color="bg-blue-500"
-        />
-        <StatCard
-          title="Declined Requests"
-          value={declined}
-          icon={XCircle}
-          color="bg-red-500"
-        />
-        <StatCard
-          title="Total Paid"
-          value={totalPaid}
-          icon={Activity}
-          color="bg-purple-500"
         />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -186,10 +181,10 @@ export default function DashboardData({
           color="bg-teal-500"
         />
         <StatCard
-          title="Users Not Approved"
-          value={usersNotApproved}
-          icon={UserX}
-          color="bg-pink-500"
+          title="Total Users"
+          value={totalUsers}
+          icon={Users}
+          color="bg-green-500"
         />
       </div>
 

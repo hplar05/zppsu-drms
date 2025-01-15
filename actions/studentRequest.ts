@@ -14,6 +14,7 @@ const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY)
 export async function createRequest(formData: FormData) {
     const yearAndsection = formData.get('yearAndsection') as string;
     const attachment = formData.get('attachment') as string;
+    const payslipUrl  = formData.get('receipt') as string;
     const purposeOfrequest = formData.get('purposeOfrequest') as string;
     const requestChoices =  formData.get('requestChoices') as string;
     const session = await getServerSession(authOptions);
@@ -36,6 +37,7 @@ export async function createRequest(formData: FormData) {
     course,
     yearAndsection,
     attachment,
+    payslipUrl,
     purposeOfrequest,
     requestChoices,
     adminMessage: "Your request application is pending",

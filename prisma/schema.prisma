@@ -29,6 +29,7 @@ model User {
   semmester    String?
   createdAt    DateTime       @default(now())
   updateUt     DateTime       @updatedAt
+  othersCourse String?
 }
 
 enum Role {
@@ -38,6 +39,7 @@ enum Role {
   DROPOUT
   RETURNEES
   SHIFTER
+  ALUMNI
   ADMIN
   SUPERADMIN
 }

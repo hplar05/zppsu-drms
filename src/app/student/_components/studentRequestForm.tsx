@@ -32,7 +32,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { AlertCircle, CheckCircle2, Upload } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Progress } from "@/components/ui/progress";
+// import { Progress } from "@/components/ui/progress";
 
 const documentTypes = [
   "Enrollment Form",
@@ -55,6 +55,7 @@ const documentTypes = [
 
 export default function StudentRequestForm() {
   const [attachmentUrl, setAttachmentUrl] = useState("");
+  const [receiptUrl, setReceiptUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { data: session } = useSession();
 
@@ -78,6 +79,9 @@ export default function StudentRequestForm() {
 
     if (attachmentUrl) {
       formData.append("attachment", attachmentUrl);
+    }
+    if (receiptUrl) {
+      formData.append("receipt", receiptUrl);
     }
 
     try {
@@ -272,6 +276,50 @@ export default function StudentRequestForm() {
                     </span>
                     <span className="text-xs text-muted-foreground">
                       PDF, DOC, or image files (max 10MB)
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="receipt">Receipt Image (Optional)</Label>
+              {receiptUrl ? (
+                <Alert>
+                  <CheckCircle2 className="h-4 w-4" />
+                  <AlertTitle>File Uploaded</AlertTitle>
+                  <AlertDescription className="flex justify-between items-center">
+                    <span>Your file has been successfully uploaded.</span>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setReceiptUrl("")}
+                    >
+                      Remove
+                    </Button>
+                  </AlertDescription>
+                </Alert>
+              ) : (
+                <div className="border-2 border-dashed rounded-md p-4">
+                  <UploadButton
+                    endpoint="imageUploader"
+                    onClientUploadComplete={(res: any) => {
+                      if (res && res.length > 0 && res[0].url) {
+                        setReceiptUrl(res[0].url);
+                        toast.success("File uploaded successfully");
+                      }
+                    }}
+                    onUploadError={(error: Error) => {
+                      toast.error(`Upload failed: ${error.message}`);
+                    }}
+                  />
+                  <div className="flex flex-col items-center mt-2">
+                    <Upload className="h-8 w-8 mb-2 text-muted-foreground" />
+                    <span className="text-sm font-medium mb-1">
+                      Click to upload or drag and drop
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      Image files (max 2MB)
                     </span>
                   </div>
                 </div>

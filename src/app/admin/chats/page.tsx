@@ -6,9 +6,12 @@ import AdminChatInterface from "./ChatInterface";
 
 const page = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <AdminChatInterface />
-    </Suspense>
+    <div className="max-md:hidden block">
+      <AdminNavbar />
+      <Suspense fallback={<div>Loading...</div>}>
+        <AdminChatInterface />
+      </Suspense>
+    </div>
   );
 };
 

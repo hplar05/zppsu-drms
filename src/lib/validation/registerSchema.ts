@@ -4,7 +4,10 @@ export type RegisterType = z.infer<typeof RegisterSchema>
 
 export const RegisterSchema = z
   .object({
-    name: z.string().nonempty("Name is required"),
+    name: z.string().nonempty("Full Name is required"),
+    firstName: z.string().nonempty("First Name is required"),
+    middleName: z.string().nonempty("Middle Name is required"),
+    lastName: z.string().nonempty("Last Name is required"),
     username: z.string().nonempty("Username is required"),
     email: z.string().email("Invalid email address"),
     password: z.string().min(8, "Password must be at least 8 characters long"),

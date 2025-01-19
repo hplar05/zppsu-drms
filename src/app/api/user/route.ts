@@ -15,7 +15,10 @@ const userSchema = z.object({
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[\w!@#$%^&*]+$/.test(password),
         "Password must contain at least one lowercase letter, one uppercase letter, and one special character."
       ),
-    name: z.string().min(3, "Name is required"),
+    name: z.string().nonempty("Full Name is required"),
+    firstName: z.string().nonempty("First Name is required"),
+    middleName: z.string().nonempty("Middle Name is required"),
+    lastName: z.string().nonempty("Last Name is required"),
     proofOfID: z.string().min(3, "Proof of ID is required"),
     mobileNumber: z.string().length(13, "Mobile number must be exactly 13 characters"),
     studId: z.string().min(5, "Student ID is required").max(15),
@@ -93,7 +96,7 @@ const userSchema = z.object({
   export async function POST(req: Request) {
     try {
       const body = await req.json();
-      const { username, email, password, name, proofOfID, mobileNumber, studId, course, role} = userSchema.parse(body);
+      const { username, firstName, lastName, middleName, email, password, name, proofOfID, mobileNumber, studId, course, role} = userSchema.parse(body);
   
       const existingUser = await db.user.findUnique({
         where: { email },
@@ -122,7 +125,7 @@ const userSchema = z.object({
   
       const hashedPassword = await hash(password, 10);
       const newUser = await db.user.create({
-        data: { username, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
+        data: { username, firstName, middleName, lastName, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
       });
   
       return NextResponse.json({ message: "User created successfully", user: newUser }, { status: 201 });

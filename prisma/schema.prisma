@@ -147,6 +147,6 @@ model Message {
   senderId    String
   recipientId String
   createdAt   DateTime @default(now())
-  sender      User     @relation("SentMessages", fields: [senderId], references: [id])
-  recipient   User     @relation("ReceivedMessages", fields: [recipientId], references: [id])
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  recipient   User     @relation("ReceivedMessages", fields: [recipientId], references: [id], onDelete: Cascade)
 }

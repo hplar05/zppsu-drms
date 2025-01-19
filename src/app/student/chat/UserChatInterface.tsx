@@ -37,7 +37,6 @@ export default function UserChatInterface() {
         setMessages(fetchedMessages);
       } catch (error) {
         console.error("Failed to fetch messages:", error);
-        // Optionally, you can set an error state here and display it to the user
       }
     }
     fetchMessages();
@@ -52,7 +51,6 @@ export default function UserChatInterface() {
       setNewMessage("");
     } catch (error) {
       console.error("Failed to send message:", error);
-      // Optionally, you can set an error state here and display it to the user
     }
   };
 
@@ -77,10 +75,10 @@ export default function UserChatInterface() {
                   message.sender.role !== "ADMIN"
                     ? "bg-blue-500 text-white"
                     : "bg-gray-200"
-                } rounded-lg p-2 text-sm`}
+                } rounded-lg p-2 text-sm break-words`}
               >
                 <p className="font-semibold text-xs">{message.sender.name}</p>
-                <p>{message.content}</p>
+                <p className="whitespace-pre-wrap">{message.content}</p>
                 <span className="text-xs opacity-70 mt-1 block">
                   {new Date(message.createdAt).toLocaleTimeString()}
                 </span>

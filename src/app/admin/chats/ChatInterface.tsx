@@ -11,6 +11,7 @@ import {
   getNonAdminUsers,
   sendMessageAsAdmin,
 } from "@/actions/chat";
+import { Search } from "lucide-react";
 
 type User = {
   id: string;
@@ -32,14 +33,17 @@ type Message = {
 export default function AdminChatInterface() {
   const { data: session } = useSession();
   const [users, setUsers] = useState<User[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function fetchNonAdminUsers() {
       const nonAdminUsers = await getNonAdminUsers();
       setUsers(nonAdminUsers);
+      setFilteredUsers(nonAdminUsers);
     }
     fetchNonAdminUsers();
   }, []);
@@ -54,6 +58,15 @@ export default function AdminChatInterface() {
     fetchMessages();
   }, [selectedUser]);
 
+  useEffect(() => {
+    const filtered = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredUsers(filtered);
+  }, [searchTerm, users]);
+
   const handleSendMessage = async () => {
     if (!selectedUser || !newMessage.trim()) return;
 
@@ -66,10 +79,22 @@ export default function AdminChatInterface() {
     <div className="flex h-screen bg-gray-100">
       <div className="flex flex-col w-64 bg-white border-r">
         <div className="p-4 border-b">
-          <h2 className="text-xl font-semibold">Users</h2>
+          <h2 className="text-xl font-semibold mb-2">Users</h2>
+          <div className="relative">
+            <Input
+              placeholder="Search users..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-8"
+            />
+            <Search
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400"
+              size={18}
+            />
+          </div>
         </div>
         <ScrollArea className="flex-1">
-          {users.map((user) => (
+          {filteredUsers.map((user) => (
             <div
               key={user.id}
               className={`p-4 cursor-pointer hover:bg-gray-100 ${
@@ -125,10 +150,10 @@ export default function AdminChatInterface() {
                       message.senderId === session?.user?.id
                         ? "bg-blue-500 text-white"
                         : "bg-gray-200"
-                    } rounded-lg p-3`}
+                    } rounded-lg p-3 break-words`}
                   >
                     <p className="font-semibold">{message.sender.name}</p>
-                    <p>{message.content}</p>
+                    <p className="whitespace-pre-wrap">{message.content}</p>
                     <span className="text-xs text-gray-400 mt-1 block">
                       {new Date(message.createdAt).toLocaleTimeString()}
                     </span>

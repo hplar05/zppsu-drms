@@ -10,4 +10,5 @@ export const StudentRequestSchema = z.object({
     // subjectname: z.string().min(4, "Subject name is required").max(100),
     purposeOfrequest: z.string().min(5, "Purpose is required").max(100),
     requestChoices: z.string().min(2).max(50),
+    bulkRequests: z.array(z.string()).optional(),
   });

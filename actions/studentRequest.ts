@@ -23,31 +23,42 @@ export async function createRequest(formData: FormData) {
     
     const userId = session.user.id;
     const mobileNumber = session.user.mobileNumber;
+    
     const email = session.user.email;
     const nameOfStudent = session.user.name;
     const course = session.user.course;
-    const studentId = session.user.studId
+    const studentId = session.user.studId;
+
+    let parsedRequestChoices: string[];
+    try {
+        parsedRequestChoices = JSON.parse(requestChoices);
+    } catch {
+        parsedRequestChoices = [requestChoices];
+    }
+
+    const isBulkRequest = parsedRequestChoices.length > 1 || parsedRequestChoices[0] === "Bulk Request";
 
     await db.requestForm.create({
-    data: {
-    nameOfStudent,
-    studentId,
-    email,
-    mobileNumber,
-    course,
-    yearAndsection,
-    attachment,
-    payslipUrl,
-    purposeOfrequest,
-    requestChoices,
-    adminMessage: "Your request application is pending",
-    user: {
-      connect: {
-        id: userId, 
-      },
-    },
-  },
-});
+        data: {
+            nameOfStudent,
+            studentId,
+            email,
+            mobileNumber,
+            course,
+            yearAndsection,
+            attachment,
+            payslipUrl,
+            purposeOfrequest,
+            requestChoices: parsedRequestChoices.join(', '),
+            bulkRequest: isBulkRequest ? 'true' : 'false',
+            adminMessage: "Your request application is pending",
+            user: {
+                connect: {
+                    id: userId, 
+                },
+            },
+        },
+    });
 
     const studentRecipient = await db.user.findMany({
         where: {
@@ -68,11 +79,11 @@ export async function createRequest(formData: FormData) {
             }
         }
     });
-    
 
     revalidatePath("/admin/request-table");
     redirect("/student/dashboard");
-}    
+}
+
 
 
     

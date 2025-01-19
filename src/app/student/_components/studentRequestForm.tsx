@@ -32,7 +32,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { AlertCircle, CheckCircle2, Upload } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-// import { Progress } from "@/components/ui/progress";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const documentTypes = [
   "Enrollment Form",
@@ -51,30 +51,40 @@ const documentTypes = [
   "Completion Removal Form",
   "Prospectus",
   "Enrollment List",
+  "Bulk Request",
 ];
 
 export default function StudentRequestForm() {
   const [attachmentUrl, setAttachmentUrl] = useState("");
   const [receiptUrl, setReceiptUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedRequests, setSelectedRequests] = useState<string[]>([]);
   const { data: session } = useSession();
 
   const {
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(StudentRequestSchema),
     mode: "onChange",
   });
 
+  const selectedRequestType = watch("requestChoices");
+  const isBulkRequest = selectedRequestType === "Bulk Request";
+
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
     const formData = new FormData();
 
     Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
+      if (key === "requestChoices" && isBulkRequest) {
+        formData.append(key, JSON.stringify(selectedRequests));
+      } else {
+        formData.append(key, data[key]);
+      }
     });
 
     if (attachmentUrl) {
@@ -104,6 +114,7 @@ export default function StudentRequestForm() {
       </CardHeader>
       <form onSubmit={handleSubmit(onSubmit)}>
         <CardContent className="space-y-8 mt-6">
+          {/* Personal Information Section */}
           <section className="space-y-4">
             <h3 className="text-lg font-semibold flex items-center">
               <span className="bg-primary text-primary-foreground rounded-full w-6 h-6 inline-flex items-center justify-center mr-2">
@@ -113,7 +124,6 @@ export default function StudentRequestForm() {
             </h3>
             <Separator />
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {/* Personal Info Fields */}
               <div className="space-y-2">
                 <Label htmlFor="nameOfStudent">Full Name</Label>
                 <Input
@@ -189,8 +199,15 @@ export default function StudentRequestForm() {
                   control={control}
                   render={({ field }) => (
                     <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        if (value === "Bulk Request") {
+                          setSelectedRequests(["Bulk Request"]);
+                        } else {
+                          setSelectedRequests([]);
+                        }
+                      }}
+                      value={field.value}
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Select a document type" />
@@ -211,6 +228,36 @@ export default function StudentRequestForm() {
                   </p>
                 )}
               </div>
+              {isBulkRequest && (
+                <div className="space-y-2">
+                  <Label>Select documents for bulk request:</Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {documentTypes
+                      .filter((type) => type !== "Bulk Request")
+                      .map((type) => (
+                        <div key={type} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={`bulk-${type}`}
+                            checked={selectedRequests.includes(type)}
+                            onCheckedChange={(checked) => {
+                              if (checked) {
+                                setSelectedRequests([
+                                  ...selectedRequests,
+                                  type,
+                                ]);
+                              } else {
+                                setSelectedRequests(
+                                  selectedRequests.filter((t) => t !== type)
+                                );
+                              }
+                            }}
+                          />
+                          <Label htmlFor={`bulk-${type}`}>{type}</Label>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="purposeOfrequest">Purpose of Request</Label>
                 <Textarea

@@ -81,6 +81,7 @@ enum RegistrarForms {
   Completion_Removal_Form
   Prospectus
   Enrollment_List
+  Bulk_Request
 }
 
 model RequestForm {
@@ -99,6 +100,7 @@ model RequestForm {
   user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   action           Action   @default(PENDING)
   requestChoices   String?
+  bulkRequest      String?
   createdAt        DateTime @default(now())
   updateUt         DateTime @updatedAt
 }

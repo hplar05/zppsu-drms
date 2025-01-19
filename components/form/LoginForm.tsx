@@ -151,12 +151,12 @@ export default function LoginForm() {
               </label>
             </div>
             <div className="text-sm">
-              <a
-                href="#"
+              <Link
+                href="/forget-password"
                 className="font-medium text-[#800000] hover:text-[#600000]"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
           <Button

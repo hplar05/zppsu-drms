@@ -61,6 +61,7 @@
     "react-to-pdf": "^1.0.1",
     "react-wrap-balancer": "^1.1.1",
     "recharts": "^2.13.3",
+    "resend": "^4.1.1",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "twilio": "^5.3.3",

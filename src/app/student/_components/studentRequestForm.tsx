@@ -35,6 +35,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const documentTypes = [
+  "Bulk Request",
   "Enrollment Form",
   "Diploma",
   "TOR",
@@ -51,7 +52,6 @@ const documentTypes = [
   "Completion Removal Form",
   "Prospectus",
   "Enrollment List",
-  "Bulk Request",
 ];
 
 export default function StudentRequestForm() {

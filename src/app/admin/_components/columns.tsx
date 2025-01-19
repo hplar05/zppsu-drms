@@ -111,43 +111,60 @@ export const columns: ColumnDef<Request>[] = [
       const request = row.original;
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Attachment</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Link href={`${request.attachment}`}>View Request Form</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href={`/admin/requests/${request.id}`}>
-                View Receipt Image
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuLabel>Action</DropdownMenuLabel>
-            {/* <DropdownMenuItem>
-              <Link href={`/admin/editRequest/${request.id}`}>Edit</Link>
-            </DropdownMenuItem> */}
-            <DropdownMenuItem>
+        <div className="gap-5 flex">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Attachment</DropdownMenuLabel>
+              <DropdownMenuItem>
+                <a
+                  href={`${request.attachment}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Request Form
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <a
+                  href={`/admin/requests/${request.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Receipt Image
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuLabel>Action</DropdownMenuLabel>
+              {/* <DropdownMenuItem>
+      <Link href={`/admin/editRequest/${request.id}`}>Edit</Link>
+    </DropdownMenuItem> */}
+              {/* <DropdownMenuItem>
+                <Link href={`/admin/set-status/${request.id}`}>Set Status</Link>
+              </DropdownMenuItem> */}
+              <DropdownMenuItem
+                onClick={() =>
+                  navigator.clipboard.writeText(request.id.toString())
+                }
+              >
+                Copy request ID
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                {/* <DeleteRequestDialog id={request.id} /> */}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <div>
+            <Button>
               <Link href={`/admin/set-status/${request.id}`}>Set Status</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() =>
-                navigator.clipboard.writeText(request.id.toString())
-              }
-            >
-              Copy request ID
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              {/* <DeleteRequestDialog id={request.id} /> */}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </Button>
+          </div>
+        </div>
       );
     },
   },

@@ -13,10 +13,10 @@ export async function POST(request: Request) {
     // In a real application, you would save this token in your database
     // associated with the user's email and an expiration time
 
-    const resetLink = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${resetToken}`;
+    const resetLink = `zppsu-drms.online/reset-password?token=${resetToken}`;
 
     const { data, error } = await resend.emails.send({
-      from: 'ZPPSU <noreply@yourdomain.com>',
+      from: 'ZPPSU <noreply@zppsu-drms.online>',
       to: email,
       subject: 'Reset Your Password',
       html: `

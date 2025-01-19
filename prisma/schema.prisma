@@ -8,30 +8,32 @@ datasource db {
 }
 
 model User {
-  id               String         @id @default(cuid())
-  email            String         @unique
-  username         String         @unique
-  password         String
-  name             String
-  firstName        String?
-  middleName       String?
-  lastName         String?
-  mobileNumber     String
-  image            String?
-  course           String
-  studId           String
-  requestForm      RequestForm[]
-  announcement     Announcement[]
-  role             Role           @default(STUDENT)
-  isApprove        Boolean        @default(false)
-  proofOfID        String?
-  yearAttended     String?
-  semmester        String?
-  createdAt        DateTime       @default(now())
-  updateUt         DateTime       @updatedAt
-  othersCourse     String?
-  sentMessages     Message[]      @relation("SentMessages")
-  receivedMessages Message[]      @relation("ReceivedMessages")
+  id                String         @id @default(cuid())
+  email             String         @unique
+  username          String         @unique
+  password          String
+  name              String
+  firstName         String?
+  middleName        String?
+  lastName          String?
+  mobileNumber      String
+  image             String?
+  course            String
+  studId            String
+  requestForm       RequestForm[]
+  announcement      Announcement[]
+  role              Role           @default(STUDENT)
+  isApprove         Boolean        @default(false)
+  proofOfID         String?
+  yearAttended      String?
+  semmester         String?
+  createdAt         DateTime       @default(now())
+  updateUt          DateTime       @updatedAt
+  othersCourse      String?
+  sentMessages      Message[]      @relation("SentMessages")
+  receivedMessages  Message[]      @relation("ReceivedMessages")
+  resetToken        String?
+  resetTokenExpires DateTime?
 }
 
 enum Role {

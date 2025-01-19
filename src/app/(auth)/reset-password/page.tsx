@@ -47,11 +47,25 @@ export default function ResetPasswordPage() {
   const onSubmit = async (values: z.infer<typeof ResetPasswordSchema>) => {
     setIsLoading(true);
     try {
-      // Here you would typically call an API to reset the password
-      // For this example, we'll just simulate a successful request
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      toast.success("Password reset successfully");
-      router.push("/login");
+      const response = await fetch("/api/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          token,
+          newPassword: values.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("Password reset successfully");
+        router.push("/login");
+      } else {
+        throw new Error(data.error || "Failed to reset password");
+      }
     } catch (error) {
       console.error("Password reset error:", error);
       toast.error("An error occurred. Please try again.");

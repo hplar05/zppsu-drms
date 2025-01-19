@@ -65,7 +65,17 @@ export default async function UserLists({
   const usercounts = await db.user.count({
     where: {
       isApprove: { equals: true },
-      role: { in: ["STUDENT", "GRADUATE_STUDENT", "RETURNEES", "DROPOUT"] },
+      role: {
+        in: [
+          "STUDENT",
+          "GRADUATE_STUDENT",
+          "RETURNEES",
+          "DROPOUT",
+          "SHIFTER",
+          "ALUMNI",
+          "IRREGULAR",
+        ],
+      },
       OR: [
         { name: { contains: query } },
         { studId: { contains: query } },

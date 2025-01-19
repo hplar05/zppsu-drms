@@ -18,6 +18,8 @@ model User {
   lastName          String?
   mobileNumber      String
   image             String?
+  yearGraduated     String?
+  otherCourse       String?
   course            String
   studId            String
   requestForm       RequestForm[]
@@ -25,8 +27,8 @@ model User {
   role              Role           @default(STUDENT)
   isApprove         Boolean        @default(false)
   proofOfID         String?
-  yearAttended      String?
-  semmester         String?
+  // yearAttended      String?
+  // semmester         String?
   createdAt         DateTime       @default(now())
   updateUt          DateTime       @updatedAt
   othersCourse      String?

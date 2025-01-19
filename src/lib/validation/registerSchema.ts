@@ -15,7 +15,10 @@ export const RegisterSchema = z
     proofOfID: z.string().url("Proof of ID must be a valid URL"),
     mobileNumber: z.string().regex(/^(\+63)?\d{10}$/, "Invalid mobile number"),
     studId: z.string().nonempty("Student ID is required"),
+    yearGraduated: z.string().optional(),
+    otherCourse: z.string().optional(),
     course: z.enum([
+    "OTHERS",
     "COLLEGE OF TEACHER EDUCATION",
     "BACHELOR OF ELEMENTARY EDUCATION",
     "BACHELOR OF SECONDARY EDUCATION - MAJOR IN MATHEMATICS",
@@ -80,6 +83,7 @@ export const RegisterSchema = z
       "DROPOUT",
       "RETURNEES",
       "SHIFTER",
+      "ALUMNI"
       // "ADMIN",
       // "SUPERADMIN",
     ]),

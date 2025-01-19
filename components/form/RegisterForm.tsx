@@ -14,8 +14,10 @@ import {
   Lock,
   User,
   Phone,
+  Calendar,
   BookOpen,
   GraduationCap,
+  Medal,
   FileText,
 } from "lucide-react";
 import { RegisterSchema } from "@/src/lib/validation/registerSchema";
@@ -44,6 +46,8 @@ export default function RegisterForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState("");
+  const [selectedRole, setSelectedRole] = useState("");
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -59,6 +63,8 @@ export default function RegisterForm() {
       proofOfID: "",
       confirmPassword: "",
       studId: "",
+      yearGraduated: "",
+      otherCourse: "",
       // course: "",
       // role: "",
     },
@@ -85,6 +91,8 @@ export default function RegisterForm() {
           course: values.course,
           studId: values.studId,
           role: values.role,
+          yearGraduated: values.yearGraduated,
+          otherCourse: values.otherCourse,
         }),
       });
 
@@ -270,7 +278,10 @@ export default function RegisterForm() {
               <FormItem>
                 <FormLabel className="text-gray-700">Course</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    setSelectedCourse(value);
+                  }}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -280,7 +291,7 @@ export default function RegisterForm() {
                   </FormControl>
                   <SelectContent>
                     {[
-                      "SELECT",
+                      "OTHERS",
                       "COLLEGE OF TEACHER EDUCATION",
                       "BACHELOR OF ELEMENTARY EDUCATION",
                       "BACHELOR OF SECONDARY EDUCATION - MAJOR IN MATHEMATICS",
@@ -337,7 +348,6 @@ export default function RegisterForm() {
                       "DIPLOMA OF TECHNOLOGY - HOSPITALITY MANAGEMENT TECHNOLOGY",
                       "DIPLOMA OF TECHNOLOGY - INFORMATION TECHNOLOGY",
                       "DIPLOMA OF TECHNOLOGY - MECHANICAL ENGINEERING TECHNOLOGY",
-                      // ... (other course options)
                     ].map((course) => (
                       <SelectItem key={course} value={course}>
                         {course}
@@ -349,6 +359,36 @@ export default function RegisterForm() {
               </FormItem>
             )}
           />
+
+          {/* Other Course Field */}
+          {selectedCourse === "OTHERS" && (
+            <FormField
+              control={form.control}
+              name="otherCourse"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700">
+                    Course (If not listed)
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <Medal
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                        size={18}
+                      />
+                      <Input
+                        className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                        placeholder="If your Course is not listed in Dropdown"
+                        type="text"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <FormField
             control={form.control}
             name="role"
@@ -356,7 +396,10 @@ export default function RegisterForm() {
               <FormItem>
                 <FormLabel className="text-gray-700">Academic Status</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    setSelectedRole(value);
+                  }}
                   defaultValue={field.value}
                 >
                   <FormControl>
@@ -366,13 +409,13 @@ export default function RegisterForm() {
                   </FormControl>
                   <SelectContent>
                     {[
-                      "SELECT",
                       "STUDENT",
                       "GRADUATE_STUDENT",
                       "IRREGULAR",
                       "DROPOUT",
                       "RETURNEES",
                       "SHIFTER",
+                      "ALUMNI",
                     ].map((role) => (
                       <SelectItem key={role} value={role}>
                         {role.replace("_", " ")}
@@ -384,6 +427,37 @@ export default function RegisterForm() {
               </FormItem>
             )}
           />
+
+          {/* Year Graduated Field */}
+          {(selectedRole === "ALUMNI" ||
+            selectedRole === "GRADUATE_STUDENT") && (
+            <FormField
+              control={form.control}
+              name="yearGraduated"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700">
+                    Year of Graduation for (Graduate/Alumni)
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <GraduationCap
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                        size={18}
+                      />
+                      <Input
+                        className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                        placeholder="YYYY"
+                        type="number"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}

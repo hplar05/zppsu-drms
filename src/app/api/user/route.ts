@@ -22,8 +22,11 @@ const userSchema = z.object({
     proofOfID: z.string().min(3, "Proof of ID is required"),
     mobileNumber: z.string().length(13, "Mobile number must be exactly 13 characters"),
     studId: z.string().min(5, "Student ID is required").max(15),
+      yearGraduated: z.string().optional(),
+        otherCourse: z.string().optional(),
     // confirmPassword: z.string().min(1, "Password confirmation is required"),
     course: z.enum([
+      "OTHERS",
       "COLLEGE OF TEACHER EDUCATION",
       "BACHELOR OF ELEMENTARY EDUCATION",
       "BACHELOR OF SECONDARY EDUCATION - MAJOR IN MATHEMATICS",
@@ -88,6 +91,7 @@ const userSchema = z.object({
       "DROPOUT",
       "RETURNEES",
       "SHIFTER",
+      "ALUMNI"
     //   "ADMIN",
     //   "SUPERADMIN",
     ]),
@@ -96,7 +100,7 @@ const userSchema = z.object({
   export async function POST(req: Request) {
     try {
       const body = await req.json();
-      const { username, firstName, lastName, middleName, email, password, name, proofOfID, mobileNumber, studId, course, role} = userSchema.parse(body);
+      const { username, firstName, lastName, middleName, email, password, name, proofOfID, mobileNumber, studId, course, role, otherCourse, yearGraduated} = userSchema.parse(body);
   
       const existingUser = await db.user.findUnique({
         where: { email },
@@ -125,7 +129,7 @@ const userSchema = z.object({
   
       const hashedPassword = await hash(password, 10);
       const newUser = await db.user.create({
-        data: { username, firstName, middleName, lastName, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
+        data: { username, firstName, middleName, lastName, otherCourse, yearGraduated, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
       });
   
       return NextResponse.json({ message: "User created successfully", user: newUser }, { status: 201 });

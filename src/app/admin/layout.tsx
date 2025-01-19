@@ -58,7 +58,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Provider>
-              <Toaster />
+              <Toaster position="top-right" />
               <div className="hidden max-md:flex mt-2">
                 <AdminNavbar />
               </div>

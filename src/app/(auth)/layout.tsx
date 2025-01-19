@@ -32,7 +32,7 @@ export default async function RootLayout({
         > */}
         <Providers>
           {children}
-          <Toaster />
+          <Toaster position="top-right" />
         </Providers>
         {/* </ThemeProvider> */}
       </body>

@@ -54,7 +54,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Toaster />
+            <Toaster position="top-right" />
             <div className="flex flex-row h-auto">
               {/* <UserSidebar /> */}
               <main className="flex-1 h-screen pt-1">{children}</main>

@@ -5,77 +5,59 @@ import { getServerSession } from "next-auth";
 import { Knock } from "@knocklabs/node";
 import { db } from "@/src/lib/db";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-// import { Twilio } from "twilio";
+import { z } from "zod";
 
-const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY);
+const knockClient = new Knock(process.env.KNOCK_SECRET_API_KEY!);
 
-//@ts-ignore
-export async function updateAction({ id, action, adminMessage }) {
-    // const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    // const authToken = process.env.TWILIO_AUTH_TOKEN;
-    // const client = new Twilio(accountSid, authToken);
+const updateActionSchema = z.object({
+  id: z.number(),
+  action: z.enum(["PENDING", "DECLINE", "APPROVE_PENDING_PAYMENT", "PAID", "COMPLETED"]),
+  adminMessage: z.string().min(1),
+});
 
-    const session = await getServerSession(authOptions);
-    if (!session) return { error: "Unauthorized" };
+export async function updateAction(input: z.infer<typeof updateActionSchema>) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
 
-    try {
-        await db.requestForm.update({
-            where: { id },
-            data: {
-                action,
-                adminMessage,
-            },
-        });
-    } catch (error) {
-        console.error("Failed to update action:", error);
-        throw new Error("Failed to update action");
-    }
+  const { id, action, adminMessage } = updateActionSchema.parse(input);
 
-    const getStudentId = await db.requestForm.findUnique({
-        where: { id },
-        select: { userId: true },
+  try {
+    await db.requestForm.update({
+      where: { id },
+      data: {
+        action,
+        adminMessage,
+      },
     });
 
-    if (!getStudentId) {
-        throw new Error("UserID not found");
-    }
-
-    const userId = getStudentId.userId;
-
-    const requestStudent = await db.user.findUnique({
-        where: { id: userId },
+    const requestForm = await db.requestForm.findUnique({
+      where: { id },
+      include: { user: true },
     });
 
-    if (!requestStudent) {
-        throw new Error("Student not found");
+    if (!requestForm || !requestForm.user) {
+      throw new Error("Request or user not found");
     }
-
-    // // Sending SMS message using Twilio with dummy data
-    // try {
-    //     await client.messages.create({
-    //         body: "Message ka Mikss if ma recieved mo to", 
-    //         from: process.env.TWILIO_PHONE_NUMBER, 
-    //         to: "+6309694654975", // Dummy recipient's phone number 
-    //     });
-    // } catch (error) {
-    //     console.error("Failed to send SMS:", error);
-    //     throw new Error("Failed to send SMS");
-    // }
 
     await knockClient.notify("admin-set-status-request", {
-        actor: session.user.id,
-        recipients: [requestStudent.id],
-        data: {
-            request: {
-                adminMessage: adminMessage,
-                adminName: session.user.name,
-                status: action,
-                studId: requestStudent.studId,
-            },
+      actor: session.user.id,
+      recipients: [requestForm.user.id],
+      data: {
+        request: {
+          adminMessage: adminMessage,
+          adminName: session.user.name,
+          status: action,
+          studId: requestForm.user.studId,
         },
+      },
     });
 
     revalidatePath("/admin/request-table");
-    redirect("/admin/request-table");
+  } catch (error) {
+    console.error("Failed to update action:", error);
+    throw new Error("Failed to update action");
+  }
 }
+

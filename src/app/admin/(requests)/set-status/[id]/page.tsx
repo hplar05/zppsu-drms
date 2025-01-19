@@ -1,6 +1,6 @@
 import { db } from "@/src/lib/db";
 import { notFound } from "next/dist/client/components/not-found";
-import SetStatusForm from "../../../_components/setStatusForm";
+import { SetStatusForm } from "../../../_components/setStatusForm";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const request = await db.requestForm.findUnique({
@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div>
+    <div className="flex items-center justify-center min-h-screen">
       <SetStatusForm
         initialAction={request.action}
         requestId={request.id}

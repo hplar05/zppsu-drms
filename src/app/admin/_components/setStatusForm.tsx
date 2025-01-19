@@ -1,13 +1,48 @@
 "use client";
 
-import { updateAction } from "@/actions/setStatus";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { toast } from "react-hot-toast";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import Link from "next/link";
-import { useState, useTransition } from "react";
-import toast from "react-hot-toast";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { updateAction } from "@/actions/setStatus";
+
+const formSchema = z.object({
+  action: z.enum([
+    "PENDING",
+    "DECLINE",
+    "APPROVE_PENDING_PAYMENT",
+    "PAID",
+    "COMPLETED",
+  ]),
+  adminMessage: z.string().min(1, "Admin message is required"),
+});
 
 interface SetStatusFormProps {
   initialAction: string;
@@ -16,65 +51,114 @@ interface SetStatusFormProps {
   requestStudId: string;
 }
 
-export default function SetStatusForm({
+export function SetStatusForm({
   initialAction,
   requestId,
   requestName,
   requestStudId,
 }: SetStatusFormProps) {
-  const [action, setAction] = useState(initialAction);
-  const [adminMessage, setAdminMessage] = useState("");
-  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    startTransition(() => {
-      updateAction({ id: requestId, action, adminMessage });
-    });
-    toast.success(`Successfully Set to ${action}`);
-  };
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      action: initialAction as z.infer<typeof formSchema>["action"],
+      adminMessage: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    try {
+      await updateAction({
+        id: requestId,
+        action: values.action,
+        adminMessage: values.adminMessage,
+      });
+      toast.success(`Successfully set status to ${values.action}`);
+      router.push("/admin/request-table");
+    } catch (error) {
+      toast.error("Failed to update status");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
-    <div className="flex justify-center items-center h-[50vh]">
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-5 border p-10 rounded-md w-[600px] text-center">
-          <h3>
-            {requestName} {requestStudId}
-          </h3>
-          <Label htmlFor="action">Update Action:</Label>
-          <select
-            id="action"
-            value={action}
-            onChange={(e) => setAction(e.target.value)}
-            className="text-center rounded-md border-black dark:border-white border w-[40%] flex mx-auto"
-            required
-          >
-            <option value="PENDING">PENDING</option>
-            <option value="DECLINE">DECLINE</option>
-            <option value="APPROVE_PENDING_PAYMENT">
-              APPROVE PENDING FOR PAYMENT
-            </option>
-            <option value="PAID">PAID</option>
-            <option value="COMPLETED">COMPLETED</option>
-          </select>
-
-          <Label htmlFor="adminMessage">Admin Message:</Label>
-          <Textarea
-            id="adminMessage"
-            value={adminMessage}
-            onChange={(e) => setAdminMessage(e.target.value)}
-            placeholder="Enter admin message"
-            required
-          />
-
-          {/* <Button>
-            <Link href="">Cancel</Link>
-          </Button> */}
-          <Button type="submit" disabled={isPending}>
-            {isPending ? "Submitting..." : "Submit"}
-          </Button>
-        </div>
-      </form>
-    </div>
+    <Card className="w-[600px] mx-auto">
+      <CardHeader>
+        <CardTitle className="text-center">Update Request Status</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="text-center mb-6">
+              <h3 className="text-lg font-semibold">
+                {requestName} ({requestStudId})
+              </h3>
+            </div>
+            <FormField
+              control={form.control}
+              name="action"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Update Action</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select an action" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="PENDING">Pending</SelectItem>
+                      <SelectItem value="DECLINE">Decline</SelectItem>
+                      <SelectItem value="APPROVE_PENDING_PAYMENT">
+                        Approve Pending For Payment
+                      </SelectItem>
+                      <SelectItem value="PAID">Waiting for Approval</SelectItem>
+                      <SelectItem value="COMPLETED">Completed</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="adminMessage"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Admin Message</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Enter admin message"
+                      className="resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline" onClick={() => router.back()}>
+          Cancel
+        </Button>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          onClick={form.handleSubmit(onSubmit)}
+        >
+          {isSubmitting ? "Submitting..." : "Submit"}
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

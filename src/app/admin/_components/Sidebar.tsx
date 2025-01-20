@@ -75,7 +75,7 @@ export default function UserSidebar() {
           prefetch={false}
         >
           <UserIcon className="w-5 h-5" />
-          <span>Students Lists</span>
+          <span>Approve User Lists</span>
         </Link>
 
         <div className="text-muted-foreground font-medium text-base">
@@ -140,7 +140,11 @@ export default function UserSidebar() {
           <Message className="h-5 w-5" />
           <span>Chats</span>
         </Link>
-        <Link href="#" className={linkClasses("#")} prefetch={false}>
+        <Link
+          href="/admin/announcements"
+          className={linkClasses("/admin/announcements")}
+          prefetch={false}
+        >
           <MegaphoneIcon className="h-5 w-5" />
           <span>Announcements</span>
         </Link>

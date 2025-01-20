@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, Home, Bell, User, LogOut } from "lucide-react";
+import { Menu, X, Home, Bell, User, LogOut, Megaphone } from "lucide-react";
 import toast from "react-hot-toast";
 
 const UserNavbar = () => {
@@ -45,6 +45,7 @@ const UserNavbar = () => {
     { href: "/student/dashboard", icon: Home, label: "Dashboard" },
     { href: "/student/reminders", icon: Bell, label: "Reminders" },
     { href: "/student/profile", icon: User, label: "Profile" },
+    { href: "/student/announcements", icon: Megaphone, label: "Announcements" },
   ];
 
   return (

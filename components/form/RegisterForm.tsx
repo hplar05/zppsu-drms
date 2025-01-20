@@ -291,7 +291,6 @@ export default function RegisterForm() {
                   </FormControl>
                   <SelectContent>
                     {[
-                      "OTHERS",
                       "COLLEGE OF TEACHER EDUCATION",
                       "BACHELOR OF ELEMENTARY EDUCATION",
                       "BACHELOR OF SECONDARY EDUCATION - MAJOR IN MATHEMATICS",
@@ -348,6 +347,7 @@ export default function RegisterForm() {
                       "DIPLOMA OF TECHNOLOGY - HOSPITALITY MANAGEMENT TECHNOLOGY",
                       "DIPLOMA OF TECHNOLOGY - INFORMATION TECHNOLOGY",
                       "DIPLOMA OF TECHNOLOGY - MECHANICAL ENGINEERING TECHNOLOGY",
+                      "OTHERS",
                     ].map((course) => (
                       <SelectItem key={course} value={course}>
                         {course}

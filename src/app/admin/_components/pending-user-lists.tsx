@@ -110,10 +110,10 @@ export default async function PendingUserLists({
         <TableHeader>
           <TableRow>
             <TableHead className="w-1/6">
-              <SortableHeader column="name" />
+              <SortableHeader column="studId" />
             </TableHead>
             <TableHead className="w-1/6">
-              <SortableHeader column="studId" />
+              <SortableHeader column="name" />
             </TableHead>
             <TableHead className="w-1/6">
               <SortableHeader column="course" />
@@ -136,6 +136,9 @@ export default async function PendingUserLists({
               key={user.id}
               className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
+              <TableCell className="truncate max-w-[100px]">
+                {user.studId}
+              </TableCell>
               <TableCell className="font-medium">
                 <TooltipProvider>
                   <Tooltip>
@@ -147,9 +150,6 @@ export default async function PendingUserLists({
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-              </TableCell>
-              <TableCell className="truncate max-w-[100px]">
-                {user.studId}
               </TableCell>
               <TableCell className="truncate max-w-[100px]">
                 <TooltipProvider>

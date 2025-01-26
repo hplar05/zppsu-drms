@@ -149,14 +149,14 @@ export default async function UserLists({
         <TableHeader>
           <TableRow>
             <TableHead className="w-auto">
-              <SortableHeader column="name" label="Full Name" />
-            </TableHead>
-            <TableHead className="w-auto">
-              <SortableHeader column="username" label="Username" />
-            </TableHead>
-            <TableHead className="w-auto">
               <SortableHeader column="studId" label="Student ID" />
             </TableHead>
+            <TableHead className="w-auto">
+              <SortableHeader column="name" label="Full Name" />
+            </TableHead>
+            {/* <TableHead className="w-auto">
+              <SortableHeader column="username" label="Username" />
+            </TableHead> */}
             <TableHead className="w-auto">
               <SortableHeader column="course" label="Course" />
             </TableHead>
@@ -177,30 +177,6 @@ export default async function UserLists({
               key={user.id}
               className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
-              <TableCell className="font-medium">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger className="truncate max-w-[150px] inline-block">
-                      {user.name}
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{user.name}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </TableCell>
-              <TableCell className="truncate max-w-[150px]">
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger className="truncate max-w-[150px] inline-block">
-                      {user.username}
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{user.username}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </TableCell>
               <TableCell className="truncate max-w-[100px]">
                 <TooltipProvider>
                   <Tooltip>
@@ -213,6 +189,31 @@ export default async function UserLists({
                   </Tooltip>
                 </TooltipProvider>
               </TableCell>
+              <TableCell className="font-medium">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="truncate max-w-[150px] inline-block">
+                      {user.name}
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{user.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableCell>
+              {/* <TableCell className="truncate max-w-[150px]">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger className="truncate max-w-[150px] inline-block">
+                      {user.username}
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{user.username}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableCell> */}
+
               <TableCell className="truncate max-w-[100px]">
                 <TooltipProvider>
                   <Tooltip>
@@ -254,7 +255,7 @@ export default async function UserLists({
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={9} className="text-center">
+            <TableCell colSpan={8} className="text-center">
               <Pagination>
                 <PaginationContent>
                   <PaginationItem>

@@ -4,7 +4,7 @@ import { hash } from 'bcrypt'
 import * as z from 'zod'
 
 const userSchema = z.object({
-    username: z.string().min(1, "Username is required").max(100),
+    username: z.string().optional(),
     email: z.string().email("Invalid email").min(1, "Email is required"),
     password: z
       .string()
@@ -16,14 +16,15 @@ const userSchema = z.object({
         "Password must contain at least one lowercase letter, one uppercase letter, and one special character."
       ),
     name: z.string().nonempty("Full Name is required"),
-    firstName: z.string().nonempty("First Name is required"),
-    middleName: z.string().nonempty("Middle Name is required"),
-    lastName: z.string().nonempty("Last Name is required"),
+    // firstName: z.string().nonempty("First Name is required"),
+    // middleName: z.string().nonempty("Middle Name is required"),
+    // lastName: z.string().nonempty("Last Name is required"),
     proofOfID: z.string().min(3, "Proof of ID is required"),
     mobileNumber: z.string().length(13, "Mobile number must be exactly 13 characters"),
     studId: z.string().min(5, "Student ID is required").max(15),
       yearGraduated: z.string().optional(),
         otherCourse: z.string().optional(),
+        extention: z.string().optional(),
     // confirmPassword: z.string().min(1, "Password confirmation is required"),
     course: z.enum([
       "OTHERS",
@@ -100,7 +101,7 @@ const userSchema = z.object({
   export async function POST(req: Request) {
     try {
       const body = await req.json();
-      const { username, firstName, lastName, middleName, email, password, name, proofOfID, mobileNumber, studId, course, role, otherCourse, yearGraduated} = userSchema.parse(body);
+      const { username, email, password, extention, name, proofOfID, mobileNumber, studId, course, role, otherCourse, yearGraduated} = userSchema.parse(body);
   
       const existingUser = await db.user.findUnique({
         where: { email },
@@ -110,13 +111,13 @@ const userSchema = z.object({
         return NextResponse.json({ message: "Email already exists" }, { status: 409 });
       }
 
-      const existingUsername = await db.user.findUnique({
-        where: { username },
-      });
+      // const existingUsername = await db.user.findUnique({
+      //   where: { username },
+      // });
   
-      if (existingUsername) {
-        return NextResponse.json({ message: "Username already exists" }, { status: 409 });
-      }
+      // if (existingUsername) {
+      //   return NextResponse.json({ message: "Username already exists" }, { status: 409 });
+      // }
 
     //   const existingNumber = await db.user.findUnique({
     //     where: { mobileNumber },
@@ -129,7 +130,7 @@ const userSchema = z.object({
   
       const hashedPassword = await hash(password, 10);
       const newUser = await db.user.create({
-        data: { username, firstName, middleName, lastName, otherCourse, yearGraduated, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
+        data: { username: "ZPPSU", otherCourse, extention, yearGraduated, email, password: hashedPassword, name, proofOfID, mobileNumber, studId, course, role, image:"https://547evqsnjf.ufs.sh/f/i8IdTpLgbnZCXwlo6WiSyIJmDK7xzCieFjOcrbt5vkQ3W2pg" },
       });
   
       return NextResponse.json({ message: "User created successfully", user: newUser }, { status: 201 });

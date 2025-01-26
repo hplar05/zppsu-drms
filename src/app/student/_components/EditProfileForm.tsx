@@ -41,7 +41,7 @@ export function EditProfileForm({ user }: { user: User }) {
               <p className="mt-2 text-sm text-red-500">{state?.Error?.name}</p>
             </div>
           </div>
-          <div className="flex justify-between gap-2">
+          {/* <div className="flex justify-between gap-2">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
               <Input
@@ -56,7 +56,7 @@ export function EditProfileForm({ user }: { user: User }) {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
           <Button variant="outline">

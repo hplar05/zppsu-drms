@@ -53,11 +53,12 @@ export default function RegisterForm() {
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
       name: "",
-      firstName: "",
-      middleName: "",
-      lastName: "",
+      // firstName: "",
+      // middleName: "",
+      // lastName: "",
+      extention: "",
       mobileNumber: "",
-      username: "",
+      // username: "",
       email: "",
       password: "",
       proofOfID: "",
@@ -80,11 +81,12 @@ export default function RegisterForm() {
         },
         body: JSON.stringify({
           name: values.name,
-          firstName: values.firstName,
-          middleName: values.middleName,
-          lastName: values.lastName,
+          // firstName: values.firstName,
+          // middleName: values.middleName,
+          // lastName: values.lastName,
+          extention: values.extention,
           mobileNumber: values.mobileNumber,
-          username: values.username,
+          // username: values.username,
           email: values.email,
           proofOfID: values.proofOfID,
           password: values.password,
@@ -127,30 +129,57 @@ export default function RegisterForm() {
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-gray-700">Full Name</FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <User
-                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                      size={18}
-                    />
-                    <Input
-                      className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
-                      placeholder="Enter your full name"
-                      {...field}
-                    />
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700">Full Name</FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <User
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                        size={18}
+                      />
+                      <Input
+                        className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                        placeholder="Lastname/Firstname/Middlename"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="extention"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700">
+                    Extention (optional)
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <User
+                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                        size={18}
+                      />
+                      <Input
+                        className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                        placeholder="Ext: Sr./Jr./etc"
+                        {...field}
+                      />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />{" "}
+          </div>
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <FormField
               control={form.control}
               name="firstName"
@@ -221,9 +250,9 @@ export default function RegisterForm() {
                 </FormItem>
               )}
             />
-          </div>
+          </div> */}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="username"
@@ -246,31 +275,31 @@ export default function RegisterForm() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
-            <FormField
-              control={form.control}
-              name="studId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-gray-700">Student ID</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <FileText
-                        className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                        size={18}
-                      />
-                      <Input
-                        className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
-                        placeholder="Enter your student ID"
-                        {...field}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+            /> */}
+          <FormField
+            control={form.control}
+            name="studId"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-700">Student ID</FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <FileText
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                      size={18}
+                    />
+                    <Input
+                      className="pl-10 py-2 border-gray-300 focus:border-[#800000] focus:ring focus:ring-[#800000]/20 transition duration-150 ease-in-out"
+                      placeholder="Enter your student ID"
+                      {...field}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* </div> */}
           <FormField
             control={form.control}
             name="course"

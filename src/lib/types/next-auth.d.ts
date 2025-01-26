@@ -6,7 +6,7 @@ declare module "next-auth" {
     interface User {
         id: string,
         email: string,
-        username: string,
+        // username: string,
         name: string,
         mobileNumber: string,
         image: string | null,
@@ -20,7 +20,7 @@ declare module "next-auth" {
         user: User & {
             id: string,
             email: string,
-            username: string,
+            // username: string,
             name: string,
             mobileNumber: string,
             image: string | null,
@@ -36,7 +36,7 @@ declare module "next-auth/jwt" {
     interface JWT {
         id: string,
         email: string,
-        username: string,
+        // username: string,
         name: string,
         mobileNumber: string,
         image: string | null,

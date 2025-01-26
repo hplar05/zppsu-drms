@@ -161,7 +161,7 @@ export default function DashboardData({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <StatCard
-          title="Waiting for Approval"
+          title="For Approval"
           value={totalPaid}
           icon={Activity}
           color="bg-purple-500"

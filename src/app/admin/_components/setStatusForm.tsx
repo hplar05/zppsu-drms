@@ -119,7 +119,7 @@ export function SetStatusForm({
                       <SelectItem value="APPROVE_PENDING_PAYMENT">
                         Approve Pending For Payment
                       </SelectItem>
-                      <SelectItem value="PAID">Waiting for Approval</SelectItem>
+                      <SelectItem value="PAID">For Approval</SelectItem>
                       <SelectItem value="COMPLETED">Completed</SelectItem>
                     </SelectContent>
                   </Select>

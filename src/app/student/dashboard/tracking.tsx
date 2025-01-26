@@ -11,7 +11,7 @@ export const Tracking = () => {
           "Pending",
           "Approve or Decline",
           "Pending Payment",
-          "Waiting for Approval",
+          "For Approval",
           "Completed",
         ].map((step, index) => (
           <React.Fragment key={step}>

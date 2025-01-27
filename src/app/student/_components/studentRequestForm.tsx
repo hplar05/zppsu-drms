@@ -59,6 +59,7 @@ export default function StudentRequestForm() {
   const [receiptUrl, setReceiptUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRequests, setSelectedRequests] = useState<string[]>([]);
+  const [otherDocument, setOtherDocument] = useState("");
   const { data: session } = useSession();
 
   const {
@@ -81,7 +82,11 @@ export default function StudentRequestForm() {
 
     Object.keys(data).forEach((key) => {
       if (key === "requestChoices" && isBulkRequest) {
-        formData.append(key, JSON.stringify(selectedRequests));
+        const bulkRequests = [...selectedRequests];
+        if (otherDocument) {
+          bulkRequests.push(otherDocument);
+        }
+        formData.append(key, JSON.stringify(bulkRequests));
       } else {
         formData.append(key, data[key]);
       }
@@ -255,6 +260,15 @@ export default function StudentRequestForm() {
                           <Label htmlFor={`bulk-${type}`}>{type}</Label>
                         </div>
                       ))}
+                  </div>
+                  <div className="mt-2">
+                    <Label htmlFor="otherDocument">Other (specify)</Label>
+                    <Input
+                      id="otherDocument"
+                      value={otherDocument}
+                      onChange={(e) => setOtherDocument(e.target.value)}
+                      placeholder="Enter other document type"
+                    />
                   </div>
                 </div>
               )}

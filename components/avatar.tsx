@@ -14,7 +14,7 @@ const UserAvatar = () => {
   const userEmail = session?.user.email;
 
   return (
-    <div className="flex flex-col justify-center gap-2">
+    <div className="flex flex-col justify-center gap-2 z-0">
       <div className="flex items-center gap-2">
         <Avatar>
           <AvatarImage src={avatarUrl!} />

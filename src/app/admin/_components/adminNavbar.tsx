@@ -44,7 +44,7 @@ const AdminNavbar = () => {
       : "flex items-center gap-3 rounded-md px-3 py-1 transition-colors hover:bg-muted hover:text-foreground";
 
   return (
-    <nav className="z-50 w-full non-prose flex item-center justify-between top-0 dark:bg-transparent dark:border-none bg-white h-auto border-b pb-2">
+    <nav className="z-50 w-full non-prose flex item-center justify-between top-0 dark:bg-transparent dark:border-none bg-white h-auto border-b pb-5">
       <div className="max-md:block justify-center items-center hidden">
         <Sheet>
           <div></div>

@@ -31,6 +31,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const navItems = [
   {
@@ -83,7 +84,7 @@ const navItems = [
 
 export default function UserSidebar() {
   const pathname = usePathname();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [openCategories, setOpenCategories] = useState<string[]>(
     navItems.map((item) => item.category)
   );
@@ -191,9 +192,10 @@ export default function UserSidebar() {
           ))}
         </ScrollArea>
         <Separator />
-        <div className="p-4">
-          <UserAvatar />
-          {!isCollapsed && (
+
+        {!isCollapsed ? (
+          <div className="p-4">
+            <UserAvatar />
             <Button
               variant="ghost"
               className="w-full mt-2 text-red-600 hover:text-red-700 hover:bg-red-100 dark:hover:bg-red-900 dark:hover:text-red-300"
@@ -202,8 +204,18 @@ export default function UserSidebar() {
               <LogOut className="h-5 w-5 mr-2" />
               Sign Out
             </Button>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="p-4">
+            <Avatar>
+              <AvatarImage
+                src="https://547evqsnjf.ufs.sh/f/168c249e-1c11-4913-b855-74b47a294f41-boiebq.jpg"
+                alt="@shadcn"
+              />
+              <AvatarFallback>AD</AvatarFallback>
+            </Avatar>
+          </div>
+        )}
       </nav>
     </div>
   );

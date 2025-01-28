@@ -77,7 +77,7 @@ export default async function DashboardPage() {
   }));
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen z-50">
       <div className="flex flex-col">
         <header className="bg-white dark:bg-transparent shadow-md z-10 mt-2">
           <div className="max-md:hidden block">

@@ -23,7 +23,7 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-      <AdminNavbar />
+      {/* <AdminNavbar /> */}
       <div className="max-w-6xl mx-auto p-6 space-y-6">
         <Card className="w-full overflow-hidden">
           <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600"></div>
